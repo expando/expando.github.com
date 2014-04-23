@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<svg width="356" height="356" viewBox="0 0 356 356" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+  <title>share</title>
+  <rect fill="#fff" id="canvas_background" height="356" width="356" y="-1" x="-1"/>
+  <title>Layer 1</title>
+  <rect stroke="#000" id="svg_1" height="356" width="356" y="0" x="0" stroke-width="0" fill="#00c000"/>
+  <ellipse stroke="#000" ry="77" rx="77" id="svg_9" cy="177" cx="92" stroke-opacity="null" stroke-width="0" fill="#ffffff"/>
+  <ellipse stroke="#000" ry="12" rx="12" id="svg_10" cy="144" cx="114" stroke-opacity="null" stroke-width="0" fill="#00c000"/>
+  <path stroke="#000" id="svg_15" d="m160,230l-74,-48l88,-7l-14,56z" stroke-opacity="null" stroke-width="0" fill="#00c000"/>
+  <ellipse stroke="#000" ry="77" rx="77" id="svg_4" cy="177" cx="263" stroke-opacity="null" stroke-width="0" fill="#ffffff"/>
+  <ellipse stroke="#000" ry="54" rx="54" id="svg_12" cy="177" cx="263" stroke-opacity="null" stroke-width="0" fill="#00c000"/>
+  <ellipse stroke="#000" ry="39" rx="61" id="svg_13" cy="157" cx="263" stroke-opacity="null" stroke-width="0" fill="#ffffff"/>
+   <ellipse stroke="#000" ry="12" rx="12" id="svg_5" cy="148" cx="240" stroke-opacity="null" stroke-width="0" fill="#00c000"/>
+   <ellipse stroke="#000" ry="12" rx="12" id="svg_11" cy="148" cx="286" stroke-opacity="null" stroke-width="0" fill="#00c000"/>
+</svg>
