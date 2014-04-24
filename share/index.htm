@@ -12,6 +12,10 @@ a, em {font-style:normal; color:#00f000}
 a {text-decoration:none}
 a:hover {text-decoration:underline}
 td {text-align:center}
+#share {background:#00c000; display:inline-block; border-radius:10px; padding:5px}
+#others {display:none; padding-left:15px}
+#share:hover {box-shadow:inset 1px 1px 5px #060}
+#share:hover #others {display:inline-block}
 </style>
 </head>
 <body>
@@ -71,8 +75,18 @@ td {text-align:center}
   </ol>
 
   <p xmlns:dct="http://purl.org/dc/terms/">
-  <a rel="license"\ href="http://creativecommons.org/publicdomain/zero/1.0/"
+  <a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/"
     ><img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" alt="CC0"></a> by Terry
   </p>
+
+  <div id="share">
+    <img src="share.svg" width=32 height=32 border=0>
+    <span id="others">
+      <a href="http://www.facebook.com/share.php?u=http%3A%2F%2Fexpando.github.com%2Fshare%2F" target="_blank"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/F_icon.svg/32px-F_icon.svg.png" width=32 height=32 border=0></a>
+      <a href="https://plus.google.com/share?url=http%3A%2F%2Fexpando.github.com%2Fshare%2F"><img src="http://www.gstatic.com/images/icons/gplus-32.png" width=32 height=32 border=0></a>
+      <a href="http://twitter.com/home?status=http%3A%2F%2Fexpando.github.com%2Fshare%2F" target="_blank"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Twitter.svg/32px-Twitter.svg.png" width=32 height=32 border=0></a>
+      <a href="http://pinterest.com/pin/create/button/?description=Pinterest&url=http%3A%2F%2Fexpando.github.com%2Fshare%2F&media=http%3A%2F%2Fexpando.github.com%2Fshare%2Fshare.svg" target="_blank"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Pinterest_Shiny_Icon.svg/32px-Pinterest_Shiny_Icon.svg.png" width=32 height=32 border=0></a>
+    </span>
+  </div>
 </body>
 </html>
