@@ -21,6 +21,8 @@ a, em {font-style:normal; color:#00f000}
 a {text-decoration:none}
 a:hover {text-decoration:underline}
 td {text-align:center}
+#palette {display:inline-block; margin-left:20px}
+#palette b {display:inline-block; overflow:hidden; width:2px; height:10px}
 #share {background:#00c000; display:inline-block; border-radius:10px; padding:5px}
 #others {display:none; padding-left:15px}
 #share:hover {box-shadow:inset 1px 1px 5px #060}
@@ -83,6 +85,24 @@ td {text-align:center}
     <li><b>No attribution</b> and <b>no permission</b> is required
     <li>This icon is provided as is with no warranties
     <li>The <em>green</em> color is NOT required
+<div id="palette">
+<script>
+!function(a,b,c,i,x) {
+for(i=0; i<128; i++) {
+  if(i < 64) {
+    x=i/64, a=Math.round((1-x)*255), b=Math.round(x*255), c=0;
+  } else {
+    x=(i-64)/64, a=0, b=Math.round((1-x)*255), c=Math.round(x*255);
+  }
+  document.write("<b style='background-color:rgb("+a+","+b+","+c+")' onmouseover='setColor(this.style.backgroundColor);'> </b>");
+}
+}();
+function setColor(s) {
+  for(var i=1; i<=8; i++) document.getElementById("icon"+i).setAttribute("fill", s);
+  document.getElementById("share").style.backgroundColor = s;
+}
+</script>
+</div>
   </ol>
 
   <p xmlns:dct="http://purl.org/dc/terms/">
@@ -91,7 +111,21 @@ td {text-align:center}
   </p>
 
   <div id="share">
-    <img src="share.svg" width=32 height=32 border=0>
+<svg width="356" height="356" viewBox="0 0 356 356" xmlns="http://www.w3.org/2000/svg" class="icon" style="width:32px; height:32px; vertical-align:top">
+<rect height="356" width="356" y="0" x="0" stroke-width="0" fill="#00c000" id="icon1"/>
+<ellipse ry="61" rx="61" cy="232" cx="94" stroke-width="0" fill="#ffffff"/>
+<ellipse ry="80" rx="84" cy="160" cx="94" stroke-width="0" fill="#00c000" id="icon2"/>
+<ellipse ry="77" rx="77" cy="140" cx="91" stroke-width="0" fill="#ffffff"/>
+<ellipse ry="12" rx="12" cy="106" cx="112" stroke-width="0" fill="#00c000" id="icon3"/>
+<path d="m159,192l-74,-48l88,-7l-14,56z" stroke-width="0" fill="#00c000" id="icon4"/>
+<ellipse ry="61" rx="61" cy="232" cx="261" stroke-width="0" fill="#ffffff"/>
+<ellipse ry="80" rx="84" cy="160" cx="261" stroke-width="0" fill="#00c000" id="icon5"/>
+<ellipse ry="77" rx="77" cy="140" cx="261" stroke-width="0" fill="#ffffff"/>
+<ellipse ry="54" rx="54" cy="140" cx="261" stroke-width="0" fill="#00c000" id="icon6"/>
+<ellipse ry="39" rx="61" cy="120" cx="261" stroke-width="0" fill="#ffffff"/>
+<ellipse ry="12" rx="12" cy="110" cx="239" stroke-width="0" fill="#00c000" id="icon7"/>
+<ellipse ry="12" rx="12" cy="110" cx="284" stroke-width="0" fill="#00c000" id="icon8"/>
+</svg>
     <span id="others">
       <a href="http://www.facebook.com/share.php?u=http%3A%2F%2Fexpando.github.com%2Fshare%2F" target="_blank"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/F_icon.svg/32px-F_icon.svg.png" width=32 height=32 border=0></a>
       <a href="https://plus.google.com/share?url=http%3A%2F%2Fexpando.github.com%2Fshare%2F" target="_blank"><img src="http://www.gstatic.com/images/icons/gplus-32.png" width=32 height=32 border=0></a>
