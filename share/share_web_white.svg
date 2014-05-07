@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<svg width="356" height="356" viewBox="0 0 356 356" xmlns="http://www.w3.org/2000/svg">
+<title>free share icon</title>
+<mask id="b1" maskUnits="userSpaceOnUse" x="0" y="0" width="356" height="356">
+<rect x="0" y="0" width="356" height="356" fill="#fff"/>
+<ellipse ry="80" rx="84" cy="160" cx="94" stroke-width="0" fill="#000"/>
+</mask>
+<mask id="b2" maskUnits="userSpaceOnUse" x="0" y="0" width="356" height="356">
+<rect x="0" y="0" width="356" height="356" fill="#fff"/>
+<ellipse ry="80" rx="84" cy="160" cx="261" stroke-width="0" fill="#000"/>
+</mask>
+<mask id="h1" maskUnits="userSpaceOnUse" x="0" y="0" width="356" height="356">
+<rect x="0" y="0" width="356" height="356" fill="#fff"/>
+<ellipse ry="12" rx="12" cy="106" cx="112" stroke-width="0" fill="#000"/>
+<path d="m159,192l-74,-48l88,-7l-14,56z" stroke-width="0" fill="#000"/>
+</mask>
+<mask id="h2" maskUnits="userSpaceOnUse" x="0" y="0" width="356" height="356">
+<rect x="0" y="0" width="356" height="356" fill="#fff"/>
+<ellipse ry="12" rx="12" cy="110" cx="239" stroke-width="0" fill="#000"/>
+<ellipse ry="12" rx="12" cy="110" cx="284" stroke-width="0" fill="#000"/>
+<ellipse ry="54" rx="54" cy="140" cx="261" stroke-width="0" fill="#000" mask="url(#s)"/>
+</mask>
+<mask id="s" maskUnits="userSpaceOnUse" x="0" y="0" width="356" height="356">
+<rect x="0" y="0" width="356" height="356" fill="#fff"/>
+<ellipse ry="39" rx="61" cy="120" cx="261" stroke-width="0" fill="#000"/>
+</mask>
+<ellipse ry="61" rx="61" cy="232" cx="94" stroke-width="0" fill="#fff" mask="url(#b1)"/>
+<ellipse ry="77" rx="77" cy="140" cx="91" stroke-width="0" fill="#fff" mask="url(#h1)"/>
+<ellipse ry="61" rx="61" cy="232" cx="261" stroke-width="0" fill="#fff" mask="url(#b2)"/>
+<ellipse ry="77" rx="77" cy="140" cx="261" stroke-width="0" fill="#fff" mask="url(#h2)"/>
+</svg>
