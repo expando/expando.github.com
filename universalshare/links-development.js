@@ -35,7 +35,7 @@ setShareLinks(
 
 
 "Facebook .facebook./share.php?u=@u&t=@t",
-"Twitter twitter./home?status=@t%20-%20@u"
+"Twitter twitter./home?status=@t%20-%20@u",
 "Tumblr .tumblr./share?v=3&u=@u&t=@t&s=@s"
 
 ], 0, {})
