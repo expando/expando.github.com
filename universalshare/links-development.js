@@ -28,7 +28,7 @@ setShareLinks(
 //                      e.g. ".facebook./" becomes "www.facebook.com/"
 //                           "twitter./"   becomes "twitter.com/"
 //
-//3. <preferred locale> a [-+] separated list of locales
+//3. <preferred locale> a [-+] separated list of locales e.g. en-US+en-CA
 //
 //4. <window size>      e.g. 300x200 or 300 for window.open()
 
