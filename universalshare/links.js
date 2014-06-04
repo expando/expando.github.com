@@ -5,7 +5,7 @@ v={"./":".com/",".o/":".org/",".n/":".net/"};return(i||"http://")+(s?"www.":"")+
 });t.lang=a[2];t.size=a[3]}return s})([
 
 "Facebook .facebook./share.php?u=@u&t=@t",
-"Twitter twitter./home?status=@t%20-%20@u"
+"Twitter twitter./home?status=@t%20-%20@u",
 "Tumblr .tumblr./share?v=3&u=@u&t=@t&s=@s",
 "StumbleUpon .stumbleupon./submit?url=@u&title=@t",
 "LinkedIn .linkedin./shareArticle?mini=true&url=@u&title=@t&summary=@s",
@@ -18,6 +18,6 @@ v={"./":".com/",".o/":".org/",".n/":".net/"};return(i||"http://")+(s?"www.":"")+
 "MySpace .myspace./Modules/PostTo/Pages/?u=@u&t=@t",
 "Mister%20Wong .mister-wong./addurl/?bm_url=@u&bm_description=@t",
 "NetVibes .netvibes./share?title=@t&url=@u",
-"NewsVine .newsvine./_tools/seed&save?u=@u&h=@t",
+"NewsVine .newsvine./_tools/seed&save?u=@u&h=@t"
 
 ],0,{}));
