@@ -1,16 +1,18 @@
 setShareLinks(
-(function(v, i, s, t, a) {
-  for(i = v.length - 1; i >= 0; i--) {
-    a = v[i].split(" ");
-    t = s[decodeURIComponent(a[0])] = {};
-    t.url = a[1].replace(/^(\w*\:\/\/)?(\.)?([^\/]+)(\.[on]?\/)/, function(v, i, s, t, a) {
-      v = {"./":".com/", ".o/":".org/", ".n/":".net/"};
-      return (i || "http://") + (s ? "www." : "") + t + (v[a] || a)
+(function(s, h, a, r, e) {
+  for(h = s.length - 1; h >= 0; h--) {
+    e = s[h].split(" ");
+    r = a[decodeURIComponent(e[0])] = {};
+    r.url = e[1].replace(/^(\w*\:\/\/)?(\.)?([^\/]+[\/\:])/, function(l, i, n, k) {
+      return (i || "http://") + (n ? "www." : "") + k.replace(/(\.\w?)(\.\w{2,})?([\/:])$/, function(l, i, n, k) {
+        return (i ? ({".":".com", ".o":".org", ".n":".net"})[i] : "") + (n || "") + k;
+      });
     });
-    t.lang = a[2];
-    t.size = a[3];
+    r.lang = e[2];
+    r.size = e[3];
+    a.list[h] = r;
   }
-  return s;
+  return a;
 })([
 
 //Each line contains info for one social website and follows the pattern:
