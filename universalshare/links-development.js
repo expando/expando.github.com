@@ -3,9 +3,9 @@ setShareLinks(
   for(h = s.length - 1; h >= 0; h--) {
     e = s[h].split(" ");
     r = a[decodeURIComponent(e[0])] = {};
-    r.url = e[1].replace(/^(\w*\:\/\/)?(\.)?([^\/]+[\/\:])/, function(l, i, n, k) {
-      return (i || "http://") + (n ? "www." : "") + k.replace(/(\.\w?)(\.\w{2,})?([\/:])$/, function(l, i, n, k) {
-        return (i ? ({".":".com", ".o":".org", ".n":".net"})[i] : "") + (n || "") + k;
+    r.url = e[1].replace(/^(\w*\:\/\/)?(\.)?([^\/]+)/, function(l, i, n, k) {
+      return (i || "http://") + (n ? "www." : "") + k.replace(/(\.\w?)(\.\w{2,})?$/, function(n, o, w) {
+        return (o ? ({".":".com", ".o":".org", ".n":".net"})[o] : "") + (w || "");
       });
     });
     r.lang = e[2];
@@ -27,8 +27,9 @@ setShareLinks(
 //                      You can replace ".com/" with "./", ".org/" with ".o/",
 //                      ".net/" with ".n/", and "www." with "."
 //
-//                      e.g. ".facebook./" becomes "www.facebook.com/"
-//                           "twitter./"   becomes "twitter.com/"
+//                      e.g. ".facebook./"     becomes "www.facebook.com/"
+//                           "twitter./"       becomes "twitter.com/"
+//                           "miracleshare.o/" becomes "miracleshare.org/"
 //
 //3. <preferred locale> a [-+] separated list of locales e.g. en_US+en_CA
 //
