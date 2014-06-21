@@ -1,6 +1,6 @@
 setShareLinks(
 (function(s, h, a, r, e) {
-  for(h = s.length - 1; h >= 0; h--) {
+  for(h = 0; h < s.length; h++) {
     e = s[h].split(" ");
     r = a[decodeURIComponent(e[0])] = {};
     r.url = e[1].replace(/^(\w*\:\/\/)?(\.)?([^\/]+)/, function(l, i, n, k) {
