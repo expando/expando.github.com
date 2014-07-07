@@ -3,7 +3,7 @@ e=s[h].split(" ");r=a[decodeURIComponent(e[0])]={};
 r.url=e[1].replace(/^(\w*\:\/\/)?(\.)?([^\/]+)/,function(l,i,n,k){
 return(i||"http://")+(n?"www.":"")+k.replace(/(\.\w?)(\.\w{2,})?$/,function(n,o,w){
 return(o?({".":".com",".o":".org",".n":".net"})[o]:"")+(w||"")})
-});r.lang=e[2];r.size=e[3];a.list[h]=r}return a})([
+});r.lang=e[2];r.size=e[3];a._list[h]=r}return a})([
 
 "Facebook .facebook./share.php?u=@u&t=@t",
 "Twitter twitter./home?status=@t%20-%20@u",
@@ -30,4 +30,4 @@ return(o?({".":".com",".o":".org",".n":".net"})[o]:"")+(w||"")})
 "%E4%BA%BA%E4%BA%BA%E7%BD%91 share.renren./share/buttonshare.do?title=@t&link=@u zh_cn",
 "%E7%BD%91%E6%98%93%E5%BE%AE%E5%8D%9A t.163./article/user/checkLogin.do?link=@u&info=@t zh_cn"
 
-],0,{}));
+],0,{_list:[]}));
