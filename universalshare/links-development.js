@@ -10,7 +10,7 @@ setShareLinks(
     });
     r.lang = e[2];
     r.size = e[3];
-    a.list[h] = r;
+    a._list[h] = r;
   }
   return a;
 })([
@@ -41,6 +41,6 @@ setShareLinks(
 "Twitter twitter./home?status=@t%20-%20@u",
 "Tumblr .tumblr./share?v=3&u=@u&t=@t&s=@s"
 
-], 0, {})
+], 0, {_list:[]})
 
 );
