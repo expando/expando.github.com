@@ -3,7 +3,7 @@
 <head>
 <title>Share</title>
 <meta http-equiv="Cache-control" content="public">
-<meta name="viewport" content="width=800">
+<meta name="viewport" content="width=device-width">
 <style>
 html, body, h2, form {margin:0; padding:0}
 body {background:#f1f1f1; text-align:center}
@@ -20,8 +20,8 @@ h2 {font:normal 1em/1.4em Tahoma; color:#ccc; text-align:center; margin:1%}
 #list a {display:inline-block; text-align:left; border:1px solid #e3e3e3; background:#f8f8f8; color:#0074a2; width:29%; margin:-1px 0 0 -1px; padding:0.5em 1%; text-decoration:none; white-space:nowrap}
 #list a:hover {background:#fff}
 #list a:focus, #list a:active {background:#ffc; outline:0}
-#list a > img {width:16px; height:16px; border:0; vertical-align:middle; margin-right:5%}
-#ext {display:none; text-decoration:none; position:fixed; top:0; right:0; padding:0.2em 0.3em; text-align:center; color:#999; background:#f1f1f1}
+#list a > img {width:16px; height:16px; border:0; vertical-align:middle; margin:0 5% 0 1%}
+#ext {display:none; text-decoration:none; position:fixed; top:0; right:0; padding:0.1em 0.3em; text-align:center; color:#999; background:#f1f1f1}
 #footer {margin-top:1em; text-align:center; font-size:0.6em; color:#ccc}
 #footer a {color:#ccc}
 @media screen and (max-width:500px) {
@@ -29,18 +29,20 @@ h2 {font:normal 1em/1.4em Tahoma; color:#ccc; text-align:center; margin:1%}
   #pageinfo {box-shadow:none; margin:0}
   #list {padding:0}
   #list a {display:block; width:auto; margin:-1px 0 0 0; border-width:1px 0}
+  #list a > img {margin:0 4%}
 }
 @media screen and (max-width:300px) {
   #stl, #pageinfo {display:none}
   #list {font-size:0.8em}
-  html, body, #list a {background:transparent; border:0}
+  html, body, #list a {background:transparent; margin:0; border:0}
+  #list a > img {margin:0 3% 0 2%}
   #list a:hover {background:rgba(0,0,0,0.1)}
 }
 @media screen and (max-height:150px) {
   #stl, #pageinfo {display:none}
   #list {font-size:0.8em; padding:0}
-  #list a {display:inline-block; text-align:center; width:auto; margin:0 0 0 -1px; border-width:0px 1px}
-  #list a img {display:inline-block}
+  #list a {display:inline-block; padding:1px 1%; text-align:center; width:auto; margin:0; border:0}
+  #list a img {margin:0}
   #list a span {display:none}
   html, body, #list a {background:transparent; border:0}
   #list a:hover {background:rgba(0,0,0,0.1)}
@@ -64,7 +66,6 @@ h2 {font:normal 1em/1.4em Tahoma; color:#ccc; text-align:center; margin:1%}
 
     <div id="footer">
     <a href="http://expando.github.io/add/terms_and_privacy.md">terms and privacy</a> |
-    <a href="https://github.com/expando/expando.github.com/tree/master/universalshare">suggest a network</a> |
     Copyright &copy; by Expando. All rights reserved.
     </div>
   </div>
