@@ -9,8 +9,8 @@ html, body, h2, form {margin:0; padding:0}
 body {background:#f1f1f1; text-align:center}
 body, input, h2 {color:#444; font:normal 17px/1.4em Tahoma}
 #container {margin:0 auto; max-width:800px; _width:800px; text-align:left}
-h2 {font:normal 1.2em/1.4em Tahoma; color:#ccc; text-align:center; margin:1% 1%}
-#pageinfo {padding:2% 1%; background:#fcfcfc; box-shadow:1px 1px 3px #ccc}
+h2 {font:normal 1em/1.4em Tahoma; color:#ccc; text-align:center; margin:1%}
+#pageinfo {padding:2% 1%; background:#fcfcfc; box-shadow:1px 1px 3px #ccc; margin-bottom:-6px}
 #pageinfo label {width:90px}
 #pageinfo .field {margin-left:90px; margin-top:-1.4em}
 #pageinfo input {width:100%; background:transparent; color:#0074a2; padding:0 0.5%; margin:0; border:1px solid #f1f1f1; -webkit-appearance:none}
@@ -18,15 +18,15 @@ h2 {font:normal 1.2em/1.4em Tahoma; color:#ccc; text-align:center; margin:1% 1%}
 #pageinfo label, #pageinfo .field {padding:0.1% 0}
 #pageinfo input:hover, #pageinfo input:focus {border:1px solid #bbb; outline:0; background:#fff; box-shadow:inset 1px 1px 3px #ddd}
 #list {padding:1%; text-align:center}
-#list a {display:inline-block; text-align:left; color:#0074a2; width:29%; margin:2px 1%; margin:-1px 0 0 -1px; padding:0.5em 1%; text-decoration:none; white-space:nowrap}
+#list a {display:inline-block; text-align:left; color:#0074a2; width:29%; margin:-1px 0 0 -1px; padding:0.5em 1%; text-decoration:none; white-space:nowrap}
 #list a {border:1px solid #e3e3e3; background:#f8f8f8}
 #list a:hover {background:#fff}
 #list a img {width:16px; height:16px; border:0; vertical-align:middle; margin-right:5%}
 #ext {display:none; text-decoration:none; position:fixed; top:0; right:0; padding:0.2em 0.3em; text-align:center; color:#999; background:#f1f1f1}
-#footer {margin-top:1em; text-align:center; font-size:0.6em; color:#bbb}
+#footer {margin-top:1em; text-align:center; font-size:0.6em; color:#ccc}
 @media screen and (max-width:500px) {
   h2 {font-size:0.9em}
-  #pageinfo {box-shadow:none}
+  #pageinfo {box-shadow:none; margin:0}
   #list {padding:0}
   #list a {display:block; width:auto; margin:-1px 0 0 0; border-width:1px 0}
 }
@@ -50,7 +50,7 @@ h2 {font:normal 1.2em/1.4em Tahoma; color:#ccc; text-align:center; margin:1% 1%}
 </head>
 <body>
   <div id="container">
-    <h2 id="stl"><noscript>Enable JavaScript to </noscript>Share this link:</h2>
+    <h2 id="stl"><noscript>Enable JavaScript to </noscript>Share this page:</h2>
 
     <form id="pageinfo">
       <label for="title">Page:</label>
