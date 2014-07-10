@@ -1,9 +1,8 @@
 setShareLinks((function(s,h,a,r,e){for(h=0;h<s.length;h++){
-e=s[h].split(" ");r=a[decodeURIComponent(e[0])]={};
+e=s[h].split(" ");r=decodeURIComponent(e[0]);r=a[r]={name:r,code:e[0],lang:e[2],size:e[3]};
 r.url=e[1].replace(/^(\w*\:\/\/)?(\.)?([^\/]+)/,function(l,i,n,k){
 return(i||"http://")+(n?"www.":"")+k.replace(/(\.\w?)(\.\w{2,})?$/,function(n,o,w){
-return(o?({".":".com",".o":".org",".n":".net"})[o]:"")+(w||"")})
-});r.lang=e[2];r.size=e[3];a._list[h]=r}return a})([
+return(o?({".":".com",".o":".org",".n":".net"})[o]:"")+(w||"")})});a._list[h]=r}return a})([
 "Facebook .facebook./share.php?u=@u&t=@t",
 "Twitter twitter./home?status=@t%20-%20@u",
 "Tumblr .tumblr./share?v=3&u=@u&t=@t&s=@s",
