@@ -5,6 +5,7 @@ return(i||"http://")+(n?"www.":"")+k.replace(/(\.\w?)(\.\w{2,})?$/,function(n,o,
 return(o?({".":".com",".o":".org",".n":".net"})[o]:"")+(w||"")})});a._list[h]=r}return a})([
 "Facebook .facebook./share.php?u=@u&t=@t",
 "Twitter twitter./home?status=@t%20-%20@u",
+"Google+ plus.google./share?url=@u",
 "Tumblr .tumblr./share?v=3&u=@u&t=@t&s=@s",
 "StumbleUpon .stumbleupon./submit?url=@u&title=@t",
 "LinkedIn .linkedin./shareArticle?mini=true&url=@u&title=@t&summary=@s",
