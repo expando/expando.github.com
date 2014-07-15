@@ -10,6 +10,7 @@ return(o?({".":".com",".o":".org",".n":".net"})[o]:"")+(w||"")})});a._list[h]=r}
 "StumbleUpon .stumbleupon./submit?url=@u&title=@t",
 "LinkedIn .linkedin./shareArticle?mini=true&url=@u&title=@t&summary=@s",
 "Reddit reddit./submit?url=@u&title=@t",
+"Pinterest pinterest./pin/create/button/?description=@t&url=@u",
 "Technorati technorati./faves?add=@u",
 "Blogger .blogger./blog_this.pyra?t=@t&u=@u",
 "Digg digg./submit?phase=2&url=@u&title=@t&bodytext=@s",
