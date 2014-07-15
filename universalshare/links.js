@@ -22,7 +22,7 @@ return(o?({".":".com",".o":".org",".n":".net"})[o]:"")+(w||"")})});a._list[h]=r}
 "NewsVine .newsvine./_tools/seed&save?u=@u&h=@t",
 "Evernote .evernote./clip.action?url=@u&title=@t",
 "Wanelo wanelo./p/post?bookmarklet=&source=toolbar&title=@t&url=@u",
-"VK vk./share.php?url=@u ru",
+"%D0%92%D0%9A%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5 vk./share.php?url=@u ru",
 "Draugiem.lv .draugiem.lv/say/ext/add.php?title=@t&titlePrefix=@t&link=@u lv",
 "Mixi mixi.jp/share.pl?u=@u jp",
 "GREE gree.jp/share/write?url=@u jp",
