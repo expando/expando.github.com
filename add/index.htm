@@ -40,7 +40,7 @@ h2 {font:normal 0.9em/1.4em Tahoma; color:#ccc; text-align:center; margin:1%}
   #list a:hover {background:rgba(0,0,0,0.1)}
 }
 @media screen and (max-height:150px) {
-  #stl, #pageinfo {display:none}
+  #stl, #pageinfo, #footer {display:none}
   #list {font-size:0.8em; padding:0}
   #list a {display:inline-block; padding:1px 1% 4px 1%; text-align:center; width:auto; margin:0; border:0}
   #list a .icon {margin:0}
@@ -55,7 +55,8 @@ h2 {font:normal 0.9em/1.4em Tahoma; color:#ccc; text-align:center; margin:1%}
 </head>
 <body>
   <div id="container">
-    <h2 id="stl"><noscript>Enable JavaScript to </noscript>Share this page:</h2>
+    <noscript><div style="opacity:0.5;text-align:center">Please turn on JavaScript.</div></noscript>
+    <h2 id="stl">Share this page:</h2>
 
     <form id="pageinfo">
       <label for="title">Page:</label>
