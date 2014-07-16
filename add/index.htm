@@ -154,8 +154,7 @@ function makeList() {
       links[i].name+"</span></a>"
     );
   }
-  for(i=first.length-1; i>=0; i--) list.unshift(first.pop());
-  $("list").innerHTML = list.join("");
+  $("list").innerHTML = first.join("") + list.join("");
 
   list = ["<style>"];
   for(i=0; i<links.length; i++) list.push(".ico"+i+"{background-position:-"+i*16+"px 0}");
