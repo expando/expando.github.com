@@ -6,18 +6,18 @@
 <meta name="viewport" content="width=device-width">
 <style>
 html, body, h2, form {margin:0; padding:0}
-body {background:#f1f1f1; text-align:center}
+body {background:#f0eff4; text-align:center}
 body, input, h2 {color:#444; font:normal 17px/1.4em Tahoma}
 #container {margin:0 auto; max-width:800px; _width:800px; text-align:left}
-h2 {font:normal 0.9em/1.4em Tahoma; color:#ccc; text-align:center; margin:1%}
-#pageinfo {padding:2% 1%; background:#fcfcfc; box-shadow:1px 1px 3px #ccc; margin-bottom:-6px}
+h2 {font:normal 0.9em/1.4em Tahoma; color:#686868; text-align:center; margin:1%}
+#pageinfo {padding:2% 1%; background:#fcfcfc; border:0 solid #d7d7d7; box-shadow:1px 1px 3px #ccc; margin-bottom:-6px}
 #pageinfo label {width:90px}
 #pageinfo .field {margin-left:90px; margin-top:-1.4em}
 #pageinfo input {width:99%; background:transparent; color:#0074a2; padding:0 0.5%; margin:0; border:1px solid transparent; -webkit-appearance:none}
 #pageinfo label, #pageinfo .field {padding:0.1% 0}
 #pageinfo input:hover, #pageinfo input:focus {border:1px solid #bbb; outline:0; background:#fff; box-shadow:inset 1px 1px 3px #ddd}
 #list {padding:1%; text-align:center}
-#list a {display:inline-block; text-align:left; border:1px solid #e3e3e3; background:#f8f8f8; color:#0074a2; width:29%; margin:-1px 0 0 -1px; padding:0.5em 1%; text-decoration:none; white-space:nowrap}
+#list a {display:inline-block; text-align:left; border:1px solid #d7d7d7; background:#f8f8f8; color:#0074a2; width:29%; margin:-1px 0 0 -1px; padding:0.5em 1%; text-decoration:none; white-space:nowrap}
 #list a * {vertical-align:middle}
 #list a:hover {background:#fff}
 #list a:focus, #list a:active {background:#ffc; outline:0}
@@ -27,12 +27,14 @@ h2 {font:normal 0.9em/1.4em Tahoma; color:#ccc; text-align:center; margin:1%}
 #footer a {color:#ccc}
 @media screen and (max-width:500px) {
   h2 {font-size:0.7em}
-  #pageinfo {box-shadow:none; margin:0}
+  #pageinfo {border-width:1px 0; box-shadow:none; margin:0 0 1.5em 0}
   #list {padding:0}
   #list a {display:block; width:auto; margin:-1px 0 0 0; border-width:1px 0}
   #list a > .icon {margin:0 4%}
 }
 @media screen and (max-width:300px) {
+  html, body {height:100%; overflow:hidden}
+  body {overflow:auto; -webkit-overflow-scrolling:touch}
   #stl, #pageinfo {display:none}
   #list {font-size:0.8em}
   html, body, #list a {background:transparent; margin:0; border:0}
@@ -107,7 +109,12 @@ return(o?({".":".com",".o":".org",".n":".net"})[o]:"")+(w||"")})
 "Mister%20Wong .mister-wong./addurl/?bm_url=@u&bm_description=@t",
 "NetVibes .netvibes./share?title=@t&url=@u",
 "NewsVine .newsvine./_tools/seed&save?u=@u&h=@t",
+"LiveJournal .livejournal./update.bml?subject=@t&event=@u",
 "Evernote .evernote./clip.action?url=@u&title=@t",
+"Flipboard share.flipboard./flipit/load?v=1.0&url=@u&title=@t",
+"Pocket getpocket./save?url=@u&title=@t",
+"TypePad .typepad./services/quickpost/post?v=2&qp_title=@t&qp_href=@u",
+"Box .box.n/api/1.0/import?url=@u&name=@t&description=&import_as=link",
 "Wanelo wanelo./p/post?bookmarklet=&source=toolbar&title=@t&url=@u",
 "%D0%92%D0%9A%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5 vk./share.php?url=@u ru",
 "Draugiem.lv .draugiem.lv/say/ext/add.php?title=@t&titlePrefix=@t&link=@u lv",
@@ -154,8 +161,8 @@ function makeList() {
       links[i].name+"</span></a>"
     );
   }
-  for(i=first.length-1; i>=0; i--) list.unshift(first.pop());
-  $("list").innerHTML = list.join("");
+  $("list").innerHTML = first.join("") + list.join("");
+  $("ext").href = location;
 
   list = ["<style>"];
   for(i=0; i<links.length; i++) list.push(".ico"+i+"{background-position:-"+i*16+"px 0}");
