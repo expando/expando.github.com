@@ -4,7 +4,8 @@
 <title>Expando | Social Sharing Widget</title>
 <meta name="viewport" content="width=900">
 <meta name="msvalidate.01" content="3045A04761021CE60BF6E99FF072C653">
-<meta name="description" content="A blazingly fast social sharing widget for websites that doesn't track you and is open source.">
+<meta name="description" content="A blazingly fast social sharing widget for your website that doesn't track you and is open source.">
+<link rel="shortcut icon" href="favicon.png">
 <style>
 html, body, div, img, h1, h2, h3 {margin:0; padding:0; border:0}
 body {background:#f1f1f1; text-align:center}
@@ -30,7 +31,8 @@ p {margin:1em auto}
 
 .sectionbg {background:#a2fdca}
 #features .third {margin:1%}
-code.big {display:block; background:#fff; margin:1em 1%; padding:1em 1%; word-wrap:break-word; text-align:left}
+code {display:block; font-size:0.95em; background:#fff; border:0 solid #ccc; border-width:1px 0 0 1px; margin:1em 1%; padding:1em 1%; word-wrap:break-word; text-align:left}
+code b {color:#77f}
 
 #help {font-size:0.8em}
 </style>
@@ -66,8 +68,8 @@ code.big {display:block; background:#fff; margin:1em 1%; padding:1em 1%; word-wr
 
     <div class="framed">
     <em>Example:</em>
-    <a href="http://expando.github.io/add/?u=http%3A%2F%2Fexpando.github.io%2F&t=Expando%20Social%20Sharing%20Widget"><img src="http://expando.github.io/share/share_web_black.svg" width=44 height=44></a
-    ><a href="http://expando.github.io/add/?u=http%3A%2F%2Fexpando.github.io%2F&t=Expando%20Social%20Sharing%20Widget" style="font-size:1.1em; margin-left:10px">Share this Site</a>
+    <a href="http://expando.github.io/add/?u=http%3A%2F%2Fexpando.github.io%2F&t=Expando%20Widget"><img src="share/share_web_black.svg" width=44 height=44></a
+    ><a href="http://expando.github.io/add/?u=http%3A%2F%2Fexpando.github.io%2F&t=Expando%20Widget" style="font-size:1.1em; margin-left:10px">Share this Site</a>
     </div>
 
     <h3 style="margin-top:100px">The Widget</h2>
@@ -80,7 +82,7 @@ code.big {display:block; background:#fff; margin:1em 1%; padding:1em 1%; word-wr
 
     <div class="framed">
       <em>Example:</em>
-      <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fexpando.github.io%2F&t=Expando%20Social%20Sharing%20Widget" frameborder=0 frametransparency="1" scrolling=no style="width:90%; height:30px; max-width:500px"></iframe>
+      <iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fexpando.github.io%2F&t=Expando%20Widget" frameborder=0 frametransparency="1" scrolling=no style="width:90%; height:30px; max-width:500px"></iframe>
     </div>
   </div>
 
@@ -124,11 +126,11 @@ code.big {display:block; background:#fff; margin:1em 1%; padding:1em 1%; word-wr
 
     <h3>The Interstitial Page</h2>
     Add a link on your website to the Expando interstitial page and include the URL that you want to share as parameters. You can also include an optional title.
-    <code class="big">&lt;a href=&quot;http://expando.github.io/add/?u=<b>&lt;URL&gt;</b>&t=<b>&lt;TITLE&gt;</b>&quot;&gt;Share this Site&lt;/a&gt;</code>
+    <code>&lt;a href=&quot;http://expando.github.io/add/?u=<b>&lt;URL&gt;</b>&t=<b>&lt;TITLE&gt;</b>&quot;&gt;Share this Site&lt;/a&gt;</code>
     Make sure to encode the link and title so that all control characters are encoded. For example:
-    <code class="big">&lt;a href=&quot;http://expando.github.io/add/?u=<b>http%3A%2F%2Fexpando.github.io%2F</b>&t=<b>Expando%20Widget</b>&quot;&gt;Share this Site&lt;/a&gt;</code>
+    <code>&lt;a href=&quot;http://expando.github.io/add/?u=<b>http%3A%2F%2Fexpando.github.io%2F</b>&t=<b>Expando%20Widget</b>&quot;&gt;Share this Site&lt;/a&gt;</code>
     Will show this:
-    <code class="big" style="text-align:center; font-family:Arial">
+    <code style="text-align:center; font-family:Arial">
       <a href="http://expando.github.io/add/?u=http%3A%2F%2Fexpando.github.io%2F&t=Expando%20Widget" style="margin:0 3% 0 0">Share This</a>
       <a href="http://expando.github.io/add/?u=http%3A%2F%2Fexpando.github.io%2F&t=Expando%20Widget" style="border-radius:5px; text-decoration:none; background:#88f; color:#fff; padding:0.5em 1em; margin:0 3% 0 0">Share</a>
       <a href="http://expando.github.io/add/?u=http%3A%2F%2Fexpando.github.io%2F&t=Expando%20Widget" style="border-radius:5px; text-decoration:none; background:#f88; color:#fff; text-shadow:-1px -1px 0 #c99; border:1px solid #b77; box-shadow:inset -1px -2px 2px #a66; font-size:0.7em; padding:0.5em 1em; margin:0 3% 0 0">Share</a>
@@ -138,17 +140,17 @@ code.big {display:block; background:#fff; margin:1em 1%; padding:1em 1%; word-wr
 
     <h3 style="margin-top:100px">The Widget</h2>
     Add an iframe on your website that points to the Expando interstitial page and include the URL that you want to share as parameters. You can also include an optional title.
-    <code class="big">&lt;iframe src=&quot;http://expando.github.io/add/?u=<b>&lt;URL&gt;</b>&t=<b>&lt;TITLE&gt;</b>&quot; frameborder=0 frametransparency=1 scrolling=no height=30 width=500&gt;&lt;/iframe&gt;</code>
+    <code>&lt;iframe src=&quot;http://expando.github.io/add/?u=<b>&lt;URL&gt;</b>&t=<b>&lt;TITLE&gt;</b>&quot; frameborder=0 frametransparency=1 scrolling=no height=30 width=500&gt;&lt;/iframe&gt;</code>
     Make sure to encode the link and title so that all control characters are encoded. For example:
-    <code class="big">&lt;iframe src=&quot;http://expando.github.io/add/?u=<b>http%3A%2F%2Fexpando.github.io%2F</b>&t=<b>Expando%20Widget</b>&quot; frameborder=0 frametransparency=1 scrolling=no height=30 width=500&gt;&lt;/iframe&gt;</code>
+    <code>&lt;iframe src=&quot;http://expando.github.io/add/?u=<b>http%3A%2F%2Fexpando.github.io%2F</b>&t=<b>Expando%20Widget</b>&quot; frameborder=0 frametransparency=1 scrolling=no height=30 width=500&gt;&lt;/iframe&gt;</code>
     Will show this:
-    <code class="big" style="text-align:center"><iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fexpando.github.io%2F&t=Expando%20Widget" frameborder=0 frametransparency="1" scrolling=no height=30 width=500 style="max-width:90%"></iframe></code>
+    <code style="text-align:center"><iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fexpando.github.io%2F&t=Expando%20Widget" frameborder=0 frametransparency="1" scrolling=no height=30 width=500 style="max-width:90%"></iframe></code>
 
     <h3 style="margin-top:100px">The Widget Vertically</h2>
     You can also show the widget as a box by giving the iframe a bigger height but it must be less than 150 tall:
-    <code class="big" style="text-align:center"><iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fexpando.github.io%2F&t=Expando%20Widget" frameborder=0 frametransparency="1" scrolling=no height=100 width=250 scrolling=no style="max-width:90%"></iframe></code>
+    <code style="text-align:center"><iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fexpando.github.io%2F&t=Expando%20Widget" frameborder=0 frametransparency="1" scrolling=no height=100 width=250 scrolling=no style="max-width:90%"></iframe></code>
     If you make the height over 150, it turns into a list.
-    <code class="big" style="text-align:center"><iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fexpando.github.io%2F&t=Expando%20Widget" frameborder=0 frametransparency="1" scrolling=no height=180 width=150 scrolling=no style="border:1px solid black"></iframe></code>
+    <code style="text-align:center"><iframe src="http://expando.github.io/add/?u=http%3A%2F%2Fexpando.github.io%2F&t=Expando%20Widget" frameborder=0 frametransparency="1" scrolling=no height=180 width=150 scrolling=no style="border:1px solid #ccc"></iframe></code>
 
     <h3 style="margin-top:100px">Download the Widget</h2>
     Download the <a href="http://expando.github.io/add/">Expando interstitial page</a> and <a href="add/icons.png">icons</a> and host it anywhere on your server.
@@ -160,7 +162,7 @@ code.big {display:block; background:#fff; margin:1em 1%; padding:1em 1%; word-wr
       <h2><a name="help">Help</a></h2>
       Join the GitHub network and start a discussion on our <a href="https://github.com/expando/expando.github.com/issues">ticket system</a>.
       <p>Visit our <a href="https://github.com/expando/expando.github.com">GitHub page</a> to contribute to this project.
-      <p>Read our <a href="http://expando.github.com/add/terms_and_privacy.md">Terms and Privacy</a> statement.
+      <p>Read our <a href="add/terms_and_privacy.md">Terms and Privacy</a> statement.
       <p>Read the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
     </div>
   </div>
