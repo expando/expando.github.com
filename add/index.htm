@@ -157,6 +157,7 @@ function makeList() {
     );
   }
   $("list").innerHTML = first.join("") + list.join("");
+  $("ext").href = location;
 
   list = ["<style>"];
   for(i=0; i<links.length; i++) list.push(".ico"+i+"{background-position:-"+i*16+"px 0}");
