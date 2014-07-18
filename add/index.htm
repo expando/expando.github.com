@@ -41,7 +41,7 @@ h2 {font:normal 0.9em/1.4em Tahoma; color:#686868; text-align:center; margin:1%}
   #list a > .icon {margin:0 3% 0 2%}
   #list a:hover {background:rgba(0,0,0,0.1)}
 }
-@media screen and (max-height:150px) {
+@media screen and (max-height:150px) {/*IESW*/
   #stl, #pageinfo, #footer {display:none}
   #list {font-size:0.8em; padding:0; text-align:left}
   #list a {display:inline-block; padding:1px 1% 4px 1%; text-align:center; width:auto; margin:0; border:0}
@@ -50,6 +50,7 @@ h2 {font:normal 0.9em/1.4em Tahoma; color:#686868; text-align:center; margin:1%}
   html, body, #list a {background:transparent; overflow:hidden; border:0}
   #list a:hover {background:rgba(0,0,0,0.1)}
   #ext {display:block}
+  /*IESW*/
 }
 .flash {-webkit-animation:flash 0.5s 0 ease-in}
 @-webkit-keyframes flash {from {background:#ffb}}
@@ -171,6 +172,6 @@ function makeList() {
 }
 makeList();
 </script>
-<!--[if lt IE 9]><script>if(document.documentElement.offsetHeight<150)document.write("<style>"+document.all.tags("style")[0].innerHTML.replace(/\n/g," ").match(/screen.and..max.height.150px.\s?{(.*)}.*\.flash/)[1]+"<\/style>");</script><![endif]-->
+<!--[if lt IE 9]><script>if(document.documentElement.offsetHeight<150)document.write("<style>"+document.all.tags("style")[0].innerHTML.replace(/\n/g," ").match(/IESW..(.+)..IESW/)[1]+"<\/style>");</script><![endif]-->
 </body>
 </html>
