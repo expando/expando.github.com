@@ -68,7 +68,7 @@ h2 {font:normal 0.9em/1.4em Tahoma; color:#686868; text-align:center; margin:1%}
       <div class="field"><input type=url id="url" size=30 placeholder="Add location..." tabindex=-1 onchange="update();"></div>
     </form>
 
-    <div id="list"></div>
+    <div id="list" onclick="bye(event);"></div>
     <a href="#" target="_blank" id="ext">&raquo;</a>
 
     <div id="footer">
@@ -171,6 +171,10 @@ function makeList() {
   $("list").appendChild(document.createElement("span")).innerHTML = list.join("")+"<\/style>";
 }
 makeList();
+
+function bye(e) {
+  if(window.postMessage) (parent || opener).postMessage("bye", "*");
+}
 </script>
 <!--[if lt IE 9]><script>if(document.documentElement.offsetHeight<150)document.write("<style>"+document.all.tags("style")[0].innerHTML.replace(/\n/g," ").match(/IESW..(.+)..IESW/)[1]+"<\/style>");</script><![endif]-->
 </body>
