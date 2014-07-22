@@ -173,7 +173,7 @@ function makeList() {
 makeList();
 
 function bye(e) {
-  if(window.postMessage) (parent || opener).postMessage("bye", "*");
+  if(window.postMessage) (opener||parent).postMessage("bye", "*");
 }
 </script>
 <!--[if lt IE 9]><script>if(document.documentElement.offsetHeight<150)document.write("<style>"+document.all.tags("style")[0].innerHTML.replace(/\n/g," ").match(/IESW..(.+)..IESW/)[1]+"<\/style>");</script><![endif]-->
