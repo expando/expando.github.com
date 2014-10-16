@@ -157,11 +157,11 @@ function makeList() {
     g = links[i].lang;
     g = g && g.indexOf(lg) >= 0;
     (g ? first : list).push(
-      "<a href='"+
+      '<a href="'+
       links[i].url.replace("@u",u).replace("@t",t).replace("@s",u)+
-      "' target='_blank'  title='"+links[i].name+
-      "'><i class='icon ico"+i+"'></i><span>"+
-      links[i].name+"</span></a>"
+      '" target="_blank"  title="'+links[i].name+
+      '"><i class="icon ico'+i+'"></i><span>'+
+      links[i].name+'</span></a>'
     );
   }
   $("list").innerHTML = first.join("") + list.join("");
