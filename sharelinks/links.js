@@ -35,7 +35,7 @@ return(o?({".":".com",".o":".org",".n":".net"})[o]:"")+(w||"")})});a._list[h]=r}
 "Yahoo!%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF bookmarks.yahoo.co.jp/bookmarklet/showpopup?t=@t&u=@u&opener=bm jp",
 "%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF b.hatena.ne.jp/add?mode=confirm&title=@tC&url=@u jp",
 "Choix .choix.jp/submit/?bookurl=@u&booktitle=@t&phase=0 jp",
-"Tuenti .tuenti./share?url=@u&suggested-text=%t es",
+"Tuenti .tuenti./share?url=@u&suggested-text=@t es",
 "%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A service.weibo./share/share.php?title=@t&url=@u zh_cn",
 "%E8%85%BE%E8%AE%AF%E5%BE%AE%E5%8D%9A v.t.qq./share/share.php?title=@t&url=@u zh_cn",
 "QQ%E7%A9%BA%E9%97%B4 sns.qzone.qq./cgi-bin/qzshare/cgi_qzshare_onekey?url=@u&title=@t zh_cn",
