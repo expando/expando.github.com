@@ -132,7 +132,8 @@ return(o?({".":".com",".o":".org",".n":".net"})[o]:"")+(w||"")})
 "%E4%BA%BA%E4%BA%BA%E7%BD%91 share.renren./share/buttonshare.do?title=@t&link=@u zh_cn",
 "%E7%BD%91%E6%98%93%E5%BE%AE%E5%8D%9A t.163./article/user/checkLogin.do?link=@u&info=@t zh_cn",
 "%E7%99%BE%E5%BA%A6%E6%90%9C%E8%97%8F cang.baidu./do/add?it=@t&iu=@u&fr=ien zh_cn",
-"LINE line.me/R/msg/text/?@t%20-%20@u"
+"LINE line.me/R/msg/text/?@t%20-%20@u",
+"QR%20Code qrickit./api/qr?t=g&e=q&qrsize=300&addtext=QR+code+by+qrickit.com&d=@u"
 ],0,{_list:[]})._list;
 
 u = /\//.test(u) ? enc(u) : u;
@@ -168,7 +169,7 @@ function makeList() {
   $("list").innerHTML = first.join("") + list.join("");
   $("ext").href = location;
 
-  list = [".<style>.icon{background:url(icons.png) 0 no-repeat}"];
+  list = [" <style>.icon{background:url(icons.png) 0 no-repeat}"];
   for(i=0; i<links.length; i++) list.push(".ico"+i+"{background-position:-"+i*16+"px 0}");
   $("list").appendChild(document.createElement("span")).innerHTML = list.join("")+"<\/style>";
 }
