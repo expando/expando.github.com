@@ -4,7 +4,7 @@
 <div id=t><input type=checkbox id=m></div>
 <input type=button value=Save onclick="go();">
 <script>
-document.getElementById("t").appendChild(document.createTextNode(/\bt=([^&]+)&/.exec(location)[1]));
+document.getElementById("t").appendChild(document.createTextNode(unescape(/\bt=([^&]+)&/.exec(location)[1])));
 document.getElementById("m").checked=/m=1\b/.test(location);
 function go(){location=/\bp=([a-z]+)\b/.exec(location)[1]+"://"+/\bu=([a-z]+)\b/.exec(location)[1]+"#m="+(document.getElementById("m").checked?1:0)}
 </script>
