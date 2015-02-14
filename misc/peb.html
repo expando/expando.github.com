@@ -2,8 +2,8 @@
 <html>
 <meta name=viewport content="width=device-width">
 <body><!-- APPUID: 28b06d4a-4875-45bb-bde3-fbd0fbbfbf7d -->
-<div id=t><input type=checkbox id=m></div>
-<input type=button value=Save onclick="go();">
+<label id=t><input type=checkbox id=m></label>
+<p><input type=button value=Save onclick="go();">
 <script>
 document.getElementById("t").appendChild(document.createTextNode(unescape(/\bt=([^&]+)&/.exec(location)[1])));
 document.getElementById("m").checked=/m=1\b/.test(location);
