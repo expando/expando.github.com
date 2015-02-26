@@ -6,7 +6,7 @@ body{font:normal 14pt Arial}
 th,td{padding:0.2em; text-align:left}
 tr:not(:first-child)>th{padding-top:1em}
 table{margin:0 0 1em 0}
-input[type=text]{text-align:center}
+input[type=number]{text-align:center}
 table {border-collapse:collapse}
 #log td {border:1px solid}
 </style>
@@ -21,15 +21,15 @@ function wr(s){
 <form name=fm action="#" methd=get onsubmit="return doSubmit();">
 <table cellspacing=0 border=0>
 <tr><th colspan=2>Use this location for weather info:
-<tr><td>Latitude:<td><input type=text name=lat size=5>
-<tr><td>Longitude:<td><input type=text name=lon size=5>
+<tr><td>Latitude:<td><input type=number name=lat size=5>
+<tr><td>Longitude:<td><input type=number name=lon size=5>
 <!--tr><td colspan=2><a href="#" onclick="this.nextSibling.style.display='';">Select using Google Maps...</a
   ><div style="display:none">
   </div-->
 <tr><th colspan=2>Only fetch data between the hours of:
 <tr><td>Begin fetch:<td><select name=updBegin><script>wr(hours);</script></select>
 <tr><td>End fetch:<td><select name=updBegin><script>wr(hours);</script></select>
-<tr><td>Fetch every:<td><input type=text name=updEvery size=2 value=2> hours
+<tr><td>Fetch every:<td><input type=number name=updEvery size=2 value=2> hours
 <tr><th colspan=2>Appearance:
 <tr><td>Tomorrow:<td>After <select name=showTmr><script>wr(hours);</script></select> show tomorrow's weather
 <tr><td>Background:<td><input type=checkbox name=theme> White colour
@@ -38,7 +38,7 @@ function wr(s){
 </table>
 
 <hr>
-<p>Server health (10=good, 0=bad): <input type=text name=fail size=2></p>
+<p>Server health (10=good, 0=bad): <input type=number name=fail size=2></p>
 </form>
 
 <script>
@@ -60,7 +60,7 @@ function doSubmit() {
   fm=document.fm;
   for(var i=0;i<fm.elements.length; i++) {
     el = fm.elements[i];
-    obj[el.name]=(el.type=="text")?el.value:el.checked?1:0;
+    obj[el.name]=(el.type!="checkbox")?el.value:el.checked?1:0;
   }
   location="pebblejs://close#"+encodeURIComponent(JSON.stringify(obj));
   return false;
