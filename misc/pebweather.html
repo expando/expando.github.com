@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<body><!-- APPUID: 28b06d4a-4875-45bb-bde3-fbd0fbbfbf7f -->
+<style>
+body{font:normal 14pt Arial}
+th,td{padding:0.2em; text-align:left}
+tr:not(:first-child)>th{padding-top:1em}
+table{margin:0 0 1em 0}
+input[type=text]{text-align:center}
+table {border-collapse:collapse}
+#log td {border:1px solid}
+</style>
+<script>
+var hours = [];
+for(var i=1; i<=24; i++) hours.push("<option value="+i+">"+i+":00");
+hours = hours.join("");
+function wr(s){
+  document.write(s);
+}
+</script>
+<form name=fm action="#" methd=get onsubmit="return doSubmit();">
+<table cellspacing=0 border=0>
+<tr><th colspan=2>Use this location for weather info:
+<tr><td>Latitude:<td><input type=text name=lat size=5>
+<tr><td>Longitude:<td><input type=text name=lon size=5>
+<tr><td colspan=2><a href="#" onclick="this.nextSibling.style.display='';">Select using Google Maps...</a
+  ><div style="display:none">
+  </div>
+<tr><th colspan=2>Only fetch data between the hours of:
+<tr><td>Begin fetch:<td><select name=updBegin><script>wr(hours);</script></select>
+<tr><td>End fetch:<td><select name=updBegin><script>wr(hours);</script></select>
+<tr><td>Fetch every:<td><input type=text name=updEvery size=2 value=2> hours
+<tr><th colspan=2>Appearance:
+<tr><td>Tomorrow:<td>After <select name=showTmr><script>wr(hours);</script></select> show tomorrow's weather
+<tr><td>Background:<td><input type=checkbox name=theme> White colour
+<tr><td>&deg;C/&deg;F:<td><input type=checkbox name=celsius> Celsius
+<tr><th colspan=2><input type=submit value=Save><input type=hidden name=fail>
+</table>
+
+<hr>
+<p>Server health (10=good, 0=bad): <input type=text name=fail size=2></p>
+</form>
+
+<script>
+var obj = {};
+location.search.replace(/\b(\w+)=([^&]*)/g, function(s,n,v) {obj[n] = v});
+var fm=document.fm, el;
+for(var i=0;i<fm.elements.length; i++) {
+  el = fm.elements[i];
+  if(el.type!="submit") el[el.type=="checkbox"?"checked":"value"] = obj[el.name]*1;
+}
+fm = ["<table cellspacing=0 border=0 id=log><tr><th colspan=2>Server log"];
+for(var i=0; el=obj["lg"+i]; i++) {
+  fm.push(el.replace(/^(.+)-(\d\d)(\d\d)(\d\d)(\d\d)$/, "<tr><td>$2/$3 $4:$5<td>$1"));
+}
+document.fm.appendChild(document.createElement("div")).innerHTML=fm.join("")+"<\/table>";
+
+function doSubmit() {
+  obj = {};
+  fm=document.fm;
+  for(var i=0;i<fm.elements.length; i++) {
+    el = fm.elements[i];
+    obj[el.name]=(el.type=="text")?el.value:el.checked?1:0;
+  }
+  location="pebblejs://close#"+encodeURIComponent(JSON.stringify(obj));
+  return false;
+}
+</script>
+</body>
+</html>
