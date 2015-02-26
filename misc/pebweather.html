@@ -2,11 +2,11 @@
 <html>
 <body><!-- APPUID: 28b06d4a-4875-45bb-bde3-fbd0fbbfbf7f -->
 <style>
-body{font:normal 14pt Arial}
-th,td{padding:0.2em; text-align:left}
+body,input,select{font:normal 14pt Arial}
+th,td{padding:0.4em 0.2em; text-align:left}
 tr:not(:first-child)>th{padding-top:1em}
 table{margin:0 0 1em 0}
-input[type=number]{text-align:center; max-width:5em}
+input[type=text]{text-align:center; max-width:5em}
 table {border-collapse:collapse}
 #log td {border:1px solid}
 </style>
@@ -21,24 +21,24 @@ function wr(s){
 <form name=fm action="#" methd=get onsubmit="return doSubmit();">
 <table cellspacing=0 border=0>
 <tr><th colspan=2>Use this location for weather info:
-<tr><td>Latitude:<td><input type=number name=lat size=5>
-<tr><td>Longitude:<td><input type=number name=lon size=5>
+<tr><td>Latitude:<td><input type=text name=lat size=5>
+<tr><td>Longitude:<td><input type=text name=lon size=5>
 <!--tr><td colspan=2><a href="#" onclick="this.nextSibling.style.display='';">Select using Google Maps...</a
   ><div style="display:none">
   </div-->
 <tr><th colspan=2>Only fetch data between the hours of:
 <tr><td>Begin fetch:<td><select name=updBegin><script>wr(hours);</script></select>
 <tr><td>End fetch:<td><select name=updEnd><script>wr(hours);</script></select>
-<tr><td>Fetch every:<td><input type=number name=updEvery size=2 value=2> hours
+<tr><td>Fetch every:<td><input type=text name=updEvery size=2 value=2> hours
 <tr><th colspan=2>Appearance:
 <tr><td>Tomorrow:<td>After <select name=showTmr><script>wr(hours);</script></select> show tomorrow's weather
 <tr><td>Background:<td><input type=checkbox name=theme> White colour
-<tr><td>&deg;C/&deg;F:<td><input type=checkbox name=celsius> Celsius <em>(applies on next data fetch)</em>
-<tr><th colspan=2><input type=submit value=Save><input type=hidden name=fail>
+<tr><td>&deg;C/&deg;F:<td><input type=checkbox name=celsius> Celsius
+<tr><th colspan=2><input type=submit value=Save>
 </table>
 
 <hr>
-<p>Server health (10=good, 0=bad): <input type=number name=fail size=2></p>
+<p>Server health (10=good, 0=bad): <input type=text name=fail size=2></p>
 </form>
 
 <script>
@@ -47,7 +47,7 @@ location.search.replace(/\b(\w+)=([^&]*)/g, function(s,n,v) {obj[n] = v});
 var fm=document.fm, el;
 for(var i=0;i<fm.elements.length; i++) {
   el = fm.elements[i];
-  if(el.type!="submit") el[el.type=="checkbox"?"checked":"value"] = obj[el.name]*1;
+  if(el.name) el[el.type=="checkbox"?"checked":"value"] = obj[el.name]*1;
 }
 fm = ["<table cellspacing=0 border=0 id=log><tr><th colspan=2>Server log"];
 for(var i=0; el=obj["lg"+i]; i++) {
@@ -62,7 +62,7 @@ function doSubmit() {
   fm.fail.value=Math.max(Math.min(fm.fail.value,10),1)||1;
   for(var i=0;i<fm.elements.length; i++) {
     el = fm.elements[i];
-    obj[el.name]=(el.type!="checkbox")?el.value*1:el.checked?1:0;
+    if(el.name) obj[el.name]=(el.type!="checkbox")?el.value*1:el.checked?1:0;
   }
   location="pebblejs://close#"+encodeURIComponent(JSON.stringify(obj));
   return false;
