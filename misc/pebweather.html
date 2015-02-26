@@ -28,12 +28,12 @@ function wr(s){
   </div-->
 <tr><th colspan=2>Only fetch data between the hours of:
 <tr><td>Begin fetch:<td><select name=updBegin><script>wr(hours);</script></select>
-<tr><td>End fetch:<td><select name=updBegin><script>wr(hours);</script></select>
+<tr><td>End fetch:<td><select name=updEnd><script>wr(hours);</script></select>
 <tr><td>Fetch every:<td><input type=number name=updEvery size=2 value=2> hours
 <tr><th colspan=2>Appearance:
 <tr><td>Tomorrow:<td>After <select name=showTmr><script>wr(hours);</script></select> show tomorrow's weather
 <tr><td>Background:<td><input type=checkbox name=theme> White colour
-<tr><td>&deg;C/&deg;F:<td><input type=checkbox name=celsius> Celsius
+<tr><td>&deg;C/&deg;F:<td><input type=checkbox name=celsius> Celsius <em>(applies on next data fetch)</em>
 <tr><th colspan=2><input type=submit value=Save><input type=hidden name=fail>
 </table>
 
