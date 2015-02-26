@@ -12,7 +12,7 @@ table {border-collapse:collapse}
 </style>
 <script>
 var hours = [];
-for(var i=1; i<=24; i++) hours.push("<option value="+i+">"+i+":00");
+for(var i=0; i<24; i++) hours.push("<option value="+i+">"+i+":00");
 hours = hours.join("");
 function wr(s){
   document.write(s);
