@@ -23,9 +23,9 @@ function wr(s){
 <tr><th colspan=2>Use this location for weather info:
 <tr><td>Latitude:<td><input type=text name=lat size=5>
 <tr><td>Longitude:<td><input type=text name=lon size=5>
-<tr><td colspan=2><a href="#" onclick="this.nextSibling.style.display='';">Select using Google Maps...</a
+<!--tr><td colspan=2><a href="#" onclick="this.nextSibling.style.display='';">Select using Google Maps...</a
   ><div style="display:none">
-  </div>
+  </div-->
 <tr><th colspan=2>Only fetch data between the hours of:
 <tr><td>Begin fetch:<td><select name=updBegin><script>wr(hours);</script></select>
 <tr><td>End fetch:<td><select name=updBegin><script>wr(hours);</script></select>
@@ -51,7 +51,7 @@ for(var i=0;i<fm.elements.length; i++) {
 }
 fm = ["<table cellspacing=0 border=0 id=log><tr><th colspan=2>Server log"];
 for(var i=0; el=obj["lg"+i]; i++) {
-  fm.push(el.replace(/^(.+)-(\d\d)(\d\d)(\d\d)(\d\d)$/, "<tr><td>$2/$3 $4:$5<td>$1"));
+  fm.push(el.replace(/^(.+)-(\d\d)(\d\d)(\d\d)(\d\d)$/, "<tr><td>$2/$3 $4:$5<td>$1").replace(/\+/g," "));
 }
 document.fm.appendChild(document.createElement("div")).innerHTML=fm.join("")+"<\/table>";
 
