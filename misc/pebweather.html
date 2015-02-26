@@ -58,8 +58,8 @@ document.fm.appendChild(document.createElement("div")).innerHTML=fm.join("")+"<\
 function doSubmit() {
   obj = {};
   fm=document.fm;
-  fm.updEvery.value=Math.max(Math.min(fm.updEvery.value,Math.abs(fm.updBegin-fm.updEnd)),1);
-  fm.fail.value=Math.max(Math.min(fm.fail.value,10),1);
+  fm.updEvery.value=Math.max(Math.min(fm.updEvery.value,Math.abs(fm.updBegin.value*1-fm.updEnd.value*1)),1)||1;
+  fm.fail.value=Math.max(Math.min(fm.fail.value,10),1)||1;
   for(var i=0;i<fm.elements.length; i++) {
     el = fm.elements[i];
     obj[el.name]=(el.type!="checkbox")?el.value*1:el.checked?1:0;
