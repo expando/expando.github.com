@@ -6,7 +6,7 @@ body,input,select{font:normal 14pt Arial}
 th,td{padding:0.4em 0.2em; text-align:left}
 tr:not(:first-child)>th{padding-top:1em}
 table{margin:0 0 1em 0}
-input[type=text]{text-align:center; max-width:5em}
+input[type=text],input[type=number]{text-align:center; max-width:5em}
 table {border-collapse:collapse}
 #log td {border:1px solid}
 </style>
@@ -29,16 +29,19 @@ function wr(s){
 <tr><th colspan=2>Only fetch data between the hours of:
 <tr><td>Begin fetch:<td><select name=updBegin><script>wr(hours);</script></select>
 <tr><td>End fetch:<td><select name=updEnd><script>wr(hours);</script></select>
-<tr><td>Fetch every:<td><input type=text name=updEvery size=2 value=2> hours
+<tr><td>Fetch every:<td><input type=number name=updEvery size=2 value=2> hours
+<tr><td colspan=2><small>(To disable fetching, set begin = end)</small>
 <tr><th colspan=2>Appearance:
 <tr><td>Tomorrow:<td>After <select name=showTmr><script>wr(hours);</script></select> show tomorrow's weather
 <tr><td>Background:<td><input type=checkbox name=theme> White colour
 <tr><td>&deg;C/&deg;F:<td><input type=checkbox name=celsius> Celsius
 <tr><th colspan=2><input type=submit value=Save>
+<tr><td colspan=2><small>Weather data provided by openweathermap.org</small>
 </table>
 
 <hr>
-<p>Server health (10=good, 0=bad): <input type=text name=fail size=2></p>
+<p>Server health: <input type=text name=fail size=2>
+<br><small>Health starts at 10 and each error reduces it by 1.</small></p>
 </form>
 
 <script>
@@ -53,7 +56,7 @@ fm = ["<table cellspacing=0 border=0 id=log><tr><th colspan=2>Server log"];
 for(var i=0; el=obj["lg"+i]; i++) {
   fm.push(el.replace(/^(.+)-(\d\d)(\d\d)(\d\d)$/, "<tr><td>$2 $3:$4<td>$1").replace(/\+/g," "));
 }
-fm.push("<tr><td colspan=2><input type=checkbox name=clearLog>Delete all");
+fm.push("<tr><td colspan=2><input type=checkbox name=clearLog>Delete log");
 document.fm.appendChild(document.createElement("div")).innerHTML=fm.join("")+"<\/table>";
 
 function doSubmit() {
