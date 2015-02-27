@@ -9,6 +9,7 @@ table{margin:0 0 1em 0}
 input[type=text],input[type=number]{text-align:center; max-width:5em}
 table {border-collapse:collapse}
 #log td {border:1px solid}
+#gmap {width:100%; height:250px}
 </style>
 <script>
 var hours = [];
@@ -23,9 +24,7 @@ function wr(s){
 <tr><th colspan=2>Use this location for weather info:
 <tr><td>Latitude:<td><input type=text name=lat size=5>
 <tr><td>Longitude:<td><input type=text name=lon size=5>
-<!--tr><td colspan=2><a href="#" onclick="this.nextSibling.style.display='';">Select using Google Maps...</a
-  ><div style="display:none">
-  </div-->
+<tr><td colspan=2><a href="javascript:void(0);" onclick="showMap(this);">Select using Google Maps...</a>
 <tr><th colspan=2>Only fetch data between the hours of:
 <tr><td>Begin fetch:<td><select name=updBegin><script>wr(hours);</script></select>
 <tr><td>End fetch:<td><select name=updEnd><script>wr(hours);</script></select>
@@ -70,6 +69,27 @@ function doSubmit() {
   }
   location="pebblejs://close#"+encodeURIComponent(JSON.stringify(obj));
   return false;
+}
+
+function showMap(a) {
+  var s=document.createElement("script");
+  s.type="text/javascript";
+  s.src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCHmDLIKQL8lMFOM6EERM-WNMMMCM6kcmc&signed_in=true&callback=initMap";
+  document.body.appendChild(s);
+
+  var d=a.parentNode.insertBefore(document.createElement("div"), a);
+  d.id="gmap";
+  a.parentNode.removeChild(a);
+}
+var gMap;
+function initMap() {
+  if(gMap) return;
+  gMap=new google.maps.Map(document.getElementById("gmap"), {zoom:4, center:new google.maps.LatLng(obj.lat||37.333, obj.lon||-122)});
+  google.maps.event.addListener(gMap, "center_changed", function() {
+    var c=gMap.getCenter();
+    if(c.lat)document.fm.lat.value=c.lat();
+    if(c.lng)document.fm.lon.value=c.lng();
+  });
 }
 </script>
 </body>
