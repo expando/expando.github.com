@@ -22,8 +22,8 @@ function wr(s){
 <form name=fm action="#" methd=get onsubmit="return doSubmit();">
 <table cellspacing=0 border=0>
 <tr><th colspan=2>Use this location for weather info:
-<tr><td>Latitude:<td><input type=text name=lat size=5>
-<tr><td>Longitude:<td><input type=text name=lon size=5>
+<tr><td>Latitude:<td><input type=text name=lat size=5 min="-90" max=90>
+<tr><td>Longitude:<td><input type=text name=lon size=5 min="-180" max=180>
 <tr><td colspan=2><a href="javascript:void(0);" onclick="showMap(this);">Select using Google Maps...</a>
 <tr><th colspan=2>Only fetch data between the hours of:
 <tr><td>Begin fetch:<td><select name=updBegin><script>wr(hours);</script></select>
