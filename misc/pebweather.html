@@ -84,7 +84,7 @@ function showMap(a) {
 var gMap;
 function initMap() {
   if(gMap) return;
-  gMap=new google.maps.Map(document.getElementById("gmap"), {zoom:4, center:new google.maps.LatLng(obj.lat||37.333, obj.lon||-122)});
+  gMap=new google.maps.Map(document.getElementById("gmap"), {zoom:10, center:new google.maps.LatLng(obj.lat||37.333, obj.lon||-122)});
   google.maps.event.addListener(gMap, "center_changed", function() {
     var c=gMap.getCenter();
     if(c.lat)document.fm.lat.value=c.lat();
