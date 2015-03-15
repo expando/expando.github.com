@@ -68,7 +68,8 @@ function doSubmit() {
     el = fm.elements[i];
     if(el.name) obj[el.name]=(el.type!="checkbox")?el.value*1:el.checked?1:0;
   }
-  location="pebblejs://close#"+encodeURIComponent(JSON.stringify(obj));
+  var url=/\breturn_to=(https%3A\/\/[a-z]+pebble.[c-t]+\/[a-z\/]+%3F)/.exec(location)||[1,"pebblejs://close#];
+  location=decodeURIComponent(url[1])+encodeURIComponent(JSON.stringify(obj));
   return false;
 }
 
