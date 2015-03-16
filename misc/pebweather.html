@@ -11,6 +11,7 @@ input[type=number]{max-width:5em}
 table {border-collapse:collapse}
 #log td {border:1px solid}
 #gmap {width:100%; height:250px}
+#theme_digit{display:none}
 </style>
 <script>
 var hours = [];
@@ -35,6 +36,7 @@ function wr(s){
 <tr><td>Tomorrow:<td>After <select name=showTmr><script>wr(hours);</script></select> show tomorrow's weather
 <tr><td>Background:<td><input type=checkbox name=theme> White colour
 <tr><td>&deg;C/&deg;F:<td><input type=checkbox name=celsius> Celsius
+<tr id=theme_digit><td>Show digits:<td><select><option value=0 selected>-<option value=2>12<option value=4>6 and 12<option value=6>3, 6, 9 and 12</select>
 <tr><th colspan=2><input type=submit value=Save>
 <tr><td colspan=2><small>Weather data provided by openweathermap.org</small>
 </table>
@@ -45,8 +47,10 @@ function wr(s){
 </form>
 
 <script>
-var obj = {};
+function $(s){return document.getElementById(s)}
+var obj = {}, canDigit=0;
 location.search.replace(/\b(\w+)=([^&]*)/g, function(s,n,v) {obj[n] = v});
+if(canDigit=obj.d) $("theme_digit").style.display="";
 var fm=document.fm, el;
 for(var i=0;i<fm.elements.length; i++) {
   el = fm.elements[i];
@@ -68,6 +72,7 @@ function doSubmit() {
     el = fm.elements[i];
     if(el.name) obj[el.name]=(el.type!="checkbox")?el.value*1:el.checked?1:0;
   }
+  if(canDigit)obj.theme+=$("theme_digit").getElementsByTagName("select")[0].value*1;
   var url=/\breturn_to=(https%3A\/\/[a-z]+pebble.[c-t]+\/[a-z\/]+%3F)/.exec(location)||[1,"pebblejs://close#"];
   location=decodeURIComponent(url[1])+encodeURIComponent(JSON.stringify(obj));
   return false;
@@ -86,7 +91,7 @@ function showMap(a) {
 var gMap;
 function initMap() {
   if(gMap) return;
-  gMap=new google.maps.Map(document.getElementById("gmap"), {zoom:10, center:new google.maps.LatLng(obj.lat||37.333, obj.lon||-122)});
+  gMap=new google.maps.Map($("gmap"), {zoom:10, center:new google.maps.LatLng(obj.lat||37.333, obj.lon||-122)});
   google.maps.event.addListener(gMap, "center_changed", function() {
     var c=gMap.getCenter();
     if(c.lat)document.fm.lat.value=c.lat();
