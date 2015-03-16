@@ -1,13 +1,27 @@
 <!doctype html>
 <html>
-<meta name=viewport content="width=device-width">
+<style>
+body,input,select{font:normal 14pt Arial}
+th,td{padding:0.4em 0.2em; text-align:left}
+</style>
 <body><!-- APPUID: 28b06d4a-4875-45bb-bde3-fbd0fbbfbf7d -->
-<label id=t><input type=checkbox id=m></label>
-<p><input type=button value=Save onclick="go();">
+<form name=fm>
+<table>
+<tr><td>Colour:<td><input type=checkbox name=m>White
+<tr style="display:none" id="d0">
+  <td>Show Digits:<td><select name=d><option value=0>-<option value=2>12<option value=4>6 and 12<option value=6>3, 6, 9 and 12</select>
+<tr><td colspan=2><input type=button value=Save onclick="go();">
+</table>
+</form>
 <script>
-document.getElementById("t").appendChild(document.createTextNode(unescape(/\bt=([^&]+)&/.exec(location)[1])));
-document.getElementById("m").checked=/m=1\b/.test(location);
-function go(){location=/\bp=([a-z]+)\b/.exec(location)[1]+"://"+/\bu=([a-z]+)\b/.exec(location)[1]+"#m="+(document.getElementById("m").checked?1:0)}
+var loc=location.href;
+var m=(/\bm=(\d+)\b/.exec(loc)||[0,0])[1]*1;
+document.fm.m.checked=(m%2==1);
+if(!/\bt=W/.test(loc)) {
+  document.getElementById("d0").style.display="";
+  document.fm.d.value=m-(m%2);
+}
+function go(){location=/\bp=([a-z]+)\b/.exec(loc)[1]+"://"+/\bu=([a-z]+)\b/.exec(loc)[1]+"#m="+(document.fm.d.value*1+(document.fm.m.checked?1:0))}
 </script>
 </body>
 </html>
