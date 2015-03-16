@@ -47,9 +47,15 @@ function wr(s){
 
 <script>
 function $(s){return document.getElementById(s)}
-var obj = {}, canDigit=0;
+var obj = {}, canDigit;
 location.search.replace(/\b(\w+)=([^&]*)/g, function(s,n,v) {obj[n] = v});
-if(canDigit=obj.d) $("theme_digit").style.display="";
+if(obj.d) {
+  canDigit=$("theme_digit");
+  canDigit.style.display="";
+  canDigit=canDigit.getElementsByTagName("select")[0];
+  canDigit.value=obj.theme-(obj.theme%2);
+  obj.theme=obj.theme%2;
+}
 var fm=document.fm, el;
 for(var i=0;i<fm.elements.length; i++) {
   el = fm.elements[i];
@@ -71,7 +77,7 @@ function doSubmit() {
     el = fm.elements[i];
     if(el.name) obj[el.name]=(el.type!="checkbox")?el.value*1:el.checked?1:0;
   }
-  if(canDigit)obj.theme+=$("theme_digit").getElementsByTagName("select")[0].value*1;
+  if(canDigit)obj.theme+=canDigit.value*1;
   var url=/\breturn_to=(https%3A\/\/[a-z]+pebble.[c-t]+\/[a-z\/]+%3F)/.exec(location)||[1,"pebblejs://close#"];
   location=decodeURIComponent(url[1])+encodeURIComponent(JSON.stringify(obj));
   return false;
