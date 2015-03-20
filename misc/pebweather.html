@@ -53,13 +53,13 @@ if(obj.d) {
   canDigit=$("theme_digit");
   canDigit.style.display="";
   canDigit=canDigit.getElementsByTagName("select")[0];
-  canDigit.value=obj.theme-(obj.theme%2);
-  obj.theme=obj.theme%2;
   if(obj.d*1==2) {
     var opt=canDigit.appendChild(document.createElement("option"));
     opt.appendChild(document.createTextNode("classic"));
     opt.value=8;
   }
+  canDigit.value=obj.theme-(obj.theme%2);
+  obj.theme=obj.theme%2;
 }
 var fm=document.fm, el;
 for(var i=0;i<fm.elements.length; i++) {
