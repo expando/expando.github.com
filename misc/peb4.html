@@ -6,6 +6,9 @@ body{background:#fff; color:#000}
 body,input,select{font:normal 14pt Helvetica}
 input,select{line-height:1.5em}
 form{text-align:center}
+center{margin:1em 0}
+table,tr,td{margin:0; padding:0; text-align:left}
+td{padding:0 2px}
 #three,#six,#nine,#twelve{position:absolute; width:196px; left:10px; text-align:center; font-size:1.5em}
 #three,#nine{top:108px; margin-top:-0.5em; text-align:right}
 #nine{text-align:left}#six{bottom:5px}#twelve{top:5px}
@@ -17,7 +20,13 @@ form{text-align:center}
 </style>
 <body><!-- APPUID: 28b06d4a-4875-45bb-bde3-fbd0fbbfbf7c -->
 <form name=fm>
-<div style="display:inline-block; position:relative; width:216px; height:252px; margin-top:3%">
+<center>
+<table>
+<tr><td>Digital<td><select name=s onchange=upd();><option value=0>Hide Time<option value=1>Show Time</select>
+<tr><td>Battery<td><select name=b onchange=upd();><option value=0>Hide<option value=1>Show when 30%<option value=2>Show<option value=3>Show Ring</select>
+</table>
+</center>
+<div style="display:inline-block; position:relative; width:216px; height:252px">
   <div style="position:absolute; top:18px; border:1px solid; width:216px; height:216px; border-radius:108px">
     <div id=three>3</div><div id=six>6</div><div id=nine>9</div><div id=twelve>12</div>
     <div style="position:absolute; width:100%; left:0; top:108px; margin-top:-0.5em; text-align:center"><select id=m onchange=upd();>
@@ -33,24 +42,26 @@ form{text-align:center}
   </div>
   <div class=cpc style="top:0; left:0">
     <div id=stime>12:00</div>
-    <select name=s style="right:40px" onchange=upd();><option value=0>Hide<option value=1>Show</select>
   </div>
   <div class=cpc style="top:0; right:0">
     <div id=batt_ring></div>
     <div id=batt>90</div>
-    <select name=b style="left:40px" onchange=upd();><option value=0>Hide<option value=1>Under 30%<option value=2>Always<option value=3>Always Ring</select>
   </div>
   <div class=cpc style="bottom:0; right:0">
     <div id=date_ring></div>
     <div id=date>31</div>
-    <select name=d style="left:40px" onchange=upd();><option value=0>Hide<option value=1>Always<option value=2>Always Ring</select>
   </div>
   <div class=cpc style="bottom:0; left:0">
     <div id=week_ring></div>
     <div id=week>Tu</div>
-    <select name=w style="right:40px" onchange=upd();><option value=0>Hide<option value=1>Always<option value=2>Always Ring</select>
   </div>
 </div>
+<center>
+<table>
+<tr><td>Week<td><select name=d style="left:40px" onchange=upd();><option value=0>Hide<option value=1>Show<option value=2>Show Ring</select>
+<tr><td>Date<td><select name=w style="right:40px" onchange=upd();><option value=0>Hide<option value=1>Show<option value=2>Show Ring</select>
+</table>
+</center>
 <p><input type=button value=Save onclick=bye();>
 </form>
 
