@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<style>
+body{background:#fff; color:#000}
+.blk{background:#000; color:#fff}
+body,input,select{font:normal 14pt Helvetica}
+input,select{line-height:1.5em}
+form{text-align:center}
+#three,#six,#nine,#twelve{position:absolute; width:196px; left:10px; text-align:center; font-size:1.5em}
+#three,#nine{top:108px; margin-top:-0.5em; text-align:right}
+#nine{text-align:left}#six{bottom:5px}#twelve{top:5px}
+#batt_ring,#date_ring,#week_ring,
+#stime,#batt,#date,#week{position:absolute; width:30px; height:30px; line-height:30px; text-align:center; font-size:0.8em}
+#batt_ring,#date_ring,#week_ring{border:1px solid; border-radius:15px}
+.cpc{position:absolute; width:30px; height:30px}
+.cpc select{position:absolute; top:0}
+</style>
+<body><!-- APPUID: 28b06d4a-4875-45bb-bde3-fbd0fbbfbf7c -->
+<form name=fm>
+<div style="display:inline-block; position:relative; width:216px; height:252px; margin-top:3%">
+  <div style="position:absolute; top:18px; border:1px solid; width:216px; height:216px; border-radius:108px">
+    <div id=three>3</div><div id=six>6</div><div id=nine>9</div><div id=twelve>12</div>
+    <div style="position:absolute; width:100%; left:0; top:108px; margin-top:-0.5em; text-align:center"><select id=m onchange=upd();>
+      <option value=0>B / none
+      <option value=1>W / none
+      <option value=2>B / 12
+      <option value=3>W / 12
+      <option value=4>B / 6
+      <option value=5>W / 6
+      <option value=6>B / 3, 9
+      <option value=7>W / 3, 9
+    </select></div>
+  </div>
+  <div class=cpc style="top:0; left:0">
+    <div id=stime>12:00</div>
+    <select name=s style="right:40px" onchange=upd();><option value=0>Hide<option value=1>Show</select>
+  </div>
+  <div class=cpc style="top:0; right:0">
+    <div id=batt_ring></div>
+    <div id=batt>90</div>
+    <select name=b style="left:40px" onchange=upd();><option value=0>Hide<option value=1>Under 30%<option value=2>Always<option value=3>Always Ring</select>
+  </div>
+  <div class=cpc style="bottom:0; right:0">
+    <div id=date_ring></div>
+    <div id=date>31</div>
+    <select name=d style="left:40px" onchange=upd();><option value=0>Hide<option value=1>Always<option value=2>Always Ring</select>
+  </div>
+  <div class=cpc style="bottom:0; left:0">
+    <div id=week_ring></div>
+    <div id=week>Tu</div>
+    <select name=w style="right:40px" onchange=upd();><option value=0>Hide<option value=1>Always<option value=2>Always Ring</select>
+  </div>
+</div>
+<p><input type=button value=Save onclick=bye();>
+</form>
+
+<script>
+function $(s) {return document.getElementById(s)}
+var obj = {m:0,s:0,b:0,d:0,w:0};
+location.search.replace(/\b(\w)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
+upd();
+function show(s, t, v) {
+  s=s.charAt?[s]:s;
+  for(var i=0;i<s.length;i++) $(s[i]).style.display=t?"block":"none";
+}
+function upd(){
+  var fm=document.fm;
+  var m=fm.m.value;
+  document.body.className=(m%2==0)?"blk":"";
+  show(["three","nine"],m>=6);
+  show("six",m>=4);
+  show("twelve",m>=2);
+  show("stime",fm.s.value>0);
+  show("batt_ring",fm.b.value==3);
+  show("batt",fm.b.value>=1);
+  show("date_ring",fm.d.value==2);
+  show("date",fm.d.value>=1);
+  show("week_ring",fm.w.value==2);
+  show("week",fm.w.value>=1);
+  for(var i in obj) obj[i]=document.fm[i].value*1;
+}
+function bye(){
+  location="pebblejs://close#"+encodeURIComponent(JSON.stringify(obj));
+}
+</script>
+</body>
+</html>
