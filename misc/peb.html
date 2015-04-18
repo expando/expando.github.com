@@ -7,8 +7,6 @@ h2{margin:0.5em 0; padding:0; font-weight:bold}
 label{margin-left:1em}
 label+label{margin-left:1.5em}
 #d0{margin:2em 0}
-td{padding:0.5em 0}
-td,img{vertical-align:middle}
 </style>
 <body><!-- APPUID: 28b06d4a-4875-45bb-bde3-fbd0fbbfbf7d -->
 <form name=fm>
@@ -17,20 +15,10 @@ td,img{vertical-align:middle}
 <label><input type=radio name=m value=1>White</label>
 <div style="display:none" id="d0">
   <h2>Show Digits:</h2>
-  <table cellspacing=0 id=faces>
-  <tr>
-    <td><label for=fc0><img src="https://assets.getpebble.com/api/file/JHBcSU4VQ1WVpJ60SJov/convert?cache=true&w=144&h=168&fit=" width=72 height=84></label>
-    <td><label><input type=radio name=d value=0 checked id=fc0>None</label>
-  <tr>
-    <td><label for=fc2><img src="https://assets.getpebble.com/api/file/mDArunqQywcTfZJC9jtQ/convert?cache=true&w=144&h=168&fit=" width=72 height=84></label>
-    <td><label><input type=radio name=d value=2 id=fc2>12</label>
-  <tr>
-    <td><label for=fc4><img src="https://assets.getpebble.com/api/file/VU0Y5UnSsCS9W1La3cU4/convert?cache=true&w=144&h=168&fit=" width=72 height=84></label>
-    <td><label><input type=radio name=d value=4 id=fc4>6, 12</label>
-  <tr>
-    <td><label for=fc6><img src="https://assets.getpebble.com/api/file/vEO5HyjJSv2Ab6KNGyau/convert?cache=true&w=144&h=168&fit=" width=72 height=84></label>
-    <td><label><input type=radio name=d value=6 id=fc6>3, 6, 9, 12</label>
-  </table>
+  <label><input type=radio name=d value=0 checked>None</label>
+  <br><label><input type=radio name=d value=2>12</label>
+  <br><label><input type=radio name=d value=4>6, 12</label>
+  <br><label><input type=radio name=d value=6>3, 6, 9, 12</label>
 </div>
 <input type=button value=Save onclick="go();">
 </form>
