@@ -8,7 +8,7 @@ input,select{line-height:1.5em}
 form{text-align:center}
 center{margin:1em 0}
 table,tr,td{margin:0; padding:0; text-align:left}
-td{padding:0 2px; vertical-align:top}
+td{padding:0.5em 2px; vertical-align:top}
 #three,#six,#nine,#twelve{position:absolute; width:196px; left:10px; text-align:center; font-size:1.5em}
 #three,#nine{top:108px; margin-top:-0.5em; text-align:right}
 #nine{text-align:left}#six{bottom:5px}#twelve{top:5px}
@@ -66,11 +66,11 @@ document.write(hours.join(""));
 <tr><td>Week<td><select name=w style="right:40px" onchange=upd();><option value=0>Hide<option value=1>Show<option value=2>Show Ring</select>
 <tr><td>Date<td><select name=d style="left:40px" onchange=upd();><option value=0>Hide<option value=1>Show<option value=2>Show Ring</select>
 <tr><td>Seconds</td><td><select name=c onchange=upd();><script>wr();</script></select>
-  to <select name=h onchange=upd();><script>wr();</script></select> show the second hand
-<tr><td>Conserve<td>Hide the second hand when battery is under <select name=p onchange=upd();>
+  to <select name=h onchange=upd();><script>wr();</script></select> show the clock's second hand
+<tr><td>Conserve<td>Hide the second hand when battery is below <select name=p onchange=upd();>
 <option value=0>0%<option value=10>10%<option value=20>20%<option value=30>30%
 <option value=40>40%<option value=50>50%<option value=60>60%<option value=70>70%
-<option value=80>80%<option value=90>90%<option value=100>100%</select> to conserve battery
+<option value=80>80%<option value=90>90%<option value=100>100%</select> to conserve power
 </table>
 </center>
 <p><input type=button value=Save onclick=bye();>
