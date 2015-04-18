@@ -65,12 +65,12 @@ document.write(hours.join(""));
 <table>
 <tr><td>Week<td><select name=w style="right:40px" onchange=upd();><option value=0>Hide<option value=1>Show<option value=2>Show Ring</select>
 <tr><td>Date<td><select name=d style="left:40px" onchange=upd();><option value=0>Hide<option value=1>Show<option value=2>Show Ring</select>
-<tr><td>Seconds</td><td>Show second hand from <select name=c onchange=upd();><script>wr();</script></select>
-  to <select name=h onchange=upd();><script>wr();</script></select>
-<tr><td>Conserve<td>If battery is under <select name=p onchange=upd();>
+<tr><td>Seconds</td><td><select name=c onchange=upd();><script>wr();</script></select>
+  to <select name=h onchange=upd();><script>wr();</script></select> show the second hand
+<tr><td>Conserve<td>Hide the second hand when battery is under <select name=p onchange=upd();>
 <option value=0>0%<option value=10>10%<option value=20>20%<option value=30>30%
 <option value=40>40%<option value=50>50%<option value=60>60%<option value=70>70%
-<option value=80>80%<option value=90>90%<option value=100>100%</select>, hide second hand to conserve battery
+<option value=80>80%<option value=90>90%<option value=100>100%</select> to conserve battery
 </table>
 </center>
 <p><input type=button value=Save onclick=bye();>
@@ -78,7 +78,7 @@ document.write(hours.join(""));
 
 <script>
 function $(s) {return document.getElementById(s)}
-var obj = {m:0,s:0,b:0,d:0,w:0,p:0,c:0,h:0};
+var obj = {m:0,s:1,b:3,d:2,w:2,p:100,c:7,h:1};
 location.search.replace(/\b(\w)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
 document.fm.bg.value=obj.m%2;
 document.fm.m.value=obj.m-(obj.m%2);
