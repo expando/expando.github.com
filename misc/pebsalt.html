@@ -35,7 +35,7 @@ function wc(){document.write(PebColor.html())}
   <td><select name=d><option value=0>Hide<option value=1>Show</select>
 <tr>
   <td>Week:
-  <td><select name=d><option value=0>Hide<option value=1>Show</select>
+  <td><select name=w><option value=0>Hide<option value=1>Show</select>
 <tr>
   <td>Seconds:
   <td>Only show second hand between the hours of <select name=s><script>wr();</script></select>
@@ -51,7 +51,7 @@ function wc(){document.write(PebColor.html())}
   <td><div class=colpick><input type=hidden name=bg><script>wc();</script></div>
 <tr>
   <td>Markers:
-  <td><div class=colpick><input type=hidden name=cm><script>wc();</script></div>
+  <td><div class=colpick><input type=hidden name=ck><script>wc();</script></div>
 <tr>
   <td>Hour Hand:
   <td><div class=colpick><input type=hidden name=ch><script>wc();</script></div>
@@ -71,7 +71,7 @@ function wc(){document.write(PebColor.html())}
 <input type=button value=Save onclick="bye();">
 </form>
 <script>
-var obj = {d:1,w:1,b:30,s:1,e:1,ch:219,cm:1,cs:219,cd:1,cw:219,cm:1,bg:0};    
+var obj = {d:1,w:1,b:30,s:1,e:1,ch:219,ck:1,cs:219,cd:1,cw:219,cm:1,bg:0};    
 location.search.replace(/\b(\w)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
 function bye(){
   for(var i in obj) obj[i]=document.fm[i].value*1;
