@@ -78,7 +78,8 @@ var obj = {d:1,w:1,b:30,s:1,e:1,ch:219,ck:1,cs:219,cd:1,cw:219,cm:1,bg:0};
 location.search.replace(/\b(\w+)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
 function bye(){
   for(var i in obj) obj[i]=document.fm[i].value*1;
-  location="pebblejs://close#"+encodeURIComponent(JSON.stringify(obj));
+  var url=/\breturn_to=(https%3A\/\/[a-z]+pebble\.[c-t]+\/[a-z\/]+%3F)/.exec(location)||[1,"pebblejs://close#"];
+  location=decodeURIComponent(url[1])+encodeURIComponent(JSON.stringify(obj));
 }
 </script>
 </body>
