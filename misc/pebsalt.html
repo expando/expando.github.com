@@ -78,7 +78,7 @@ function wc(){document.write(PebColor.html())}
 <script>
 var obj = {d:1,w:1,b:30,s:1,e:1,ch:1,cm:27,cs:27,cd:1,cw:27,ck:1,bg:0};
 location.search.replace(/\b(\w+)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
-"ch,cm,cs,cd,cw,ck,bg".replace(/\b..\b/g, function(n) {PebColor.click(document.fm[n].parentNode.querySelector(".col"+obj[n]), obj[n])})
+"ch,cm,cs,cd,cw,ck,bg".replace(/\b..\b/g, function(n,z) {z=document.fm[n].parentNode.querySelector(".col"+obj[n]);z&&PebColor.click(z, obj[n])})
 function bye(){
   for(var i in obj) obj[i]=document.fm[i].value*1;
   var url=/\breturn_to=(https%3A\/\/[a-z]+pebble\.[c-t]+\/[a-z\/]+%3F)/.exec(location)||[1,"pebblejs://close#"];
