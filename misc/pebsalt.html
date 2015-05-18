@@ -6,6 +6,8 @@
 body{background:#fff; color:#000}
 body,input,select{font:normal 14pt Helvetica; line-height:1.5em}
 td{vertical-align:top; padding:0.5em 0.2em}
+.xpl{font-size:0.9em; color:#aaa}
+.xpl b{font-weight:normal; color:#000}
 .colpick{line-height:8pt; border-left:10px solid transparent; height:140px; overflow:auto; -webkit-overflow-scrolling:touch}
 .pebcol{display:inline-block; height:1cm; min-width:1cm; width:25%; overflow:hidden; margin:0; padding:0; font:normal 8pt serif; color:rgba(0,0,0,0.4); text-align:center}
 </style>
@@ -25,7 +27,7 @@ var PebColor = {
   click: function(n, i) {n=n.parentNode; n.style.borderColor="#"+this.cols[i]; n.querySelector("input").value = i},
   html: function() {
     for(var o=this.ord,c=this.cols, i=63, htm=[]; i>=0; i--)
-      htm[i]="<span class=pebcol onclick='PebColor.click(this,"+o[i]*1+");' style='background-color:#"+c[o[i]*1]+"'>&nbsp;</span>";
+      htm[i]="<span class='pebcol col"+o[i]*1+"' onclick='PebColor.click(this,"+o[i]*1+");' style='background-color:#"+c[o[i]*1]+"'>&nbsp;</span>";
     return htm.join("");
   }
 };
@@ -40,25 +42,25 @@ function wc(){document.write(PebColor.html())}
   <td>Markers:
   <td><div class=colpick><input type=hidden name=ck><script>wc();</script></div>
 <tr>
-  <td>Hour Hand:
+  <td>Hour Hand:<br><span class="xpl">(<b>12</b>:59:59)</span>
   <td><div class=colpick><input type=hidden name=ch><script>wc();</script></div>
 <tr>
-  <td>Minute Hand:
+  <td>Minute Hand:<br><span class="xpl">(12:<b>59</b>:59)</span>
   <td><div class=colpick><input type=hidden name=cm><script>wc();</script></div>
 <tr>
-  <td>Second Hand:
+  <td>Second Hand:<br><span class="xpl">(12:59:<b>59</b>)</span>
   <td><div class=colpick><input type=hidden name=cs><script>wc();</script></div>
 <tr>
   <td>Date:
   <td><select name=d><option value=0>Hide<option value=1>Show</select>
 <tr>
-  <td>Date Color:
+  <td>Date Color:<br><span class="xpl">(31)</span>
   <td><div class=colpick><input type=hidden name=cd><script>wc();</script></div>
 <tr>
   <td>Week:
   <td><select name=w><option value=0>Hide<option value=1>Show</select>
 <tr>
-  <td>Week Color:
+  <td>Week Color:<br><span class="xpl">(MON)</span>
   <td><div class=colpick><input type=hidden name=cw><script>wc();</script></div>
 <tr>
   <td>Seconds:
@@ -74,8 +76,9 @@ function wc(){document.write(PebColor.html())}
 <input type=button value=Save onclick="bye();">
 </form>
 <script>
-var obj = {d:1,w:1,b:30,s:1,e:1,ch:219,ck:1,cs:219,cd:1,cw:219,cm:1,bg:0};    
+var obj = {d:1,w:1,b:30,s:1,e:1,ch:1,cm:27,cs:27,cd:1,cw:27,ck:1,bg:0};
 location.search.replace(/\b(\w+)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
+"ch,cm,cs,cd,cw,ck,bg".replace(/\b..\b/g, function(n) {PebColor.click(document.fm[n].parentNode.querySelector(".col"+obj[n]), obj[n])})
 function bye(){
   for(var i in obj) obj[i]=document.fm[i].value*1;
   var url=/\breturn_to=(https%3A\/\/[a-z]+pebble\.[c-t]+\/[a-z\/]+%3F)/.exec(location)||[1,"pebblejs://close#"];
