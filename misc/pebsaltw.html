@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width">
+<style>
+body{background:#eee; color:#000}
+body,input,select{font:normal 14pt Helvetica; line-height:1.5em}
+td{vertical-align:top; padding:0.5em 0.2em}
+</style>
+</head>
+<body><!-- APPUID: 415f7861-3c7c-4d7e-b413-fb965b94e5e4 -->
+<script>
+var hours = [];
+for(var i=0; i<24; i++) hours.push("<option value="+i+">"+i+":00");
+hours = hours.join("");
+function wr(){document.write(hours)}
+</script>
+<form name=fm>
+<table cellspacing=0 border=0>
+<tr>
+  <td>Date:
+  <td><select name=d><option value=0>Hide<option value=1>Show</select>
+<tr>
+  <td>Week:
+  <td><select name=w><option value=0>Hide<option value=1>Show</select>
+<tr>
+  <td>Seconds:
+  <td>Only show second hand between the hours of <select name=s><script>wr();</script></select>
+  and <select name=e><script>wr();</script></select>
+<tr>
+  <td>Power:
+  <td>Hide second hand if battery is under <select name=b>
+<option value=0>0%<option value=10>10%<option value=20>20%<option value=30>30%
+<option value=40>40%<option value=50>50%<option value=60>60%<option value=70>70%
+<option value=80>80%<option value=90>90%<option value=100>100%</select> to save battery life.
+</table>
+<input type=button value=Save onclick="bye();">
+</form>
+<script>
+var obj = {d:1,w:1,b:30,s:1,e:1};
+location.search.replace(/\b(\w+)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
+function bye(){
+  for(var i in obj) obj[i]=document.fm[i].value*1;
+  var url=/\breturn_to=(https%3A\/\/[a-z]+pebble\.[c-t]+\/[a-z\/]+%3F)/.exec(location)||[1,"pebblejs://close#"];
+  location=decodeURIComponent(url[1])+encodeURIComponent(JSON.stringify(obj));
+}
+</script>
+</body>
+</html>
