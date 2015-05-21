@@ -42,7 +42,7 @@ var obj = {d:1,w:1,b:30,s:1,e:1};
 location.search.replace(/\b(\w+)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
 var log=/&log=(\d\d)(\d\d)(\d\d)([^&]+)/.exec(location);
 if(log){
-  log=document.createElement("div").appendChild(document.createTextNode([log[1]*1,log[2]*1,log[3]*1,[log[4]].join("-"))).parentNode;
+  log=document.createElement("div").appendChild(document.createTextNode([log[1]*1,log[2]*1,log[3]*1,log[4]].join("-"))).parentNode;
   document.fm.appendChild(log).id="log";
 }
 function bye(){
