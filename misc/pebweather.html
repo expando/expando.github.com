@@ -25,7 +25,7 @@ function wr(s){
 <tr><th colspan=2>Use this location for weather info:
 <tr><td>Latitude:<td><input type=text name=lat size=10 min="-90" max=90>
 <tr><td>Longitude:<td><input type=text name=lon size=10 min="-180" max=180>
-<tr><td colspan=2><a href="javascript:void(0);" onclick="showMap(this);">Select using Google Maps...</a>
+<tr><td colspan=2>Use <i>[0,0]</i> for auto-detect or <a href="javascript:void(0);" onclick="showMap(this);">select using Google Maps...</a>
 <tr><th colspan=2>Only fetch data between the hours of:
 <tr><td>Begin fetch:<td><select name=updBegin><script>wr(hours);</script></select>
 <tr><td>End fetch:<td><select name=updEnd><script>wr(hours);</script></select>
@@ -102,10 +102,14 @@ var gMap;
 function initMap() {
   if(gMap) return;
   gMap=new google.maps.Map($("gmap"), {zoom:10, center:new google.maps.LatLng(obj.lat||37.333, obj.lon||-122)});
-  google.maps.event.addListener(gMap, "center_changed", function() {
+  google.maps.event.addListener(gMap, "center_changed", function(lat,lng) {
     var c=gMap.getCenter();
-    if(c.lat)document.fm.lat.value=c.lat();
-    if(c.lng)document.fm.lon.value=c.lng();
+    if(c.lat&&c.lng){
+      lat=c.lat();while(lat>90)lat-=180;while(lat<-90)lat+=180;
+      lng=c.lng();while(lng>180)lng-=360;while(lng<-180)lng+=360;
+      document.fm.lat.value=Math.round(lat*1000)/1000;
+      document.fm.lon.value=Math.round(lng*1000)/1000;
+    }
   });
 }
 </script>
