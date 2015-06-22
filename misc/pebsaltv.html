@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width">
+<style>
+body{background:#eee; color:#000}
+body,input,select{font:normal 14pt Helvetica; line-height:1.5em}
+td{vertical-align:top; padding:0.5em 0.2em}
+.xpl{font-size:0.9em; color:#aaa}
+.xpl b{font-weight:normal; color:#000}
+.colpick{line-height:8pt; border-left:10px solid transparent; height:140px; overflow:auto; -webkit-overflow-scrolling:touch}
+.pebcol{display:inline-block; height:1cm; min-width:1cm; width:25%; overflow:hidden; margin:0; padding:0; font:normal 8pt serif; color:rgba(0,0,0,0.4); text-align:center}
+</style>
+</head>
+<body><!-- APPUID: 415f7861-3c7c-4d7e-b413-fb965b94e5e6 -->
+<script>
+var hours = [];
+for(var i=0; i<24; i++) hours.push("<option value="+i+">"+i+":00");
+hours = hours.join("");
+function wr(){document.write(hours)}
+var PebColor = {
+  cols: ("00000500A00F05005505A05F0A00A50AA0AF0F00F50FA0FF50050550A50F55055555A55F5A0"+
+  "5A55AA5AF5F05F55FA5FFA00A05A0AA0FA50A55A5AA5FAA0AA5AAAAAFAF0AF5AFAAFFF00F05F0AF0F"+
+  "F50F55F5AF5FFA0FA5FAAFAFFF0FF5FFAFFF").match(/.../g),
+  ord: ("00214263371632485358523657564120406061624424452825040812294613093014260510153"+
+  "147110627072201020323431918393538173451555950335449").match(/../g),
+  click: function(n, i) {n=n.parentNode; n.style.borderColor="#"+this.cols[i]; n.querySelector("input").value = i},
+  html: function() {
+    for(var o=this.ord,c=this.cols, i=63, htm=[]; i>=0; i--)
+      htm[i]="<span class='pebcol col"+o[i]*1+"' onclick='PebColor.click(this,"+o[i]*1+");' style='background-color:#"+c[o[i]*1]+"'>&nbsp;</span>";
+    return htm.join("");
+  }
+};
+function wc(){document.write(PebColor.html())}
+</script>
+<form name=fm>
+<table cellspacing=0 border=0>
+<tr>
+  <td>Back Color:
+  <td><div class=colpick><input type=hidden name=bg><script>wc();</script></div>
+<tr>
+  <td>Markers:
+  <td><div class=colpick><input type=hidden name=ck><script>wc();</script></div>
+<tr>
+  <td>Hour Hand:<br><span class="xpl">(<b>12</b>:59:59)</span>
+  <td><div class=colpick><input type=hidden name=ch><script>wc();</script></div>
+<tr>
+  <td>Minute Hand:<br><span class="xpl">(12:<b>59</b>:59)</span>
+  <td><div class=colpick><input type=hidden name=cm><script>wc();</script></div>
+<tr>
+  <td>Second Hand:<br><span class="xpl">(12:59:<b>59</b>)</span>
+  <td><div class=colpick><input type=hidden name=cs><script>wc();</script></div>
+<tr>
+  <td>Dot Main Color:<br><span class="xpl">(&bull;)</span>
+  <td><div class=colpick><input type=hidden name=ct><script>wc();</script></div>
+<tr>
+  <td>Dot Aux Color:<br><span class="xpl">(&bull;)</span>
+  <td><div class=colpick><input type=hidden name=cr><script>wc();</script></div>
+<tr>
+  <td>Seconds:
+  <td>Only show second hand between the hours of <select name=s><script>wr();</script></select>
+  and <select name=e><script>wr();</script></select>
+<tr>
+  <td>Power:
+  <td>Hide second hand if battery is under <select name=b>
+<option value=0>0%<option value=10>10%<option value=20>20%<option value=30>30%
+<option value=40>40%<option value=50>50%<option value=60>60%<option value=70>70%
+<option value=80>80%<option value=90>90%<option value=100>100%</select> to save battery life.
+</table>
+<input type=button value=Save onclick="bye();">
+</form>
+<script>
+var obj = {b:30,s:1,e:1,ch:1,cm:27,cs:27,ct:1,cr:48,ck:1,bg:0};
+location.search.replace(/\b(\w+)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
+"ch,cm,cs,ct,cr,ck,bg".replace(/\b..\b/g, function(n,z) {z=document.fm[n].parentNode.querySelector(".col"+obj[n]);z&&PebColor.click(z, obj[n])})
+function bye(){
+  for(var i in obj) obj[i]=document.fm[i].value*1;
+  var url=/\breturn_to=(https%3A\/\/[a-z]+pebble\.[c-t]+\/[a-z\/]+%3F)/.exec(location)||[1,"pebblejs://close#"];
+  location=decodeURIComponent(url[1])+encodeURIComponent(JSON.stringify(obj));
+}
+</script>
+</body>
+</html>
