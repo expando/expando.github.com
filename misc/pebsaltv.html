@@ -70,7 +70,7 @@ function wc(){document.write(PebColor.html())}
 <input type=button value=Save onclick="bye();">
 </form>
 <script>
-var obj = {b:30,s:1,e:1,ch:1,cm:27,cs:27,ct:1,cr:48,ck:1,bg:0};
+var obj = {b:30,s:1,e:1,ch:1,cm:27,cs:27,ct:37,cr:48,ck:1,bg:0};
 location.search.replace(/\b(\w+)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
 "ch,cm,cs,ct,cr,ck,bg".replace(/\b..\b/g, function(n,z) {z=document.fm[n].parentNode.querySelector(".col"+obj[n]);z&&PebColor.click(z, obj[n])})
 function bye(){
