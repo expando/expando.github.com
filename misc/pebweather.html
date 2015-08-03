@@ -36,6 +36,7 @@ function wr(s){
 <tr><td>Background:<td><input type=checkbox name=theme> White colour
 <tr><td>&deg;C/&deg;F:<td><input type=checkbox name=celsius> Celsius
 <tr id=theme_digit style="display:none"><td>Show digits:<td><select><option value=0 selected>none<option value=2>12<option value=4>6 and 12<option value=6>3, 6, 9 and 12</select>
+<tr id=vib_row style="display:none"><td>Vibrate:<td>Vibrate hourly between <select name=vibBeg><script>wr(hours);</script></select> and <select name=vibEnd><script>wr(hours);</script></select>
 <tr><th colspan=2><input type=submit value=Save>
 <tr><td colspan=2><small>Weather data provided by openweathermap.org</small>
 </table>
@@ -61,6 +62,7 @@ if(obj.d) {
   canDigit.value=obj.theme-(obj.theme%2);
   obj.theme=obj.theme%2;
 }
+if("vibBeg" in obj)$("vib_row").style.display="";
 var fm=document.fm, el;
 for(var i=0;i<fm.elements.length; i++) {
   el = fm.elements[i];
