@@ -52,18 +52,18 @@ function doit() {
 }
 
 var tout;
-function notif(s) {
+function notif(s, t) {
   var b = document.fm.btn;
   b.disabled = true;
   b.value = s;
   clearTimeout(tout);
-  tout = setTimeout(function() {b.disabled = false; b.value = "Send";}, 2000);
+  if(t) tout = setTimeout(function() {b.disabled = false; b.value = "Send";}, t);
 }
 
 function doret(xhr) {
   if(xhr.readyState == 4) {
     if(xhr.status == 200) {
-      notif("Sent!");
+      notif("Sent!", 2000);
     } else {
       document.fm.btn.disabled = true;
       alert("Send error " + xhr.status);
