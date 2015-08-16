@@ -66,7 +66,7 @@ function doret(xhr) {
       notif("Sent!", 2000);
     } else {
       document.fm.btn.disabled = true;
-      alert("Send error " + xhr.status);
+      alert("Send error " + xhr.status + " " + JSON.parse(xhr.responseText).errorCode);
     }
   }
 }
