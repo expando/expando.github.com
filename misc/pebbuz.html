@@ -1,3 +1,75 @@
 <!doctype html>
 <html>
+<head>
+<title>Buzz Me</title>
+<meta name="viewport" content="width=device-width">
+<style>
+html, body, h1, form, textarea, input {margin:0; padding:0; font:normal 12pt Helvetica,Arial}
+body, h1 {background:#fff; color:#000; text-align:center}
+textarea {width:100%; max-width:320px; border:1px solid black; height:6em; box-sizing:border-box; text-align:center; padding:0.3em}
+h1 {padding:0.5em 1em; font-weight:bold}
+input {padding:0.3em 1em; background:#000; color:#fff; border:0}
+input:disabled {background:#888; color:#ccc}
+.msg {background:#f55; color:#fff; border-bottom:1px solid #fff; padding:10px 5px; font-weight:bold}
+</style>
+</head>
+<body>
+<noscript><div class=msg>Javascript must be enabled</div></noscript>
+<div id="badtoken" class=msg style="display:none">Watch not found. Try re-scanning QR code.</div>
+<form name=fm action="javascript://" onsubmit="doit();return false;">
+<h1>Show on my watch:</h1>
+<textarea name=txt placeholder="Type message here" maxlength=140></textarea>
+<br><input name=btn type=submit value="Send">
+</form>
+<script>
+function $(id) {return document.getElementById(id)}
+function p(n) {return n < 10 ? "0" + n : n}
+
+var token = (/\bt=\/(\w+)\b/.exec(location) || [])[1];
+if(!token) {
+  $("badtoken").style.display = "";
+  document.fm.btn.disabled = true;
+}
+
+function doit() {
+  if(!token) return;
+  var id = "buzzme-" + Math.round(Math.random()*1000000);
+  var t = new Date();
+  t = t.getUTCFullYear()+"-"+p(t.getUTCMonth()+1)+"-"+p(t.getUTCDate())+"T"+p(t.getUTCHours())+":"+p(t.getUTCMinutes())+":"+p(t.getUTCSeconds())+"Z";
+  var CN = "createNotification";
+  var m = {id:id, time:t, layout:{}};
+  m[CN] = {/*time:t,*/layout:{}};
+  var l = {type:"genericPin", secondaryColor:"#000000", backgroundColor:"#FFAA00", tinyIcon:"system://images/NOTIFICATION_TELEGRAM"};
+  for(var i in l) m.layout[i] = m[CN].layout[i] = l[i];
+  m.layout.title = m[CN].layout.body = document.fm.txt.value;
+  var xhr = new XMLHttpRequest();
+  xhr.open("PUT", "https://timeline-api.getpebble.com/v1/user/pins/"+id, true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("X-User-Token", token);
+  xhr.onreadystatechange = function() {doret(xhr)};
+  xhr.send(JSON.stringify(m));
+  notif("Sending...");
+}
+
+var tout;
+function notif(s) {
+  var b = document.fm.btn;
+  b.disabled = true;
+  b.value = s;
+  clearTimeout(tout);
+  tout = setTimeout(function() {b.disabled = false; b.value = "Send";}, 2000);
+}
+
+function doret(xhr) {
+  if(xhr.readyState == 4) {
+    if(xhr.status == 200) {
+      notif("Sent!");
+    } else {
+      document.fm.btn.disabled = true;
+      alert("Send error " + xhr.status);
+    }
+  }
+}
+</script>
+</body>
 </html>
