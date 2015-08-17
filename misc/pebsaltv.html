@@ -33,27 +33,28 @@ var PebColor = {
 };
 function wc(){document.write(PebColor.html())}
 </script>
+<script>if(/\ba=a&/.test(location))document.write("<style>.bst{display:none}<\/style>");</script>
 <form name=fm>
 <table cellspacing=0 border=0>
-<tr>
+<tr class=bst>
   <td>Back Color:
   <td><div class=colpick><input type=hidden name=bg><script>wc();</script></div>
-<tr>
+<tr class=bst>
   <td>Markers:
   <td><div class=colpick><input type=hidden name=ck><script>wc();</script></div>
-<tr>
+<tr class=bst>
   <td>Hour Hand:<br><span class="xpl">(<b>12</b>:59:59)</span>
   <td><div class=colpick><input type=hidden name=ch><script>wc();</script></div>
-<tr>
+<tr class=bst>
   <td>Minute Hand:<br><span class="xpl">(12:<b>59</b>:59)</span>
   <td><div class=colpick><input type=hidden name=cm><script>wc();</script></div>
-<tr>
+<tr class=bst>
   <td>Second Hand:<br><span class="xpl">(12:59:<b>59</b>)</span>
   <td><div class=colpick><input type=hidden name=cs><script>wc();</script></div>
-<tr>
+<tr class=bst>
   <td>Dot Main Color:<br><span class="xpl">(&bull;)</span>
   <td><div class=colpick><input type=hidden name=ct><script>wc();</script></div>
-<tr>
+<tr class=bst>
   <td>Dot Aux Color:<br><span class="xpl">(&bull;)</span>
   <td><div class=colpick><input type=hidden name=cr><script>wc();</script></div>
 <tr>
