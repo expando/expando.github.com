@@ -6,7 +6,7 @@
 body{background:#eee; color:#000}
 body,input,select{font:normal 14pt Helvetica; line-height:1.5em}
 td{vertical-align:top; padding:0.5em 0.2em}
-.colpick{line-height:8pt; border-left:10px solid transparent; height:140px; overflow:auto; -webkit-overflow-scrolling:touch}
+.colpick{line-height:8pt; border-left:10px solid transparent; max-height:140px; overflow:auto; -webkit-overflow-scrolling:touch}
 .pebcol{display:inline-block; height:1cm; min-width:1cm; width:25%; overflow:hidden; margin:0; padding:0; font:normal 8pt serif; color:rgba(0,0,0,0.4); text-align:center}
 </style>
 </head>
@@ -18,15 +18,17 @@ var PebColor = {
   "F50F55F5AF5FFA0FA5FAAFAFFF0FF5FFAFFF").match(/.../g),
   ord: ("00214263371632485358523657564120406061624424452825040812294613093014260510153"+
   "147110627072201020323431918393538173451555950335449").match(/../g),
+  ttl:63,
   click: function(n, i) {n=n.parentNode; n.style.borderColor="#"+this.cols[i]; n.querySelector("input").value = i},
   html: function() {
-    for(var o=this.ord,c=this.cols, i=63, htm=[]; i>=0; i--)
+    for(var o=this.ord,c=this.cols, i=this.ttl, htm=[]; i>=0; i--)
       htm[i]="<span class='pebcol col"+o[i]*1+"' onclick='PebColor.click(this,"+o[i]*1+");' style='background-color:#"+c[o[i]*1]+"'>&nbsp;</span>";
     return htm.join("");
   }
 };
 function wc(){document.write(PebColor.html())}
 </script>
+<script>if(/\ba=a&/.test(location)){PebColor.ttl=1;PebColor.ord=["00","63"]}</script>
 <form name=fm>
 <table cellspacing=0 border=0>
 <tr>
@@ -36,15 +38,21 @@ function wc(){document.write(PebColor.html())}
   <td>Time Back:
   <td><div class=colpick><input type=hidden name=h><script>wc();</script></div>
 <tr>
+  <td>QR:
+  <td><div class=colpick><input type=hidden name=qg><script>wc();</script></div>
+<tr>
   <td>QR Back:
   <td><div class=colpick><input type=hidden name=q><script>wc();</script></div>
+<tr>
+  <td>Bluetooth:
+  <td><select><option value=1>Vibrate<option value=0>Don't vibrate</select> on bluetooth connection lost
 </table>
 <input type=button value=Save onclick="bye();">
 </form>
 <script>
-var obj = {h:63,q:63,bg:0};
+var obj = {h:63,q:63,qg:0,bg:0,v:1};
 location.search.replace(/\b(\w+)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
-"h,q,bg".replace(/\b\w+\b/g, function(n,z) {z=document.fm[n].parentNode.querySelector(".col"+obj[n]);z&&PebColor.click(z, obj[n])})
+"h,q,qg,bg".replace(/\b\w+\b/g, function(n,z) {z=document.fm[n].parentNode.querySelector(".col"+obj[n]);z&&PebColor.click(z, obj[n])})
 function bye(){
   for(var i in obj) obj[i]=document.fm[i].value*1;
   var url=/\breturn_to=(https%3A\/\/[a-z]+pebble\.[c-t]+\/[a-z\/]+%3F)/.exec(location)||[1,"pebblejs://close#"];
