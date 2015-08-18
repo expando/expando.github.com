@@ -16,6 +16,7 @@ input:disabled {background:#666; color:#ccc}
 </head>
 <body>
 <noscript><div class=msg>Javascript must be enabled</div></noscript>
+<div id="notimel" class=msg style="display:none">Your watch OS doesn't support Pebble Timeline.</div>
 <div id="badtoken" class=msg style="display:none">Watch not found. Try re-scanning QR code.</div>
 <form name=fm action="javascript://" onsubmit="doit();return false;">
 <h1>Show on my watch:</h1>
@@ -29,6 +30,9 @@ function p(n) {return n < 10 ? "0" + n : n}
 var token = (/\bt=\/(\w+)\b/.exec(location) || [])[1];
 if(!token) {
   $("badtoken").style.display = "";
+  document.fm.btn.disabled = true;
+} else if(token == "NTL") {
+  $("notimel").style.display = "";
   document.fm.btn.disabled = true;
 }
 
