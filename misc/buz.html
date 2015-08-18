@@ -9,6 +9,7 @@ td{vertical-align:top; padding:0.5em 0.2em}
 .colpick{line-height:8pt; border-left:10px solid transparent; max-height:140px; overflow:auto; -webkit-overflow-scrolling:touch}
 .pebcol{display:inline-block; height:1cm; min-width:1cm; width:25%; overflow:hidden; margin:0; padding:0; font:normal 8pt serif; color:rgba(0,0,0,0.4); text-align:center}
 .back{background:#000; color:#eee}
+.msg{text-align:center; background:#f00; color:#fff; padding:0.2em}
 </style>
 </head>
 <body><!-- APPUID: 58f8411f-98e9-4ac4-b85e-8de0f59ab031 -->
@@ -30,6 +31,7 @@ var PebColor = {
 function wc(){document.write(PebColor.html())}
 </script>
 <script>if(/\ba=a&/.test(location)){PebColor.ttl=1;PebColor.ord=["00","63"]}</script>
+<script>if(/\btoken=NA\b/.test(location))document.write("<div class=msg>Your current version of Pebble OS doesn't support the Timeline. Please upgrade to run Buzz Me.<\/div>");</script>
 <form name=fm>
 <table cellspacing=0 border=0>
 <tr>
