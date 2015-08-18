@@ -16,24 +16,22 @@ input:disabled {background:#666; color:#ccc}
 </head>
 <body>
 <noscript><div class=msg>Javascript must be enabled</div></noscript>
-<div id="notimel" class=msg style="display:none">Your watch OS doesn't support Pebble Timeline.</div>
+<div id="notimel" class=msg style="display:none">Your Watch OS doesn't support Pebble Timeline.</div>
 <div id="badtoken" class=msg style="display:none">Watch not found. Try re-scanning QR code.</div>
 <form name=fm action="javascript://" onsubmit="doit();return false;">
 <h1>Show on my watch:</h1>
 <textarea name=txt placeholder="Type message here" maxlength=140></textarea>
-<br><input name=btn type=submit value="Send">
+<br><input name=btn type=submit value="SEND">
 </form>
 <script>
 function $(id) {return document.getElementById(id)}
 function p(n) {return n < 10 ? "0" + n : n}
 
 var token = (/\bt=\/(\w+)\b/.exec(location) || [])[1];
-if(!token) {
-  $("badtoken").style.display = "";
+if(!token || token == "NTL") {
+  $(!token ? "badtoken" : "notimel").style.display = "";
   document.fm.btn.disabled = true;
-} else if(token == "NTL") {
-  $("notimel").style.display = "";
-  document.fm.btn.disabled = true;
+  document.fm.txt.disabled = true;
 }
 
 function doit() {
@@ -62,7 +60,7 @@ function notif(s, t) {
   b.disabled = true;
   b.value = s;
   clearTimeout(tout);
-  if(t) tout = setTimeout(function() {b.disabled = false; b.value = "Send";}, t);
+  if(t) tout = setTimeout(function() {b.disabled = false; b.value = "SEND";}, t);
 }
 
 function doret(xhr) {
