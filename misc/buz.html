@@ -8,6 +8,7 @@ body,input,select{font:normal 14pt Helvetica; line-height:1.5em}
 td{vertical-align:top; padding:0.5em 0.2em}
 .colpick{line-height:8pt; border-left:10px solid transparent; max-height:140px; overflow:auto; -webkit-overflow-scrolling:touch}
 .pebcol{display:inline-block; height:1cm; min-width:1cm; width:25%; overflow:hidden; margin:0; padding:0; font:normal 8pt serif; color:rgba(0,0,0,0.4); text-align:center}
+.back{background:#000; color:#eee}
 </style>
 </head>
 <body><!-- APPUID: 58f8411f-98e9-4ac4-b85e-8de0f59ab031 -->
@@ -32,20 +33,20 @@ function wc(){document.write(PebColor.html())}
 <form name=fm>
 <table cellspacing=0 border=0>
 <tr>
-  <td>Time:
+  <td><b>12:59</b>:
   <td><div class=colpick><input type=hidden name=bg><script>wc();</script></div>
 <tr>
-  <td>Time Back:
+  <td><b class=back>&nbsp;12:59&nbsp;</b>:
   <td><div class=colpick><input type=hidden name=h><script>wc();</script></div>
 <tr>
-  <td>QR:
+  <td><b>QR</b>:
   <td><div class=colpick><input type=hidden name=qg><script>wc();</script></div>
 <tr>
-  <td>QR Back:
+  <td><b class=back>&nbsp;QR&nbsp;</b>:
   <td><div class=colpick><input type=hidden name=q><script>wc();</script></div>
 <tr>
   <td>Bluetooth:
-  <td><select name=v><option value=1>Vibrate<option value=0>Don't vibrate</select> on bluetooth connection lost
+  <td><select name=v><option value=1>Vibrate<option value=0>Don't vibrate</select> on connection lost
 </table>
 <input type=button value=Save onclick="bye();">
 </form>
