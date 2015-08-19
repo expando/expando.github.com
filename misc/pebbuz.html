@@ -6,11 +6,11 @@
 <link rel="dns-prefetch" href="https://timeline-api.getpebble.com">
 <style>
 html, body, h1, form, textarea, input {margin:0; padding:0; font:normal 12pt Helvetica,Arial}
-body, h1 {background:#fff; color:#000; text-align:center}
+body, h1 {background:#eee; color:#000; text-align:center}
 textarea {width:96%; max-width:320px; border:1px solid black; height:6em; box-sizing:border-box; text-align:center; padding:0.3em}
 h1 {padding:0.5em 1em; font-weight:bold}
-input {padding:0.3em 1em; background:#000; color:#fff; border:0; -webkit-appearance:none; border-radius:0}
-input:disabled {background:#666; color:#ccc}
+input {padding:0.3em 1em; margin:2px 0 0 0; background:#000; color:#fff; border:0; -webkit-appearance:none; border-radius:0}
+input:disabled {background:#aaa; color:#fff}
 .msg {background:#f55; color:#fff; border-bottom:1px solid #fff; padding:10px 5px; font-weight:bold}
 </style>
 </head>
@@ -35,7 +35,8 @@ if(!token || token == "NTL") {
 }
 
 function doit() {
-  if(!token) return;
+  var txt = document.fm.txt.value;
+  if(!token || !txt) return;
   var id = "buzzme-" + Math.round(Math.random()*1000000);
   var t = new Date();
   t = t.getUTCFullYear()+"-"+p(t.getUTCMonth()+1)+"-"+p(t.getUTCDate())+"T"+p(t.getUTCHours())+":"+p(t.getUTCMinutes())+":"+p(t.getUTCSeconds())+"Z";
@@ -44,7 +45,7 @@ function doit() {
   m[CN] = {/*time:t,*/layout:{}};
   var l = {type:"genericPin", secondaryColor:"#000000", backgroundColor:"#FFAA00", tinyIcon:"system://images/NOTIFICATION_TELEGRAM"};
   for(var i in l) m.layout[i] = m[CN].layout[i] = l[i];
-  m.layout.title = m[CN].layout.body = document.fm.txt.value;
+  m.layout.title = m[CN].layout.body = txt;
   var xhr = new XMLHttpRequest();
   xhr.open("PUT", "https://timeline-api.getpebble.com/v1/user/pins/"+id, true);
   xhr.setRequestHeader("Content-Type", "application/json");
