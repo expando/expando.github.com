@@ -49,12 +49,15 @@ function wc(){document.write(PebColor.html())}
 <tr>
   <td>Bluetooth:
   <td><select name=v><option value=1>Vibrate<option value=0>Don't vibrate</select> on connection lost
+<tr>
+  <td>Plane:
+  <td><select name=v><option value=1>Show<option value=0>Don't show</select> flying plane every 60 seconds
 </table>
 <input type=button value=Save onclick="bye();">
 <div style="color:#aaa; font-size:0.9em">Save will also update the QR on your watch.</div>
 </form>
 <script>
-var obj = {h:63,q:63,qg:0,bg:0,v:1};
+var obj = {h:63,q:63,qg:0,bg:0,v:1,p};
 location.search.replace(/\b(\w+)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
 "h,q,qg,bg".replace(/\b\w+\b/g, function(n,z) {z=document.fm[n].parentNode.querySelector(".col"+obj[n]);z&&PebColor.click(z, obj[n])})
 function bye(){
