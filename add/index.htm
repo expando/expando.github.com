@@ -82,8 +82,8 @@ h2 {font:normal 0.9em/1.4em Tahoma; color:#686868; text-align:center; margin:1%}
 <script>
 var i,
 h = location.href,
-u = (h.match(/[&?]u=(.*)&t=/) || h.match(/[&?]u=(.*)(&|$)/) || [0,document.referrer])[1] || "",
-t = (h.match(/[&?]t=(.*)&u=/) || h.match(/[&?]t=(.*)(&|$)/) || [])[1] || "",
+u = (h.match(/[#&?]u=(.*)&t=/) || h.match(/[#&?]u=(.*)(&|$)/) || [0,document.referrer])[1] || "",
+t = (h.match(/[#&?]t=(.*)&u=/) || h.match(/[#&?]t=(.*)(&|$)/) || [])[1] || "",
 lg = (navigator.userLanguage||navigator.language||"").replace("-","_").toLowerCase(),
 $ = function(s) {return document.getElementById(s)},
 dec = function(s) {return decodeURIComponent(s)},
