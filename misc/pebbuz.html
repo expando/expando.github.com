@@ -54,7 +54,7 @@ function doit() {
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.setRequestHeader("X-User-Token", token);
   xhr.onreadystatechange = function() {doret(xhr)};
-  xhr.send(JSON.stringify(m));
+  try {xhr.send(JSON.stringify(m));} catch(e) {alert(e.message); throw e;}
   notif("Sending...");
 }
 
@@ -73,7 +73,9 @@ function doret(xhr) {
       notif("Sent!", 2000);
     } else {
       document.fm.btn.disabled = true;
-      alert("Send error " + xhr.status + " " + JSON.parse(xhr.responseText).errorCode);
+      var err = "";
+      try {err = " " + JSON.parse(xhr.responseText).errorCode;} catch(e) {}
+      alert("Send error " + xhr.status + err);
     }
   }
 }

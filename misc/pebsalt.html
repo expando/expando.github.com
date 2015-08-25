@@ -3,8 +3,9 @@
 <head>
 <meta name="viewport" content="width=device-width">
 <style>
-body{background:#eee; color:#000}
+body{background:#eee; color:#000; padding:0; margin:0}
 body,input,select{font:normal 14pt Helvetica; line-height:1.5em}
+th{padding:0.2em 0.5em; background:#aaa; color:#fff; font:bold 12pt Helvetica; text-align:left}
 td{vertical-align:top; padding:0.5em 0.2em}
 .xpl{font-size:0.9em; color:#aaa}
 .xpl b{font-weight:normal; color:#000}
@@ -36,17 +37,21 @@ function wc(){document.write(PebColor.html())}
 <form name=fm>
 <table cellspacing=0 border=0>
 <tr>
+  <th colspan=2>Fixed Parts
+<tr>
   <td>Back Color:
   <td><div class=colpick><input type=hidden name=bg><script>wc();</script></div>
 <tr>
   <td>Markers:<br><span class="xpl">(1&hellip;12)</span>
   <td><div class=colpick><input type=hidden name=ck><script>wc();</script></div>
 <tr>
-  <td>&frac14;&nbsp;Markers:<br><span class="xpl">(3, 6, 9, 12)</span>
+  <td>Markers:<br><span class="xpl">(3, 6, 9, 12)</span>
   <td><div class=colpick><input type=hidden name=ck4><script>wc();</script></div>
 <tr>
   <td>Minor Markers:<br><span class="xpl">(1&hellip;60)</span>
   <td><div class=colpick><input type=hidden name=ck6><script>wc();</script></div>
+<tr>
+  <th colspan=2>Moving Parts
 <tr>
   <td>Hour Hand:<br><span class="xpl">(<b>12</b>:59:59)</span>
   <td><div class=colpick><input type=hidden name=ch><script>wc();</script></div>
@@ -56,6 +61,8 @@ function wc(){document.write(PebColor.html())}
 <tr>
   <td>Second Hand:<br><span class="xpl">(12:59:<b>59</b>)</span>
   <td><div class=colpick><input type=hidden name=cs><script>wc();</script></div>
+<tr>
+  <th colspan=2>Complications
 <tr>
   <td>Date:
   <td><select name=d><option value=0>Hide<option value=1>Show</select>
@@ -68,6 +75,8 @@ function wc(){document.write(PebColor.html())}
 <tr>
   <td>Week Color:<br><span class="xpl">(MON)</span>
   <td><div class=colpick><input type=hidden name=cw><script>wc();</script></div>
+<tr>
+  <th colspan=2>Advanced
 <tr>
   <td>Seconds:
   <td>Only show second hand between the hours of <select name=s><script>wr();</script></select>
