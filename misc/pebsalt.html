@@ -5,7 +5,7 @@
 <style>
 body{background:#eee; color:#000; padding:0; margin:0}
 body,input,select{font:normal 14pt Helvetica; line-height:1.5em}
-th{padding:0.2em 0.5em; background:#aaa; color:#fff; font:bold 12pt Helvetica; text-align:left}
+th{padding:0.5em; background:#000; color:#fff; font:bold 12pt Helvetica; text-align:left}
 td{vertical-align:top; padding:0.5em 0.2em}
 .xpl{font-size:0.9em; color:#aaa}
 .xpl b{font-weight:normal; color:#000}
@@ -37,7 +37,7 @@ function wc(){document.write(PebColor.html())}
 <form name=fm>
 <table cellspacing=0 border=0>
 <tr>
-  <th colspan=2>Fixed Parts
+  <th colspan=2>Watch Dial
 <tr>
   <td>Back Color:
   <td><div class=colpick><input type=hidden name=bg><script>wc();</script></div>
@@ -51,7 +51,7 @@ function wc(){document.write(PebColor.html())}
   <td>Minor Markers:<br><span class="xpl">(1&hellip;60)</span>
   <td><div class=colpick><input type=hidden name=ck6><script>wc();</script></div>
 <tr>
-  <th colspan=2>Moving Parts
+  <th colspan=2>Watch Hands
 <tr>
   <td>Hour Hand:<br><span class="xpl">(<b>12</b>:59:59)</span>
   <td><div class=colpick><input type=hidden name=ch><script>wc();</script></div>
@@ -78,7 +78,7 @@ function wc(){document.write(PebColor.html())}
 <tr>
   <th colspan=2>Advanced
 <tr>
-  <td>Seconds:
+  <td>Seconds:<br><span class="xpl">(12:59:<b>59</b>)</span>
   <td>Only show second hand between the hours of <select name=s><script>wr();</script></select>
   and <select name=e><script>wr();</script></select>
 <tr>
@@ -91,7 +91,7 @@ function wc(){document.write(PebColor.html())}
   <td>Vibrate:
   <td>Hourly vibrate between the hours of <select name=vs><script>wr();</script></select>
   and <select name=ve><script>wr();</script></select>
-  <br><small><i>(3=III, 6=VI, 9=IX, 12=XII, and I=quick, V=long, X=V+V)</i></small>
+  <br><small><i>(e.g. 3=III, 6=VI, 9=IX, 12=XII, where I=quick, V=long, X=V+V)</i></small>
 </table>
 <input type=button value=Save onclick="bye();">
 </form>
