@@ -80,6 +80,14 @@ function doret(xhr) {
     }
   }
 }
+
+var ads = 0;
+function doAds() {
+  document.fm.txt.placeholder = ads ? "Show a message on my watch" : "Type message here";
+  ads = !ads;
+  setTimeout(doAds, 4000);
+}
+doAds();
 </script>
 </body>
 </html>
