@@ -7,9 +7,8 @@
 <style>
 html, body, h1, form, textarea, input {margin:0; padding:0; font:normal 12pt Helvetica,Arial}
 body, h1 {background:#eee; color:#000; text-align:center}
-textarea {width:96%; max-width:320px; border:1px solid black; height:6em; box-sizing:border-box; text-align:center; padding:0.3em}
-h1 {padding:0.5em 1em; font-weight:bold}
-input {padding:0.3em 1em; margin:2px 0 0 0; background:#000; color:#fff; border:0; -webkit-appearance:none; border-radius:0}
+textarea {width:96%; margin:1em 0 2px 0; max-width:320px; border:1px solid black; height:6em; box-sizing:border-box; text-align:center; padding:0.3em}
+input {padding:0.3em 1em; background:#000; color:#fff; border:0; -webkit-appearance:none; border-radius:0}
 input:disabled {background:#aaa; color:#fff}
 .msg {background:#f55; color:#fff; border-bottom:1px solid #fff; padding:10px 5px; font-weight:bold}
 a{color:#bbe}
@@ -19,12 +18,14 @@ a{color:#bbe}
 <noscript><div class=msg>Javascript must be enabled</div></noscript>
 <div id="notimel" class=msg style="display:none">Your Watch OS doesn't support Pebble Timeline.</div>
 <div id="badtoken" class=msg style="display:none">Watch not found. Try re-scanning QR code.</div>
-<form name=fm action="javascript://" onsubmit="doit();return false;">
-<h1>Show on my watch:</h1>
+<form name=fm method=GET action="https://timeline-api.getpebble.com/" onsubmit="doit();return false;">
 <textarea name=txt placeholder="Type message here" maxlength=140></textarea>
 <br><input name=btn type=submit value="SEND">
-<br><img src="buzz_info.gif" width=240 height=105 border=0 style="margin-top:2em" alt="Step 1: type a message and click Send. Step 2: wait 1 to 15 minutes. Step 3: your message shows up on the Pebble watch.">
-<div style="margin-top:50px; font:8pt Arial; color:#bbb">We are not affiliated with <a href="http://getpebble.com">Pebble Technology Corp</a>.</div>
+<br><img src="buzz_info.gif" width=240 height=110 border=0 style="margin-top:2em; max-width:100%" alt="Step 1: type a message and click Send. Step 2: wait 1 to 15 minutes. Step 3: your message shows up on the Pebble watch.">
+<div style="margin-top:50px; font:8pt Arial; color:#bbb">
+Download the <a href="https://apps.getpebble.com/applications/55cefedf23c1bbf5fe000086">Buzz Me</a> app for your Pebble Time watch.
+<br>We are not affiliated with <a href="http://getpebble.com">Pebble Technology Corp</a>.
+</div>
 </form>
 <script>
 function $(id) {return document.getElementById(id)}
