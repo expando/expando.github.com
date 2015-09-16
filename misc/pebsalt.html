@@ -76,6 +76,9 @@ function wc(){document.write(PebColor.html())}
   <td>Week Color:<br><span class="xpl">(MON)</span>
   <td><div class=colpick><input type=hidden name=cw><script>wc();</script></div>
 <tr>
+  <td>Text Size:<br><span class="xpl">(31)</span>
+  <td><select name=ds><option value=0>Default<option value=1>+1<option value=2>+2</select>
+<tr>
   <th colspan=2>Advanced
 <tr>
   <td>Seconds:<br><span class="xpl">(12:59:<b>59</b>)</span>
@@ -102,7 +105,7 @@ document.write('<img alt="" src="'+
 '" width=80 style="max-height:15px">');
 </script>
 <script>
-var obj = {d:1,w:1,b:30,s:1,e:1,vs:12,ve:12,ch:1,cm:27,cs:27,cd:1,cw:27,ck:1,ck4:1,ck6:1,bg:0};
+var obj = {d:1,w:1,b:30,s:1,e:1,vs:12,ve:12,ds:0,ch:1,cm:27,cs:27,cd:1,cw:27,ck:1,ck4:1,ck6:1,bg:0};
 location.search.replace(/\b(\w+)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
 "ch,cm,cs,cd,cw,ck,ck4,ck6,bg".replace(/\b..\d?\b/g, function(n,z) {z=document.fm[n].parentNode.querySelector(".col"+obj[n]);z&&PebColor.click(z, obj[n])})
 function bye(){
