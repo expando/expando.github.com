@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width">
+<style>
+html,body{margin:0;padding:0}
+body{background:#eee; color:#000; padding:1%}
+body,input{font:normal 12pt Helvetica; line-height:1.5em}
+input{font-size:14pt; width:98%; padding:0.2em; margin:0.2em 0}
+div{margin:1.5em 0}
+</style>
+</head>
+<body><!-- APPUID: 516e319e-f227-4f7f-8a72-59955fa673ce -->
+<form name=fm>
+<div>
+Request to <b>cancel/undo</b> a reminder:
+<br><input type=text name="cancel_that" placeholder="cancel that|cancel last|cancel|undo">
+</div>
+
+<div>
+Reply when the reminder is now <b>canceled</b>:
+<br><input type=text name="canceled" placeholder="Canceled.">
+</div>
+
+<div>
+Reply when there is <b>nothing to cancel</b>:
+<br><input type=text name="nil2cancel" placeholder="Nothing to cancel.">
+</div>
+
+<div>
+Numbers <b>1 to 10</b>:
+<br><input type=text name="one2ten" placeholder="one|two|three|four|five|six|seven|eight|nine|ten">
+</div>
+
+<div>
+Start of sentences for <b>reminders</b>:
+<br><input type=text name="remind_me_to" placeholder="remind me to|remind me">
+</div>
+
+<div>
+Start of sentences for <b>notes</b>:
+<br><input type=text name="note_to_self" placeholder="note to self|note that|note to|note">
+</div>
+
+<div>
+Unit phrases pertaining to time. Let <b>#</b> represent the time (e.g., 6:00pm). Put the 
+longest phrases first and the shortest phrases last.
+<br>e.g.,
+<br>&quot;Remind me <b>at 6:00pm to</b> buy milk.&quot;
+<br>&quot;I need to buy milk <b>at 12:45pm</b>.&quot;
+<br>&quot;Remind me <b>in 5 minutes to</b> buy milk.&quot;
+<br>&quot;Remind me <b>in 1 hour</b> that I'm late.&quot;
+<br><input type=text name="at_time_to" placeholder="at # to |at #|in # to |in #|# to |#">
+</div>
+
+<div>
+Idiom for &quot;<b>noon</b>&quot; (meaning 12:00 midday):
+<br><input type=text name="noon" placeholder="noon">
+</div>
+
+<div>
+Reply phrase when a reminder is set for <b>tomorrow</b>. Let <code>#</code> represent the time (e.g., 6:00pm):
+<br>e.g., &quot;12:00pm tomorrow&quot;
+<br><input type=text name="tom_header" placeholder="# tomorrow">
+</div>
+
+<div>
+Morning indicator (<b>am</b>):
+<br><input type=text name="am" placeholder="am">
+</div>
+
+<div>
+Afternoon indicator (<b>pm</b>):
+<br><input type=text name="pm" placeholder="pm">
+</div>
+
+<div>
+Past event indicator following the time (<b>ago</b>):
+<br><input type=text name="ago" placeholder="ago">
+</div>
+
+<div>
+<b>Hour</b> indicator:
+<br>e.g., &quot;Brunch in 2 <b>hours</b>&quot;
+<br><input type=text name="hours" placeholder="hour|hours">
+</div>
+
+<div>
+<b>Minute</b> indicator:
+<br>e.g., &quot;Brunch in 2 <b>minutes</b>&quot;
+<br><input type=text name="minutes" placeholder="minute|minutes">
+</div>
+
+<div>
+Conjunction of hour <b>and</b> minutes:
+<br>e.g., &quot;2 hour <b>and</b> 15 minutes&quot;
+<br><input type=text name="and" placeholder="and|an">
+</div>
+
+<div>
+&quot;<b>Tomorrow</b>&quot;:
+<br><input type=text name="tomorrow" placeholder="tomorrow">
+</div>
+
+<div>
+&quot;<b>Today</b>&quot;:
+<br><input type=text name="today" placeholder="today">
+</div>
+
+<div>
+Conjunction of &quot;tomorrow&quot; with time (<b>at</b>):
+<br>e.g., &quot;Remind me tomorrow <b>at</b> 6pm&quot;
+<br><input type=text name="at" placeholder="at">
+</div>
+
+<input type=button value=Save onclick="bye();">
+</form>
+<script>
+var obj = {};
+location.search.replace(/[?&#]([\w_]+)=([^&]*)/g, function(s,n,v) {document.fm[n].value=obj[n]=v});
+function bye(){
+  for(var i in obj) obj[i]=document.fm[i].value;
+  var url=/\breturn_to=(https%3A\/\/[a-z]+pebble\.[c-t]+\/[a-z\/]+%3F)/.exec(location)||[1,"pebblejs://close#"];
+  location=decodeURIComponent(url[1])+encodeURIComponent(JSON.stringify(obj));
+}
+</script>
+</body>
+</html>
