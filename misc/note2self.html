@@ -141,7 +141,7 @@ function maketmpl(){
 }
 function applytmpl(){
   try{
-    var o=JSON.parse(document.fm.tmpl.value);
+    var o=eval("("+document.fm.tmpl.value+")");
     for(var i in o)if(document.fm[i])document.fm[i].value=o[i];
   }catch(e){alert(e.message);}
 }
