@@ -124,20 +124,20 @@ Conjunction of &quot;tomorrow&quot; with time (<b>at</b>):
 
 <input type=button value="Make Template" onclick="maketmpl();">
 <input type=button value="Apply Template" disabled=true onclick="applytmpl();" name="applytmplbtn">
-<textarea name=tmpl cols=10 rows=10 onchange="document.fm.applytmplbtn.disabled=false;"></textarea>
+<textarea name=tmpl cols=10 rows=10 onchange="document.fm.applytmplbtn.disabled=false;" placeholder="{}"></textarea>
 </form>
 <script>
 var obj = {};
-location.search.replace(/[?&#]([\w_]+)=([^&]*)/g, function(s,n,v) {if(document.fm[n])document.fm[n].value=obj[n]=v});
+location.href.replace(/^[^?&]+/,"").replace(/[?&#]([^=]+)=([^&]*)/g, function(s,n,v) {if(document.fm[n])document.fm[n].value=obj[n]=decodeURIComponent(v)});
 function bye(){
   for(var i in obj) obj[i]=document.fm[i].value;
   var url=/\breturn_to=(https%3A\/\/[a-z]+pebble\.[c-t]+\/[a-z\/]+%3F)/.exec(location)||[1,"pebblejs://close#"];
   location=decodeURIComponent(url[1])+encodeURIComponent(JSON.stringify(obj));
 }
 function maketmpl(){
-  var str=["{\n"];
-  for(var i in obj)str.push(i+':"'+document.fm[i].value+'"\n');
-  document.fm.tmpl.value=str.join("")+"}";
+  var str=[];
+  for(var i in obj)str.push(i+':"'+document.fm[i].value+'"');
+  document.fm.tmpl.value="{\n"+str.join(",\n")+"\n}";
 }
 function applytmpl(){
   try{
