@@ -131,7 +131,7 @@ Conjunction of &quot;tomorrow&quot; with time (<b>at</b>):
 </form>
 <script>
 var obj = {};
-location.href.replace(/^[^?&]+/,"").replace(/[?&#]([^=]+)=([^&]*)/g, function(s,n,v) {if(document.fm[n])document.fm[n].value=obj[n]=decodeURIComponent(v)});
+location.href.replace(/^[^#]+/,"").replace(/[&#]([^=]+)=([^&]*)/g, function(s,n,v) {if(document.fm[n])document.fm[n].value=obj[n]=decodeURIComponent(v)});
 function bye(){
   for(var i in obj) {
     var v=document.fm[i];
