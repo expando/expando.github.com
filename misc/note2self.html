@@ -144,7 +144,10 @@ function bye(){
 }
 function maketmpl(){
   var str=[];
-  for(var i in obj)str.push(i+':"'+document.fm[i].value+'"');
+  for(var i in obj){
+    var v=document.fm[i];
+    if(v.value&&v.value!=v.placeholder)str.push(i+':"'+v.value+'"');
+  }
   document.fm.tmpl.value="{\n"+str.join(",\n")+"\n}";
 }
 function applytmpl(){
