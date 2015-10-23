@@ -134,7 +134,7 @@ var obj = {};
 location.href.replace(/^[^#]+/,"").replace(/[&#]([^=]+)=([^&]*)/g, function(s,n,v) {if(document.fm[n])document.fm[n].value=obj[n]=decodeURIComponent(v)});
 (function(){
   var str=[];
-  for(var i in obj)str.push(i+'="'+obj[i]+'"');
+  for(var i in obj)str.push(i+':"'+obj[i]+'"');
   document.fm.tmpl.value="{\n"+str.join(",\n")+"\n}";
 })();
 function bye(){
