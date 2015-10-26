@@ -124,7 +124,7 @@ Conjunction of &quot;tomorrow&quot; with time (<b>at</b>):
 Use this to share your localization with others. Make a template from your localizations and copy it to the clipboard.<br>
 <input type=button value="Make Template" onclick="maketmpl();">
 <input type=button value="Apply Template" disabled=true onclick="applytmpl();" name="applytmplbtn">
-<textarea name=tmpl cols=10 rows=10 onchange="document.fm.applytmplbtn.disabled=false;" placeholder="{ }"></textarea>
+<textarea name=tmpl cols=10 rows=10 onfocus="document.fm.applytmplbtn.disabled=false;" placeholder="{ }"></textarea>
 
 <h1>Restore Defaults</h1>
 <input type=button name=restore value=Restore onclick="if(confirm('Restore factory defaults?'))bye(obj={restore:1});">
@@ -148,13 +148,19 @@ function maketmpl(){
     var v=document.fm[i];
     if(v.value&&v.value!=v.placeholder)str.push(i+':"'+v.value+'"');
   }
-  document.fm.tmpl.value="{\n"+str.join(",\n")+"\n}";
+  if(str.length == 0) {
+    alert("You need to first customize the text above, before you can generate a localized template.");
+  } else {
+    document.fm.tmpl.value="{\n"+str.join(",\n")+"\n}";
+  }
 }
 function applytmpl(){
   try{
     var o=eval("("+document.fm.tmpl.value+")");
     for(var i in o)if(document.fm[i])document.fm[i].value=o[i];
-  }catch(e){alert(e.message);}
+  }catch(e){
+    alert("No template or template is not valid. Make sure you paste the whole template including the opening '{' and the closing '}'.");
+  }
 }
 </script>
 </body>
