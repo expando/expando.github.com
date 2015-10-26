@@ -121,10 +121,10 @@ Conjunction of &quot;tomorrow&quot; with time (<b>at</b>):
 <input type=button value=Save onclick="bye();">
 
 <h1>Template</h1>
-Use this to share your localization with others.
+Use this to share your localization with others. Make a template from your localizations and copy it to the clipboard.<br>
 <input type=button value="Make Template" onclick="maketmpl();">
 <input type=button value="Apply Template" disabled=true onclick="applytmpl();" name="applytmplbtn">
-<textarea name=tmpl cols=10 rows=10 onchange="document.fm.applytmplbtn.disabled=false;" placeholder="{}"></textarea>
+<textarea name=tmpl cols=10 rows=10 onchange="document.fm.applytmplbtn.disabled=false;" placeholder="{ }"></textarea>
 
 <h1>Restore Defaults</h1>
 <input type=button name=restore value=Restore onclick="if(confirm('Restore factory defaults?'))bye(obj={restore:1});">
