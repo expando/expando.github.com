@@ -98,6 +98,9 @@ function wc(){document.write(PebColor.html())}
   <td>Hourly vibrate between the hours of <select name=vs><script>wr();</script></select>
   and <select name=ve><script>wr();</script></select>
   <br><small><i>(e.g. 3=III, 6=VI, 9=IX, 12=XII, where I=quick, V=long, X=V+V)</i></small>
+<tr id="rhrow" style="display:none">
+  <td>Backlight:
+  <td><select name=rh><option value=0>Disable<option value=1>Enable</select> backlight when arm raised from down position
 </table>
 <input type=button value=Save onclick="bye();">
 </form>
@@ -110,6 +113,7 @@ document.write('<img alt="" src="'+
 <script>
 var obj = {d:1,w:1,b:30,s:1,e:1,vs:12,ve:12,ds:0,ch:1,cm:27,cs:27,cd:1,cw:27,ck:1,ck4:1,ck6:1,bg:0};
 if(/&t=/.test(location)){obj.t=2;document.querySelector("#btrow").style.display=""}
+if(/&rh=/.test(location)){obj.rh=0;document.querySelector("#rhrow").style.display=""}
 location.search.replace(/\b(\w+)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
 "ch,cm,cs,cd,cw,ck,ck4,ck6,bg".replace(/\b..\d?\b/g, function(n,z) {z=document.fm[n].parentNode.querySelector(".col"+obj[n]);z&&PebColor.click(z, obj[n])})
 function bye(){
