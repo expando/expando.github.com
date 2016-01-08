@@ -269,7 +269,7 @@ function saveAll() {
 }
 var dbms;
 (function(url) {
-  url = url.substr(url.indexOf("#") + 1);
+  url = url.substr((url + "#").indexOf("#") + 1);
   if(!url) return;
   try {
     dbms = JSON.parse(decodeURIComponent(url));
