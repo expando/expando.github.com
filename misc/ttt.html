@@ -1,0 +1,288 @@
+<!doctype html>
+<html>
+<head><meta name="viewport" content="width=device-width"></head>
+<style>
+html, body, h1, table, tbody, tr, td, th, form, fieldset {padding:0; margin:0}
+body {margin:10px}
+body, h1, th, td, input, button, select, textarea {font:normal 12pt Helvetica}
+h1{background:#ddd; color:#777; font-size:11pt; text-transform:uppercase; padding:0.2em 0.5em; margin:10px 0}
+blockquote {margin-left:1em; padding:0}
+input, select, textarea, button {margin:0; box-sizing:border-box}
+fieldset {border:1px solid #aaa}
+label + label {margin-left:1em}
+label input[type=radio] {margin-right:0.25em}
+table {border-spacing:0}
+th {text-align:left}
+body {background:#eee; color:#000}
+em {color:#888}
+.tolink, .dele {-webkit-appearance:none; background-color:transparent; border:0; padding:0; text-decoration:underline; color:#00b}
+.dele {color:#e22; font-size:0.8em}
+.grid {border-spacing:8px}
+.grid input[type="text"]{width:95%}
+.grid input[type="number"]{width:4em}
+.dict_box {margin:8px}
+.eventbox, .keybox {border:1px solid #ddd; background:#e6e6e6; margin:10px 0; animation:flash 1s ease-out}
+@keyframes flash {from {background-color:#ccc}}
+</style>
+<body>
+  <h1>Introduction</h1>
+  Easily initiate triggers to your (or your friend's) <b>IF</b> recipes using your voice.
+  <p>First connect to the <b>Maker Channel</b> in your <b>IF</b> app, then create some trigger URLs.
+  <p>Each trigger supports up to 3 values. Each value will be sliced from your speech based on word count.
+
+  <p>For example:
+  <blockquote>
+  <p>Trigger = &quot;Remind&quot;<br>Use&nbsp;key = Spoken<br>Value&nbsp;1 = Unlimited<br>Value&nbsp;2 = 1&nbsp;word
+  <p>Say: Remind John buy milk on way home urgent
+  <p>Trigger = Remind<br>Use&nbsp;key = John<br>Value 1 = buy milk on way home<br>Value 2 = urgent
+  </blockquote>
+
+  <p>Another example:
+  <blockquote>
+  <p>Trigger = &quot;Email&quot;<br>Use&nbsp;key = Default<br>Value&nbsp;1 = 1&nbsp;Word<br>Value&nbsp;2 = Dictionary<br>Value&nbsp;3 = Unlimited
+  <p>Say: Email memo Jane Doe buy milk on way home
+  <p>Trigger = Email<br>Value&nbsp;1 = memo<br>Value&nbsp;2 = jane@hotmail.com<br>Value&nbsp;3 = buy milk on way home
+  </blockquote>
+
+  <p>This tool is NOT affiliated with IFTTT Inc. This tool is provided AS IS with no warranty express or implied.
+
+  <h1>IF Triggers</h1>
+
+  <div id="events_tmpl" style="display:none">
+    <form class="eventform" onsubmit="return false;" autocorrect=off autocapitalize=off>
+      <table class="grid eventbox">
+        <tr><th>Trigger:<td><input type=text name=evt placeholder="e.g. sms-send">
+        <tr><th>Nickname:<td><input type=text value="" name=nick placeholder="e.g. message">
+        <tr><th>Use key:<td><label><input type=radio name=keyn onchange="chooseKeyType(this,0);" checked>default</label> <label><input type=radio name=keyn onchange="chooseKeyType(this,1);">spoken</label>
+        <tr><td colspan=2>
+        <fieldset>
+          <legend>Sentence decomposition</legend>
+          <table class="grid">
+            <tr><th>1st:<td>&lt;Nickname&gt; +
+            <tr style="display:none"><th>then:<td>&lt;Key Alias&gt; +
+            <tr>
+              <th>then:
+              <td>
+                <select name=v1v onchange="onchangeEventValueValue(this, 1);">
+                  <option value=0>
+                  <option value=1>1 word<option value=2>2 words
+                  <option value=3>3 words<option value=4>4 words<option value=5>5 words
+                  <option value=11 selected>Unlimited<option value=10>Dictionary
+                </select> <em>(value 1)</em> +
+            <tr>
+              <th>then:
+              <td>
+                <select name=v2v onchange="onchangeEventValueValue(this, 2);">
+                  <option value=0 selected>
+                  <option value=1>1 word<option value=2>2 words
+                  <option value=3>3 words<option value=4>4 words<option value=5>5 words
+                  <option value=11>Unlimited<option value=10>Dictionary
+                </select> <em>(value 2)</em> +
+            <tr>
+              <th>then:
+              <td>
+                <select name=v3v onchange="onchangeEventValueValue(this, 3);">
+                  <option value=0 selected>
+                  <option value=1>1 word<option value=2>2 words
+                  <option value=3>3 words<option value=4>4 words<option value=5>5 words
+                  <option value=11>Unlimited<option value=10>Dictionary
+                </select> <em>(value 3)</em>
+          </table>
+        </fieldset>
+        <tr style="display:none"><td colspan=2>
+        <fieldset>
+          <legend>Dictionary</legend>
+          <table class="grid">
+            <tr><td>Matching words will be replaced:<br>
+            <textarea name=dict cols=26 rows=4 placeholder="jane doe=jane@hotmail.com"></textarea></td></tr>
+          </table>
+        </fieldset>
+        <tr><td colspan=2><label><input name=cfm type=checkbox> Send without confirmation</label>
+        <tr><td colspan=2 align="right"><button class=dele onclick="ondeleteEvent(this);">Remove</button>
+      </table>
+    </form>
+  </div>
+  <div id="events_all"></div>
+  <div>You have <span id="evtcnt">0</span> trigger(s). <button type=button onclick="addTriggerBox();" class=tolink>Add Trigger...</button></div>
+
+  <h1>IF Keys</h1>
+
+  <div id="keys_tmpl" style="display:none">
+    <form class="keyform" onsubmit="return false;" autocorrect=off autocapitalize=off>
+      <table class="grid keybox">
+        <tr><th>Key:<td><input type=text name=keyn placeholder="e.g. asdFGHjklMNO...">
+        <tr><th>Alias:<td><input type=text name=nick placeholder="e.g. John">
+        <tr><td colspan=2>
+          <table width="100%">
+            <tr>
+              <td><label><input type=radio name=deft onchange="chooseDefaultKey(this);">Default</label>
+              <td align="right"><button class=dele onclick="ondeleteEvent(this, 1);">Remove</button>
+          </table>
+      </table>
+    </form>
+  </div>
+  <div id="keys_all"></div>
+  <div>You have <span id="keycnt">0</span> key(s). <button type=button onclick="addKeyBox();" class=tolink>Add Key...</button></div>
+
+  <h1>Remember to Save</h1>
+  All settings are saved to your watch/phone and not saved on this website.
+  <p><button type=button onclick="saveAll();">Save Settings</button><br>
+<script>
+function $(id) {return document.getElementById(id)}
+function gEBTN(n, t) {return n.getElementsByTagName(t)}
+
+function parentTag(n, tag) {
+  tag = tag.toUpperCase();
+  while((n = n.parentNode) && n.nodeType == 1) {
+    if((n.tagName || "").toUpperCase() == tag) return n;
+  }
+}
+function onchangeEventValueValue(input, row) {
+  var r = [1, 2, 3];
+  r.splice(row - 1, 1);
+  if(input.value == 11) {
+    if(input.form["v"+r[0]+"v"].value == 11) input.form["v"+r[0]+"v"].value = 1;
+    if(input.form["v"+r[1]+"v"].value == 11) input.form["v"+r[1]+"v"].value = 1;
+  }
+  if(input.value == 10) {
+    parentTag(parentTag(input.form.dict, "TR"), "TR").style.display = "";
+  }
+}
+function ondeleteEvent(input, isKey) {
+  input = input.form;
+  var txt = (isKey ? input.keyn : input.evt).value;
+  if(confirm("Remove"+(txt?" '"+txt+"'":"")+"?")) {
+    if(isKey) {
+      var container = $("keys_all");
+      if(container.childNodes.length > 1) {
+        if(input.deft.checked == true) {
+          if(input == container.firstChild) {
+            chooseDefaultKey(container.lastChild.deft);
+          } else {
+            chooseDefaultKey(container.firstChild.deft);
+          }
+        }
+      }
+    }
+    input.parentNode.removeChild(input);
+    $("evtcnt").innerHTML = $("events_all").childNodes.length;
+    $("keycnt").innerHTML = $("keys_all").childNodes.length;
+  }
+}
+function addTriggerBox(nick, o) {
+  var f = $("events_all").appendChild(gEBTN($("events_tmpl"), "form")[0].cloneNode(true));
+  if(o) {
+    f.evt.value = o.evt;
+    f.nick.value = nick;
+    f.keyn[o.defkey ? 1 : 0].checked = true;
+    chooseKeyType(f.keyn[0], o.defkey);
+    f.v1v.value = o.v1 || 0;
+    f.v2v.value = o.v2 || 0;
+    f.v3v.value = o.v3 || 0;
+    var d = o.dict, str = [];
+    for(var i in d) str.push(i+"="+d[i]);
+    f.dict.value = str.join("\n");
+    onchangeEventValueValue(f.v1v, 1);
+    onchangeEventValueValue(f.v2v, 2);
+    onchangeEventValueValue(f.v3v, 3);
+    f.cfm.checked = !o.cfm;
+  }
+  $("evtcnt").innerHTML = $("events_all").childNodes.length;
+}
+function addKeyBox(nick, keyn, deft) {
+  var first = $("keys_all").firstChild;
+  var f = $("keys_all").appendChild(gEBTN($("keys_tmpl"), "form")[0].cloneNode(true));
+  if(keyn) {
+    f.nick.value = nick;
+    f.keyn.value = keyn;
+    if(deft) {
+      f.deft.checked = true;
+      f.nick.disabled = true;
+    }
+  } else if(!first) {
+    f.deft.checked = true;
+    f.nick.disabled = true;
+  }
+  $("keycnt").innerHTML = $("keys_all").childNodes.length;
+}
+function chooseDefaultKey(n) {
+  var arr = $("keys_all").childNodes;
+  for(var i=0; i<arr.length; i++) {
+    arr[i].deft.checked = false;
+    arr[i].nick.disabled = false;
+  }
+  n.form.nick.disabled = true;
+  n.form.deft.checked = true;
+}
+function chooseKeyType(n, yesno) {
+  gEBTN(gEBTN(n.form, "fieldset")[0], "table")[0].rows[1].style.display = yesno ? "" : "none";
+}
+function trim(str) {
+  return str ? str.replace(/^\s+|\s+$/g, "") : str;
+}
+function saveAll() {
+  var o = {trigz:{}, keyz:{}, dkey:""};
+
+  var arr = $("keys_all").childNodes;
+  for(i=arr.length-1; i>=0; i--) {
+    if(arr[i].deft.checked) {
+      o.dkey = arr[i].keyn.value;
+    } else {
+      var name = trim(arr[i].nick.value.toLowerCase());
+      if(!name) {
+        alert("An alias is required for all non-default keys."); arr[i].nick.focus(); return;
+      }
+      o.keyz[name] = trim(arr[i].keyn.value);
+    }
+  }
+
+  arr = $("events_all").childNodes;
+  for(var i=arr.length-1; i>=0; i--) {
+    var f = arr[i];
+    var obj = {evt:f.evt.value, defkey:f.keyn[0].checked?1:0, dict:{}, cfm:f.cfm.checked?0:1};
+    if(f.v1v.value>0) obj.v1=f.v1v.value;
+    if(f.v2v.value>0) obj.v2=f.v2v.value;
+    if(f.v3v.value>0) obj.v3=f.v3v.value;
+    var dict = f.dict.value.split("\n");
+    for(var j=0; j<dict.length; j++) {
+      if(!dict[j]) continue;
+      var pos = dict[j].indexOf("=");
+      if(pos > 0) {
+        obj.dict[trim(dict[j].substr(0, pos).toLowerCase())] = dict[j].substr(pos + 1);
+      } else {
+        alert("Dictionary for the trigger \""+f.nick.value+"\" has an invalid format.\n"+dict[j]); return;
+      }
+    }
+    var name = trim(f.nick.value.toLowerCase());
+    if(!name) {
+      alert("Invalid trigger nickname."); f.nick.focus(); return;
+    }
+    o.trigz[name] = obj;
+  }
+
+  if(arr.length > 0 && !o.dkey) {
+    alert("To send triggers, you must have at least one key.");
+  }
+  o = JSON.stringify(o);
+  location = "pebblejs://close#"+encodeURIComponent(o);
+  //document.body.appendChild(document.createElement("div")).appendChild(document.createTextNode(o));
+}
+var dbms;
+(function(url) {
+  url = url.substr(url.indexOf("#") + 1);
+  if(!url) return;
+  try {
+    dbms = JSON.parse(decodeURIComponent(url));
+  } catch(e) {
+    document.body.appendChild(document.createTextNode(e));
+    return;
+  }
+  if(dbms.dkey) addKeyBox("", dbms.dkey, true);
+  var i, hash = dbms.keyz;
+  for(i in hash) addKeyBox(i, hash[i]);
+  hash = dbms.trigz;
+  for(i in hash) addTriggerBox(i, hash[i]);
+})(location.href);
+</script>
+</body>
+</html>
