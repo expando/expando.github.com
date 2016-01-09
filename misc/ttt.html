@@ -174,7 +174,7 @@ function addTriggerBox(nick, o) {
   if(o) {
     f.evt.value = o.evt;
     f.nick.value = nick;
-    f.keyn[o.defkey ? 1 : 0].checked = true;
+    f.keyn[o.dkey ? 1 : 0].checked = true;
     chooseKeyType(f.keyn[0], o.defkey);
     f.v1v.value = o.v1 || 0;
     f.v2v.value = o.v2 || 0;
@@ -239,7 +239,7 @@ function saveAll() {
   arr = $("events_all").childNodes;
   for(var i=arr.length-1; i>=0; i--) {
     var f = arr[i];
-    var obj = {evt:f.evt.value, defkey:f.keyn[0].checked?1:0, dict:{}, cfm:f.cfm.checked?0:1};
+    var obj = {evt:f.evt.value, dkey:f.keyn[0].checked?1:0, dict:{}, cfm:f.cfm.checked?0:1};
     if(f.v1v.value>0) obj.v1=f.v1v.value;
     if(f.v2v.value>0) obj.v2=f.v2v.value;
     if(f.v3v.value>0) obj.v3=f.v3v.value;
