@@ -44,21 +44,21 @@ em {color:#888}
   <p>Trigger = Email<br>Value&nbsp;1 = memo<br>Value&nbsp;2 = jane@hotmail.com<br>Value&nbsp;3 = buy milk on way home
   </blockquote>
 
-  <p>This tool is NOT affiliated with IFTTT Inc. This tool is provided AS IS with no warranty express or implied.
+  <p>This tool is NOT affiliated with IFTTT Inc.<br>By using this app you agree to abide by the <a href="#terms">Terms &amp; Conditions</a>.
 
   <h1>IF Triggers</h1>
 
   <div id="events_tmpl" style="display:none">
     <form class="eventform" onsubmit="return false;" autocorrect=off autocapitalize=off>
       <table class="grid eventbox">
-        <tr><th>Trigger:<td><input type=text name=evt placeholder="e.g. sms-send">
-        <tr><th>Nickname:<td><input type=text value="" name=nick placeholder="e.g. message">
+        <tr><th>Name:<td><input type=text value="" name=nick placeholder="e.g. ''message''">
+        <tr><th>Trigger:<td><input type=text name=evt placeholder="e.g. oauthsend">
         <tr><th>Use key:<td><label><input type=radio name=keyn onchange="chooseKeyType(this,0);" checked>default</label> <label><input type=radio name=keyn onchange="chooseKeyType(this,1);">spoken</label>
         <tr><td colspan=2>
         <fieldset>
           <legend>Sentence decomposition</legend>
           <table class="grid">
-            <tr><th>1st:<td>&lt;Nickname&gt; +
+            <tr><th>1st:<td>&lt;Name&gt; +
             <tr style="display:none"><th>then:<td>&lt;Key Alias&gt; +
             <tr>
               <th>then:
@@ -111,7 +111,7 @@ em {color:#888}
     <form class="keyform" onsubmit="return false;" autocorrect=off autocapitalize=off>
       <table class="grid keybox">
         <tr><th>Key:<td><input type=text name=keyn placeholder="e.g. asdFGHjklMNO...">
-        <tr><th>Alias:<td><input type=text name=nick placeholder="e.g. John">
+        <tr><th>Alias:<td><input type=text name=nick placeholder="e.g. ''John''">
         <tr><td colspan=2>
           <table width="100%">
             <tr>
@@ -274,7 +274,7 @@ var dbms;
   try {
     dbms = JSON.parse(decodeURIComponent(url));
   } catch(e) {
-    document.body.appendChild(document.createTextNode(e));
+    document.body.appendChild(document.createTextNode(e+" "+url));
     return;
   }
   if(dbms.dkey) addKeyBox("", dbms.dkey, true);
@@ -284,5 +284,12 @@ var dbms;
   for(i in hash) addTriggerBox(i, hash[i]);
 })(location.href);
 </script>
+  <h1><a name=terms></a>Terms &amp; Conditions</h1>
+  By using this app and/or service (collectively &quot;app&quot;) you agree to abide by the terms &amp; conditions.
+  <p>You agree that you are using this app at your own risk. This app is provided &quot;as is&quot; and the app
+  hereby expressly disclaim any and all warranties, express or implied.<p>This app and its owners shall not be liable 
+  to users or any other person for any loss or damage arising directly or indirectly from using, misusing, inability 
+  to use of this app or from any errors or faults therein or from any failure or delay in this app whether such loss 
+  or damage is caused by negligence or otherwise.
 </body>
 </html>
