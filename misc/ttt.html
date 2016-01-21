@@ -58,16 +58,16 @@ em {color:#888}
         <fieldset>
           <legend>Sentence decomposition</legend>
           <table class="grid">
-            <tr><th>1st:<td>&lt;Name&gt; +
-            <tr style="display:none"><th>then:<td>&lt;Key Alias&gt; +
+            <tr><th>1st:<td><i>&lt;Name&gt;</i> +
+            <tr style="display:none"><th>then:<td><i>&lt;Key Alias&gt;</i> +
             <tr>
               <th>then:
               <td>
                 <select name=v1v onchange="onchangeEventValueValue(this, 1);">
-                  <option value=0>
+                  <option value=0 selected>
                   <option value=1>1 word<option value=2>2 words
                   <option value=3>3 words<option value=4>4 words<option value=5>5 words
-                  <option value=11 selected>Unlimited<option value=10>Dictionary
+                  <option value=11>Unlimited<option value=10>Dictionary
                 </select> <em>(value 1)</em> +
             <tr>
               <th>then:
@@ -175,7 +175,7 @@ function addTriggerBox(nick, o) {
     f.evt.value = o.evt;
     f.nick.value = nick;
     f.keyn[o.dkey ? 1 : 0].checked = true;
-    chooseKeyType(f.keyn[0], o.defkey);
+    chooseKeyType(f.keyn[0], o.dkey);
     f.v1v.value = o.v1 || 0;
     f.v2v.value = o.v2 || 0;
     f.v3v.value = o.v3 || 0;
