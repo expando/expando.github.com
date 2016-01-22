@@ -174,8 +174,8 @@ function addTriggerBox(nick, o) {
   if(o) {
     f.evt.value = o.evt;
     f.nick.value = nick;
-    f.keyn[o.dkey ? 1 : 0].checked = true;
-    chooseKeyType(f.keyn[0], o.dkey);
+    f.keyn[o.dkey ? 0 : 1].checked = true;
+    chooseKeyType(f.keyn[0], !o.dkey);
     f.v1v.value = o.v1 || 0;
     f.v2v.value = o.v2 || 0;
     f.v3v.value = o.v3 || 0;
