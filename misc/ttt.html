@@ -2,11 +2,12 @@
 <html>
 <head><meta name="viewport" content="width=device-width"></head>
 <style>
-html, body, h1, table, tbody, tr, td, th, form, fieldset {padding:0; margin:0}
+html, body, h1, table, tbody, tr, td, th, form, fieldset, ol, li {padding:0; margin:0}
 body {margin:10px}
 body, h1, th, td, input, button, select, textarea {font:normal 12pt Helvetica}
 h1{background:#ddd; color:#777; font-size:11pt; text-transform:uppercase; padding:0.2em 0.5em; margin:10px 0}
-blockquote {margin-left:1em; padding:0}
+li {margin:1em 0 1em 1.5em}
+li div {margin:0.5em 0}
 input, select, textarea, button {margin:0; box-sizing:border-box}
 fieldset {border:1px solid #aaa}
 label + label {margin-left:1em}
@@ -21,37 +22,57 @@ em {color:#888}
 .grid input[type="text"]{width:95%}
 .grid input[type="number"]{width:4em}
 .dict_box {margin:8px}
-.eventbox, .keybox {border:1px solid #ddd; background:#e6e6e6; margin:10px 0; animation:flash 1s ease-out}
+.eventbox, .keybox {border:1px solid #ccc; border-radius:8px; background:#ddd; margin:10px 0; animation:flash 1s ease-out}
 @keyframes flash {from {background-color:#ccc}}
 </style>
+<script>
+function $(id) {return document.getElementById(id)}
+function gEBTN(n, t) {return n.getElementsByTagName(t)}
+function parentTag(n, tag) {
+  tag = tag.toUpperCase();
+  while((n = n.parentNode) && n.nodeType == 1) if((n.tagName||"").toUpperCase() == tag) return n;
+}
+function showTip(n) {gEBTN(parentTag(n, "li"), "div")[0].style.display=""}
+</script>
 <body>
   <h1>Introduction</h1>
-  Easily initiate triggers to your (or your friend's) <b>IF</b> recipes using your voice.
-  <p>First connect to the <b>Maker Channel</b> in your <b>IF</b> app, then create some trigger URLs.
-  <p>Each trigger supports up to 3 values. Each value will be sliced from your speech based on word count.
-
-  <p>For example:
-  <blockquote>
-  <p>Trigger = &quot;Remind&quot;<br>Use&nbsp;key = Spoken<br>Value&nbsp;1 = Unlimited<br>Value&nbsp;2 = 1&nbsp;word
-  <p>Say: Remind John buy milk on way home urgent
-  <p>Trigger = Remind<br>Use&nbsp;key = John<br>Value 1 = buy milk on way home<br>Value 2 = urgent
-  </blockquote>
-
-  <p>Another example:
-  <blockquote>
-  <p>Trigger = &quot;Email&quot;<br>Use&nbsp;key = Default<br>Value&nbsp;1 = 1&nbsp;Word<br>Value&nbsp;2 = Dictionary<br>Value&nbsp;3 = Unlimited
-  <p>Say: Email memo Jane Doe buy milk on way home
-  <p>Trigger = Email<br>Value&nbsp;1 = memo<br>Value&nbsp;2 = jane@hotmail.com<br>Value&nbsp;3 = buy milk on way home
-  </blockquote>
+  Easily initiate triggers to your (or someone else's) IFTTT recipes using your voice.
+  <p>First join the <b>Maker Channel</b> on the IFTTT website. Then copy your private <b>key</b>
+  to the space below.
+  <p>Then create some recipes that use maker as the trigger and give each maker a unique name.
+  <p>Then add the unique name to the triggers below.
+  <p>Each trigger supports up to 3 optional values. Each value will be sliced from your speech based on word count.
 
   <p>This tool is NOT affiliated with IFTTT Inc.<br>By using this app you agree to abide by the <a href="#terms">Terms &amp; Conditions</a>.
 
-  <h1>IF Triggers</h1>
+  <h1>Examples</h1>
+
+  <ol>
+  <li><a href="javascript:void(0);" onclick="showTip(this);">Turn on the porch lights</a>
+  <div style="display:none">
+  Trigger Name = Turn on lights<br>Use key = Default<br>Value 1 = 1 word
+  <p>Say: Turn on lights porch
+  </div>
+
+  <li><a href="javascript:void(0);" onclick="showTip(this);">Tell Mary that I will be late</a>
+  <div style="display:none">
+  Trigger Name = Message<br>Use key = Spoken<br>Value 1 = Unlimited
+  <p>Say: Message Mary I will be late
+  </div>
+
+  <li><a href="javascript:void(0);" onclick="showTip(this);">Email Bill with the subject memo and body you are great</a>
+  <div style="display:none">
+  Trigger Name = Email<br>Use key = Default<br>Value 1 = Dictionary<br>Value 2 = 1 word<br>Value 3 = Unlimited
+  <p>Say: Email Bill memo you are great
+  </div>
+  </ol>
+
+  <h1>IFTTT Triggers</h1>
 
   <div id="events_tmpl" style="display:none">
     <form class="eventform" onsubmit="return false;" autocorrect=off autocapitalize=off>
       <table class="grid eventbox">
-        <tr><th>Name:<td><input type=text value="" name=nick placeholder="e.g. ''message''">
+        <tr><th>Name:<td><input type=text value="" name=nick placeholder="e.g. ''message me''">
         <tr><th>Trigger:<td><input type=text name=evt placeholder="e.g. oauthsend">
         <tr><th>Use key:<td><label><input type=radio name=keyn onchange="chooseKeyType(this,0);" checked>default</label> <label><input type=radio name=keyn onchange="chooseKeyType(this,1);">spoken</label>
         <tr><td colspan=2>
@@ -105,13 +126,13 @@ em {color:#888}
   <div id="events_all"></div>
   <div>You have <span id="evtcnt">0</span> trigger(s). <button type=button onclick="addTriggerBox();" class=tolink>Add Trigger...</button></div>
 
-  <h1>IF Keys</h1>
+  <h1>IFTTT  Keys</h1>
 
   <div id="keys_tmpl" style="display:none">
     <form class="keyform" onsubmit="return false;" autocorrect=off autocapitalize=off>
       <table class="grid keybox">
         <tr><th>Key:<td><input type=text name=keyn placeholder="e.g. asdFGHjklMNO...">
-        <tr><th>Alias:<td><input type=text name=nick placeholder="e.g. ''John''">
+        <tr><th>Alias:<td><input type=text name=nick placeholder="e.g. ''John Smith''">
         <tr><td colspan=2>
           <table width="100%">
             <tr>
@@ -125,18 +146,9 @@ em {color:#888}
   <div>You have <span id="keycnt">0</span> key(s). <button type=button onclick="addKeyBox();" class=tolink>Add Key...</button></div>
 
   <h1>Remember to Save</h1>
-  All settings are saved to your watch/phone and not saved on this website.
-  <p><button type=button onclick="saveAll();">Save Settings</button><br>
+  <button type=button onclick="saveAll();">Save Settings</button><br>
+  <p>All settings are saved to your watch/phone and not saved on this website.
 <script>
-function $(id) {return document.getElementById(id)}
-function gEBTN(n, t) {return n.getElementsByTagName(t)}
-
-function parentTag(n, tag) {
-  tag = tag.toUpperCase();
-  while((n = n.parentNode) && n.nodeType == 1) {
-    if((n.tagName || "").toUpperCase() == tag) return n;
-  }
-}
 function onchangeEventValueValue(input, row) {
   var r = [1, 2, 3];
   r.splice(row - 1, 1);
@@ -150,7 +162,7 @@ function onchangeEventValueValue(input, row) {
 }
 function ondeleteEvent(input, isKey) {
   input = input.form;
-  var txt = (isKey ? input.keyn : input.evt).value;
+  var txt = (isKey ? input.nick : input.evt).value;
   if(confirm("Remove"+(txt?" '"+txt+"'":"")+"?")) {
     if(isKey) {
       var container = $("keys_all");
