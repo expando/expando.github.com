@@ -204,7 +204,7 @@ function addTriggerBox(nick, o) {
     f.v1v.value = o.v1 || 0;
     f.v2v.value = o.v2 || 0;
     f.v3v.value = o.v3 || 0;
-    if(o.v1 != 11 || o.v2 != 0 || o.v3 != 0) showAdvanced(f);
+    if(o.v1 != 11 || o.v2 != 0 || o.v3 != 0) showAdvanced(f.advanced);
     var d = o.dict, str = [];
     for(var i in d) str.push(i+"="+d[i]);
     f.dict.value = str.join("\n");
