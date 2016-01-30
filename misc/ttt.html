@@ -2,27 +2,31 @@
 <html>
 <head><meta name="viewport" content="width=device-width"></head>
 <style>
-html, body, h1, table, tbody, tr, td, th, form, fieldset, ol, li {padding:0; margin:0}
-body {margin:10px}
-body, h1, th, td, input, button, select, textarea {font:normal 12pt Helvetica}
-h1{background:#ddd; color:#777; font-size:11pt; text-transform:uppercase; padding:0.2em 0.5em; margin:10px 0}
+html, body, h1, h2, table, tbody, tr, td, th, form, fieldset, ol, li {padding:0; margin:0}
+body {margin:10px; background:#eee; color:#000}
+body, h1, h2, th, td, input, button, select, textarea {font:normal 12pt Helvetica}
+h1{background:#ddd; color:#777; font-size:11pt; text-transform:uppercase; padding:0.3em 0.5em; margin:10px -10px}
+h2{margin:1em 0; font-style:italic; font-weight:bold}
+.skip {font-size:0.8em; text-transform:lowercase; margin-left:5%; color:#99a}
 li {margin:1em 0 1em 1.5em}
 li div {margin:0.5em 0}
 input, select, textarea, button {margin:0; box-sizing:border-box}
-fieldset {border:1px solid #aaa}
-label + label {margin-left:1em}
-label input[type=radio] {margin-right:0.25em}
-table {border-spacing:0}
-th {text-align:left}
-body {background:#eee; color:#000}
-em {color:#888}
+fieldset {border:1px solid #aaa; border-radius:15px}
+label input[type=radio], input[type=checkbox] {margin-right:0.5em}
+table {border-collapse:collapse}
+th {text-align:left; font-weight:bold}
+th, td {padding:0.5em}
+em {color:#888; font-size:0.9em}
 .tolink, .dele {-webkit-appearance:none; background-color:transparent; border:0; padding:0; text-decoration:underline; color:#00b}
 .dele {color:#e22; font-size:0.8em}
-.grid {border-spacing:8px}
-.grid input[type="text"]{width:95%}
-.grid input[type="number"]{width:4em}
+.vgrid th {padding-bottom:0}
+.vgrid td {padding-top:0}
+.hgrid th {padding:0.25em}
+.hgrid td {padding:0.25em}
+.vgrid input[type="text"], .hgrid input[type="text"]{width:95%}
+button[name="advanced"] {font-size:0.8em}
 .dict_box {margin:8px}
-.eventbox, .keybox {border:1px solid #ccc; border-radius:8px; background:#ddd; margin:10px 0; animation:flash 1s ease-out}
+.eventbox, .keybox {border-radius:15px; background:#ddd; margin:10px 0; animation:flash 1s ease-out}
 @keyframes flash {from {background-color:#ccc}}
 </style>
 <script>
@@ -35,105 +39,115 @@ function parentTag(n, tag) {
 function showTip(n) {gEBTN(parentTag(n, "li"), "div")[0].style.display=""}
 </script>
 <body>
-  <h1>Introduction</h1>
-  Easily initiate triggers to your (or someone else's) IFTTT recipes using your voice.
-  <p>First join the <b>Maker Channel</b> on the IFTTT website. Then copy your private <b>key</b>
-  to the space below.
-  <p>Then create some recipes that use maker as the trigger and give each maker a unique name.
-  <p>Then add the unique name to the triggers below.
-  <p>Each trigger supports up to 3 optional values. Each value will be sliced from your speech based on word count.
-
-  <p>This tool is NOT affiliated with IFTTT Inc.<br>By using this app you agree to abide by the <a href="#terms">Terms &amp; Conditions</a>.
-
-  <h1>Examples</h1>
-
+  <h1>Introduction <a href="#config" class="skip">(Skip over)</a></h1>
+  
+  <p>Easily initiate triggers to your (or someone else's) IFTTT recipes using your voice.
+  
+  <h2>Requirements:</h2>
   <ol>
-  <li><a href="javascript:void(0);" onclick="showTip(this);">Turn on the porch lights</a>
-  <div style="display:none">
-  Trigger Name = Turn on lights<br>Use key = Default<br>Value 1 = 1 word
-  <p>Say: Turn on lights porch
-  </div>
-
-  <li><a href="javascript:void(0);" onclick="showTip(this);">Tell Mary that I will be late</a>
-  <div style="display:none">
-  Trigger Name = Message<br>Use key = Spoken<br>Value 1 = Unlimited
-  <p>Say: Message Mary I will be late
-  </div>
-
-  <li><a href="javascript:void(0);" onclick="showTip(this);">Email Bill with the subject memo and body you are great</a>
-  <div style="display:none">
-  Trigger Name = Email<br>Use key = Default<br>Value 1 = Dictionary<br>Value 2 = 1 word<br>Value 3 = Unlimited
-  <p>Say: Email Bill memo you are great
-  </div>
+    <li>You must have an <b>IFTTT</b> account. Get one at <u>www.ifttt.com</u>.
+    <li>You must connect to the <b>Maker Channel</b> at <u>maker.ifttt.com</u>.
+    <li>Once you join the Maker Channel, you will get a secret <b>key</b>. Memorize it by heart.
+    <li>You must know how to create your own recipes on IFTTT. Each recipe must use Maker as the trigger.
   </ol>
 
-  <h1>IFTTT Triggers</h1>
+  <h2>How it works:</h2>
+  <ol>
+    <li>The Maker channel allows you to create triggers that are called when a unique URL is visited.
+    <li>When you use this app to say a command, your Pebble will attempt to visit the URL associated with that command.
+    <li>This should cause the Maker channel to run the associated recipe, therefore executing your desired task.
+  </ol>
+
+  <h2>What should I do:</h2>
+  <ol>
+    <li>For each recipe you will need to set the Maker channel as the trigger and give it a unique event name.
+    <li>Then add that name to the configuration below so that it can be detected from your speech.
+    <li>Afterwards, when you launch this app, just say the name to execute that recipe.
+  </ol>
+
+  <h2>Advanced features:</h2>
+  <ol>
+    <li>The Maker channel allows parameters to be transmitted to the recipe. For example, instead of
+    having 2 recipes called <q>Turn light on</q> and <q>Turn light off</q>, you could have 
+    1 recipe called <q>Turn light</q> with the parameter being <q>on</q> or <q>off</q>. 
+    The parameter corresponds to the remaining words spoken after the trigger name.
+  </ol>
+
+  <p>This tool is NOT affiliated with IFTTT Inc.<br>By using this app you agree to abide by the <a href="#terms" style="color:#338">Terms &amp; Conditions</a>.
+
+  <h1><a name="config"></a>IFTTT Triggers</h1>
 
   <div id="events_tmpl" style="display:none">
     <form class="eventform" onsubmit="return false;" autocorrect=off autocapitalize=off>
-      <table class="grid eventbox">
-        <tr><th>Name:<td><input type=text value="" name=nick placeholder="e.g. ''message me''">
-        <tr><th>Trigger:<td><input type=text name=evt placeholder="e.g. oauthsend">
-        <tr><th>Use key:<td><label><input type=radio name=keyn onchange="chooseKeyType(this,0);" checked>default</label> <label><input type=radio name=keyn onchange="chooseKeyType(this,1);">spoken</label>
-        <tr><td colspan=2>
-        <fieldset>
-          <legend>Sentence decomposition</legend>
-          <table class="grid">
-            <tr><th>1st:<td><i>&lt;Name&gt;</i> +
-            <tr style="display:none"><th>then:<td><i>&lt;Key Alias&gt;</i> +
+      <table class="vgrid eventbox">
+        <tr><th>Spoken phrase (trigger):
+        <tr><td><input type=text value="" name=nick placeholder="e.g. ''Turn lights on''">
+        <tr><th>Event name (command):
+        <tr><td><input type=text name=evt placeholder="e.g. lights-engage">
+        <tr><th>Account key:
+        <tr><td>
+          <label><input type=radio name=keyn checked>Use default</label>
+          <br><label><input type=radio name=keyn>Use the words spoken after the trigger to identify the key.</label>
+        <tr><th>Speech confirm:
+        <tr><td><label><input name=cfm type=checkbox> Send without confirmation</label>
+        <tr><th>Parameters: <button type=button name=advanced onclick="showAdvanced(this);">Customize</button>
+        <tr><td>The words spoken after the trigger and key, will be passed to <q>value 1</q>.
+        <tr style="display:none"><td>
+          The words spoken after the trigger and key, will be distributed as:
+          <table class="hgrid">
             <tr>
-              <th>then:
+              <th>Value 1:
               <td>
                 <select name=v1v onchange="onchangeEventValueValue(this, 1);">
-                  <option value=0 selected>
+                  <option value=0>
                   <option value=1>1 word<option value=2>2 words
                   <option value=3>3 words<option value=4>4 words<option value=5>5 words
-                  <option value=11>Unlimited<option value=10>Dictionary
-                </select> <em>(value 1)</em> +
+                  <option value=11 selected>Unlimited<option value=10>Dictionary
+                </select>
             <tr>
-              <th>then:
+              <th>Value 2:
               <td>
                 <select name=v2v onchange="onchangeEventValueValue(this, 2);">
                   <option value=0 selected>
                   <option value=1>1 word<option value=2>2 words
                   <option value=3>3 words<option value=4>4 words<option value=5>5 words
                   <option value=11>Unlimited<option value=10>Dictionary
-                </select> <em>(value 2)</em> +
+                </select>
             <tr>
-              <th>then:
+              <th>Value 3:
               <td>
                 <select name=v3v onchange="onchangeEventValueValue(this, 3);">
                   <option value=0 selected>
                   <option value=1>1 word<option value=2>2 words
                   <option value=3>3 words<option value=4>4 words<option value=5>5 words
                   <option value=11>Unlimited<option value=10>Dictionary
-                </select> <em>(value 3)</em>
+                </select>
           </table>
-        </fieldset>
-        <tr style="display:none"><td colspan=2>
+        <tr style="display:none"><td>
         <fieldset>
           <legend>Dictionary</legend>
           <table class="grid">
-            <tr><td>Matching words will be replaced:<br>
+            <tr><td>Exact matches will be replaced:<br>
             <textarea name=dict cols=26 rows=4 placeholder="jane doe=jane@hotmail.com"></textarea></td></tr>
           </table>
         </fieldset>
-        <tr><td colspan=2><label><input name=cfm type=checkbox> Send without confirmation</label>
-        <tr><td colspan=2 align="right"><button class=dele onclick="ondeleteEvent(this);">Remove</button>
+        <tr><td align="right"><button class=dele onclick="ondeleteEvent(this);">Remove</button>
       </table>
     </form>
   </div>
   <div id="events_all"></div>
-  <div>You have <span id="evtcnt">0</span> trigger(s). <button type=button onclick="addTriggerBox();" class=tolink>Add Trigger...</button></div>
+  <div>You have <b id="evtcnt">0</b> trigger(s). <button type=button onclick="addTriggerBox();" class=tolink>Add Trigger...</button></div>
 
   <h1>IFTTT  Keys</h1>
 
   <div id="keys_tmpl" style="display:none">
     <form class="keyform" onsubmit="return false;" autocorrect=off autocapitalize=off>
-      <table class="grid keybox">
-        <tr><th>Key:<td><input type=text name=keyn placeholder="e.g. asdFGHjklMNO...">
-        <tr><th>Alias:<td><input type=text name=nick placeholder="e.g. ''John Smith''">
-        <tr><td colspan=2>
+      <table class="vgrid keybox">
+        <tr><th>Spoken phrase:
+        <tr><td><input type=text name=nick placeholder="e.g. ''John Smith''">
+        <tr><th>Key:
+        <tr><td><input type=text name=keyn placeholder="e.g. asdFGHjklMNO...">
+        <tr><td>
           <table width="100%">
             <tr>
               <td><label><input type=radio name=deft onchange="chooseDefaultKey(this);">Default</label>
@@ -143,7 +157,7 @@ function showTip(n) {gEBTN(parentTag(n, "li"), "div")[0].style.display=""}
     </form>
   </div>
   <div id="keys_all"></div>
-  <div>You have <span id="keycnt">0</span> key(s). <button type=button onclick="addKeyBox();" class=tolink>Add Key...</button></div>
+  <div>You have <b id="keycnt">0</b> key(s). <button type=button onclick="addKeyBox();" class=tolink>Add Key...</button></div>
 
   <h1>Remember to Save</h1>
   <button type=button onclick="saveAll();">Save Settings</button><br>
@@ -187,10 +201,10 @@ function addTriggerBox(nick, o) {
     f.evt.value = o.evt;
     f.nick.value = nick;
     f.keyn[o.dkey ? 0 : 1].checked = true;
-    chooseKeyType(f.keyn[0], !o.dkey);
     f.v1v.value = o.v1 || 0;
     f.v2v.value = o.v2 || 0;
     f.v3v.value = o.v3 || 0;
+    if(o.v1 == 11 && o.v2 == 0 && o.v3 == 0) showAdvanced(f);
     var d = o.dict, str = [];
     for(var i in d) str.push(i+"="+d[i]);
     f.dict.value = str.join("\n");
@@ -226,8 +240,12 @@ function chooseDefaultKey(n) {
   n.form.nick.disabled = true;
   n.form.deft.checked = true;
 }
-function chooseKeyType(n, yesno) {
-  gEBTN(gEBTN(n.form, "fieldset")[0], "table")[0].rows[1].style.display = yesno ? "" : "none";
+function showAdvanced(n) {
+  var tr = parentTag(n, "TR").nextSibling;
+  tr.style.display = "none";
+  tr.nextSibling.style.display = "";
+  n = n.form.advanced;
+  n.parentNode.removeChild(n);
 }
 function trim(str) {
   return str ? str.replace(/^\s+|\s+$/g, "") : str;
@@ -297,7 +315,7 @@ var dbms;
 })(location.href);
 </script>
   <h1><a name=terms></a>Terms &amp; Conditions</h1>
-  By using this app and/or service (collectively &quot;app&quot;) you agree to abide by the terms &amp; conditions.
+  By using this app and/or service (collectively <q>app</q>) you agree to abide by the terms &amp; conditions.
   <p>You agree that you are using this app at your own risk. This app is provided &quot;as is&quot; and the app
   hereby expressly disclaim any and all warranties, express or implied.<p>This app and its owners shall not be liable 
   to users or any other person for any loss or damage arising directly or indirectly from using, misusing, inability 
