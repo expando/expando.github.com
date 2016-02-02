@@ -23,6 +23,7 @@ em {color:#888; font-size:0.9em}
 .vgrid td {padding-top:0}
 .hgrid th {padding:0.25em}
 .hgrid td {padding:0.25em}
+.nogrid td {padding:0}
 .vgrid input[type="text"], .hgrid input[type="text"]{width:95%}
 button[name="advanced"] {font-size:0.8em}
 .dict_box {margin:8px}
@@ -148,7 +149,7 @@ function showTip(n) {gEBTN(parentTag(n, "li"), "div")[0].style.display=""}
         <tr><th>Key:
         <tr><td><input type=text name=keyn placeholder="e.g. asdFGHjklMNO...">
         <tr><td>
-          <table width="100%">
+          <table class="nogrid" width="100%">
             <tr>
               <td><label><input type=radio name=deft onchange="chooseDefaultKey(this);">Default</label>
               <td align="right"><button class=dele onclick="ondeleteEvent(this, 1);">Remove</button>
@@ -160,6 +161,7 @@ function showTip(n) {gEBTN(parentTag(n, "li"), "div")[0].style.display=""}
   <div>You have <b id="keycnt">0</b> key(s). <button type=button onclick="addKeyBox();" class=tolink>Add Key...</button></div>
 
   <h1>Remember to Save</h1>
+  <div id="tline_box" style="margin:1em 0; display:none"><label><input type=checkbox> Show triggers on my timeline</label></div>
   <button type=button onclick="saveAll();">Save Settings</button><br>
   <p>All settings are saved to your watch/phone and not saved on this website.
 <script>
@@ -293,6 +295,7 @@ function saveAll() {
   if(arr.length > 0 && !o.dkey) {
     alert("To send triggers, you must have at least one key.");
   }
+  if($("tline").checked) o.tline = 1;
   o = JSON.stringify(o);
   location = "pebblejs://close#"+encodeURIComponent(o);
   //document.body.appendChild(document.createElement("div")).appendChild(document.createTextNode(o));
@@ -312,6 +315,8 @@ var dbms;
   for(i in hash) addKeyBox(i, hash[i]);
   hash = dbms.trigz;
   for(i in hash) addTriggerBox(i, hash[i]);
+  if("tline" in dbms) $("tline_box").style.display = "";
+  if(dbms.tline) $("tline").checked = true;
 })(location.href);
 </script>
   <h1><a name=terms></a>Terms &amp; Conditions</h1>
