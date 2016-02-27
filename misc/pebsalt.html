@@ -52,6 +52,9 @@ function wc(){document.write(PebColor.html())}
 <tr>
   <td>Minor Markers:<br><span class="xpl">(1&hellip;60)</span>
   <td><div class=colpick><input type=hidden name=ck6><script>wc();</script></div>
+<tr id="ctrow" style="display:none">
+  <td>Health:<br><span class="xpl">&hearts;</span>
+  <td><div class=colpick><input type=hidden name=ct><script>wc();</script></div>
 <tr>
   <th colspan=2>Watch Hands
 <tr>
@@ -88,10 +91,7 @@ function wc(){document.write(PebColor.html())}
 <tr>
   <td>Seconds:<br><span class="xpl">(12:59:<b>59</b>)</span>
   <td>Only show second hand between the hours of <select name=s><script>wr();</script></select>
-  and <select name=e><script>wr();</script></select>
-<!--tr>
-  <td>Power:
-  <td>Hide second hand--> and when battery is above <select name=b>
+  and <select name=e><script>wr();</script></select> and when battery is above <select name=b>
 <option value=0>0%<option value=10>10%<option value=20>20%<option value=30>30%
 <option value=40>40%<option value=50>50%<option value=60>60%<option value=70>70%
 <option value=80>80%<option value=90>90%<option value=100>100%</select>
@@ -116,6 +116,7 @@ document.write('<img alt="" src="'+
 var obj = {d:1,w:1,b:30,s:1,e:1,vs:12,ve:12,ds:0,ch:1,cm:27,cs:27,cd:1,cw:27,ck:1,ck4:1,ck6:1,bg:0};
 if(/&t=/.test(location)){obj.t=2;document.querySelector("#btrow").style.display=""}
 if(/&rh=/.test(location)){obj.rh=0;document.querySelector("#rhrow").style.display=""}
+if(/&ct=/.test(location)){obj.ct=21;document.querySelector("#ctrow").style.display=""}
 location.search.replace(/\b(\w+)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
 "ch,cm,cs,cd,cw,ck,ck4,ck6,bg".replace(/\b..\d?\b/g, function(n,z) {z=document.fm[n].parentNode.querySelector(".col"+obj[n]);z&&PebColor.click(z, obj[n])})
 function bye(){
