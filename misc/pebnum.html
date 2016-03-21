@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width">
+<style>
+body{background:#eee; color:#000; padding:0; margin:0}
+body,input,select{font:normal 14pt Helvetica; line-height:1.5em}
+th{padding:0.5em; background:#ddd; color:#888; font:bold 11pt Helvetica; text-transform:uppercase; text-align:left}
+td{vertical-align:top; padding:0.5em 0.2em}
+.xpl{font-size:0.9em; color:#aaa}
+.xpl b{font-weight:normal; color:#000}
+.colpick{line-height:8pt; border-left:10px solid transparent; max-height:140px; overflow:auto; -webkit-overflow-scrolling:touch}
+.pebcol{display:inline-block; height:1cm; min-width:1cm; width:25%; overflow:hidden; margin:0; padding:0; font:normal 8pt serif; color:rgba(0,0,0,0.4); text-align:center}
+</style>
+</head>
+<body><!-- APPUID: 415f7861-7f83-4dfd-a00e-b26d554f65f2 -->
+<script>
+var hours = [];
+for(var i=0; i<24; i++) hours.push("<option value="+i+">"+i+":00");
+hours = hours.join("");
+function wr(){document.write(hours)}
+var PebColor = {
+  cols: ("00000500A00F05005505A05F0A00A50AA0AF0F00F50FA0FF50050550A50F55055555A55F5A0"+
+  "5A55AA5AF5F05F55FA5FFA00A05A0AA0FA50A55A5AA5FAA0AA5AAAAAFAF0AF5AFAAFFF00F05F0AF0F"+
+  "F50F55F5AF5FFA0FA5FAAFAFFF0FF5FFAFFF").match(/.../g),
+  ord: ("00214263371632485358523657564120406061624424452825040812294613093014260510153"+
+  "147110627072201020323431918393538173451555950335449").match(/../g),
+  ttl:63,
+  click: function(n, i) {n=n.parentNode; n.style.borderColor="#"+this.cols[i]; n.querySelector("input").value = i},
+  html: function() {
+    for(var o=this.ord,c=this.cols, i=this.ttl, htm=[]; i>=0; i--)
+      htm[i]="<span class='pebcol col"+o[i]*1+"' onclick='PebColor.click(this,"+o[i]*1+");' style='background-color:#"+c[o[i]*1]+"'>&nbsp;</span>";
+    return htm.join("");
+  }
+};
+function wc(){document.write(PebColor.html())}
+</script>
+<script>if(/\ba=a&/.test(location)){PebColor.ttl=1;PebColor.ord=["00","63"]}</script>
+<form name=fm>
+<table cellspacing=0 border=0>
+<tr>
+  <th colspan=2>Watch Dial
+<tr>
+  <td>Back Color:
+  <td><div class=colpick><input type=hidden name=bg><script>wc();</script></div>
+<tr>
+  <td>Markers:<br><span class="xpl">(1&hellip;12)</span>
+  <td><div class=colpick><input type=hidden name=ck><script>wc();</script></div>
+<tr>
+  <td>Markers:<br><span class="xpl">(3, 6, 9, 12)</span>
+  <td><div class=colpick><input type=hidden name=ck4><script>wc();</script></div>
+<tr>
+  <th colspan=2>Watch Hands
+<tr>
+  <td>Hour Hand:<br><span class="xpl">(<b>12</b>:59:59)</span>
+  <td><div class=colpick><input type=hidden name=ch><script>wc();</script></div>
+<tr>
+  <td>Minute Hand:<br><span class="xpl">(12:<b>59</b>:59)</span>
+  <td><div class=colpick><input type=hidden name=cm><script>wc();</script></div>
+<tr>
+  <td>Second Hand:<br><span class="xpl">(12:59:<b>59</b>)</span>
+  <td><div class=colpick><input type=hidden name=cs><script>wc();</script></div>
+<tr>
+  <th colspan=2>Complications
+<tr>
+  <td>Date:
+  <td><select name=d><option value=0>Hide<option value=1>Show</select>
+<tr>
+  <td>Date Color:<br><span class="xpl">(31)</span>
+  <td><div class=colpick><input type=hidden name=cd><script>wc();</script></div>
+<tr>
+  <td>Week:
+  <td><select name=w><option value=0>Hide<option value=1>Show</select>
+<tr>
+  <td>Week Color:<br><span class="xpl">(MON)</span>
+  <td><div class=colpick><input type=hidden name=cw><script>wc();</script></div>
+<tr>
+  <td>Date Size:<br><span class="xpl">(31)</span>
+  <td><select name=ds><option value=0>Default<option value=1>+1<option value=2>+2</select>
+<tr>
+  <td>Thickness:<br><span class="xpl">(<b>8</b>, 8)</span>
+  <td><select name=f><option value=0>Thin<option value=1>Thick</select>
+<tr>
+  <td>Bluetooth:
+  <td><select name=t><option value=0>No Vibrate<option value=1>Loss Vibrate only<option value=2>Gain/Loss Vibrate</select>
+<tr>
+  <th colspan=2>Advanced
+<tr>
+  <td>Seconds:<br><span class="xpl">(12:59:<b>59</b>)</span>
+  <td>Only show second hand between the hours of <select name=s><script>wr();</script></select>
+  and <select name=e><script>wr();</script></select> and when battery is above <select name=b>
+<option value=0>0%<option value=10>10%<option value=20>20%<option value=30>30%
+<option value=40>40%<option value=50>50%<option value=60>60%<option value=70>70%
+<option value=80>80%<option value=90>90%<option value=100>100%</select>
+<tr>
+  <td>Vibrate:<br><span class="xpl">(((&bull;)))</span>
+  <td>Hourly vibrate between the hours of <select name=vs><script>wr();</script></select>
+  and <select name=ve><script>wr();</script></select>
+  <br><small><i>(e.g. 3=III, 6=VI, 9=IX, 12=XII, where I=quick, V=long, X=V+V)</i></small>
+<tr>
+  <td>Backlight:
+  <td><select name=rh><option value=0>Disable<option value=1>Enable</select> backlight when you raise your arm up from the down position.
+</table>
+&nbsp;<input type=button value=Save onclick="bye();">
+</form>
+<br>
+<script>
+var obj = {d:1,w:1,b:30,s:1,f:1,t:2,rh:0,e:1,vs:12,ve:12,ds:0,ch:1,cm:27,cs:27,cd:1,cw:27,ck:1,ck4:1,bg:0};
+location.search.replace(/\b(\w+)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
+"ch,cm,cs,cd,cw,ck,ck4,ct,bg".replace(/\b..\d?\b/g, function(n,z) {z=document.fm[n].parentNode.querySelector(".col"+obj[n]);z&&PebColor.click(z, obj[n])})
+function bye(){
+  for(var i in obj) obj[i]=document.fm[i].value*1;
+  var url=/\breturn_to=(https%3A\/\/[a-z]+pebble\.[c-t]+\/[a-z\/]+%3F)/.exec(location)||[1,"pebblejs://close#"];
+  location=decodeURIComponent(url[1])+encodeURIComponent(JSON.stringify(obj));
+}
+</script>
+</body>
+</html>
