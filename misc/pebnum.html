@@ -52,6 +52,9 @@ function wc(){document.write(PebColor.html())}
 <tr>
   <td>Fat:<br><span class="xpl">(<strong>8</strong>/8)</span>
   <td><select name=f><option value=1>Fat (O_O)<option value=0>Thin |O_O|</select>
+<tr id="rrow" style="display:none">
+  <td>Orient:
+  <td>Numbers point <select name=r><option value=0>to center<option value=1>downwards</select>
 <tr>
   <th colspan=2>Watch Hands
 <tr>
@@ -113,6 +116,7 @@ function wc(){document.write(PebColor.html())}
 <script>
 var obj = {d:1,w:1,b:30,s:1,t:2,rh:0,e:1,vs:12,ve:12,ds:0,ch:1,cm:27,cs:27,cd:1,cw:27,ck:1,ck4:1,bg:0};
 if(/p=/.test(location)) {obj.p=0;obj.pc=21;}
+if(/&r=/.test(location)) {obj.r=0;document.getElementById("rrow").style.display=""}
 location.search.replace(/\b(\w+)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
 obj.f=1;
 "ch,cm,cs,cd,cw,ck,ck4,pc,bg".replace(/\b..\d?\b/g, function(n,z) {z=document.fm[n].parentNode.querySelector(".col"+obj[n]);z&&PebColor.click(z, obj[n])})
