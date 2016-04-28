@@ -12,9 +12,9 @@ td{vertical-align:top; padding:0.5em 0.2em}
 .xpl b{font-weight:normal; color:#000}
 .colpick{line-height:8pt; border-left:10px solid transparent; max-height:140px; overflow:auto; -webkit-overflow-scrolling:touch}
 .pebcol{display:inline-block; height:1cm; min-width:1cm; width:25%; overflow:hidden; margin:0; padding:0; font:normal 8pt serif; color:rgba(0,0,0,0.4); text-align:center}
-#prof td {padding:0 0.9em 0.7em 0.1em; cursor:pointer}
-#prof .name {color:#00a}
-#prof .edit {color:#aae}
+#prof td {padding:0.1em 0.7em 0.6em 0.3em; cursor:pointer}
+#prof .name {color:#00f; text-decoration:underline}
+#prof .edit {color:#aaa}
 #prof .del {color:#f88; font-weight:bold}
 </style>
 </head>
@@ -132,7 +132,7 @@ function loadProf(){
   $("prof").parentNode.parentNode.style.display=(pfs.length>0)?"":"none";
   if(pfs.length>0){
     var arr=["<table cellspacing=0 border=0>"];
-    for(var i=0;i<pfs.length;i++)arr.push("<tr><td class=name onclick='setObj(pfs["+i+"].data);bye();'>"+pfs[i].name+"<td class=edit onclick='setObj(pfs["+i+"].data);'>view<td class=del onclick='if(confirm(\"Delete?\"))pfs.splice("+i+",1);_saveProf();loadProf();this.parentNode.parentNode.removeChild(this.parentNode);'>&times;<\/tr>");
+    for(var i=0;i<pfs.length;i++)arr.push("<tr><td class=name onclick='setObj(pfs["+i+"].data);bye();'>"+pfs[i].name+"<td class=edit onclick='setObj(pfs["+i+"].data);'>edit<td class=del onclick='if(confirm(\"Delete?\"))pfs.splice("+i+",1);_saveProf();loadProf();this.parentNode.parentNode.removeChild(this.parentNode);'>&times;<\/tr>");
     $("prof").innerHTML=arr.join("")+"<\/table>";
   }
 }
