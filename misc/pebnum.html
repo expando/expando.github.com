@@ -12,6 +12,10 @@ td{vertical-align:top; padding:0.5em 0.2em}
 .xpl b{font-weight:normal; color:#000}
 .colpick{line-height:8pt; border-left:10px solid transparent; max-height:140px; overflow:auto; -webkit-overflow-scrolling:touch}
 .pebcol{display:inline-block; height:1cm; min-width:1cm; width:25%; overflow:hidden; margin:0; padding:0; font:normal 8pt serif; color:rgba(0,0,0,0.4); text-align:center}
+#prof td {padding:0 0.9em 0.7em 0.1em; cursor:pointer}
+#prof .name {color:#00a}
+#prof .edit {color:#aae}
+#prof .del {color:#f88; font-weight:bold}
 </style>
 </head>
 <body><!-- APPUID: 415f7861-7f83-4dfd-a00e-b26d554f65f2 -->
@@ -39,6 +43,9 @@ function wc(){document.write(PebColor.html())}
 <script>if(/\ba=a&/.test(location)){PebColor.ttl=1;PebColor.ord=["00","63"]}</script>
 <form name=fm>
 <table cellspacing=0 border=0>
+<tr style="display:none">
+  <td>Profiles:
+  <td><div id="prof"></div>
 <tr>
   <th colspan=2>Watch Dial
 <tr>
@@ -111,21 +118,54 @@ function wc(){document.write(PebColor.html())}
   <td>Backlight:
   <td><select name=rh><option value=0>Disable<option value=1>Enable</select> backlight when you raise your arm up from the down position.
 </table>
-&nbsp;<input type=button value=Save onclick="bye();">
+&nbsp;<input type=button value=Apply onclick="bye();">&nbsp;&nbsp;<input id="profsave" type=button value="Create Profile..." onclick="saveProf();" style="display:none">
 </form>
 <br>
 <script>
+function $(id){return document.getElementById(id)}
+var pfs=null;
+if(window.localStorage){
+  $("profsave").style.display="";
+  try{pfs=JSON.parse(window.localStorage.getItem("profs"))}catch(e){}
+}
+function loadProf(){
+  $("prof").parentNode.parentNode.style.display=(pfs.length>0)?"":"none";
+  if(pfs.length>0){
+    var arr=["<table cellspacing=0 border=0>"];
+    for(var i=0;i<pfs.length;i++)arr.push("<tr><td class=name onclick='setObj(pfs["+i+"].data);bye();'>"+pfs[i].name+"<td class=edit onclick='setObj(pfs["+i+"].data);'>view<td class=del onclick='if(confirm(\"Delete?\"))pfs.splice("+i+",1);_saveProf();loadProf();this.parentNode.parentNode.removeChild(this.parentNode);'>&times;<\/tr>");
+    $("prof").innerHTML=arr.join("")+"<\/table>";
+  }
+}
+if(pfs)loadProf();
+function saveProf(){
+  getObj();
+  var n=prompt("Save current colors as:");
+  if(n){
+    if(!pfs)pfs=[];
+    pfs.push({name:n,data:obj});
+    _saveProf();
+    loadProf();
+    document.documentElement.scrollTop = 0;
+  }
+}
+function _saveProf(){window.localStorage.setItem("profs", JSON.stringify(pfs))}
 var obj = {d:1,w:1,b:30,s:1,t:2,rh:0,e:1,vs:12,ve:12,ds:0,ch:1,cm:27,cs:27,cd:1,cw:27,ck:1,ck4:1,bg:0};
 if(/p=/.test(location)) {obj.p=0;obj.pc=21;}
-if(/a=c/.test(location)) {obj.r=0;document.getElementById("rrow").style.display=""}
-location.search.replace(/\b(\w+)=(\d+)\b/g, function(s,n,v) {if(n in obj)document.fm[n].value=obj[n]=v});
+if(/a=c/.test(location)) {obj.r=0;$("rrow").style.display=""}
+function setObj(o){
+  for(var i in o)document.fm[i].value=o[i];
+  "ch,cm,cs,cd,cw,ck,ck4,pc,bg".replace(/\b..\d?\b/g, function(n,z) {z=document.fm[n].parentNode.querySelector(".col"+o[n]);z&&PebColor.click(z, o[n])})
+}
+location.search.replace(/\b(\w+)=(\d+)\b/g, function(s,n,v) {if(n in obj)obj[n]=v});
+function getObj(){var o={};for(var i in obj) o[i]=document.fm[i].value*1; obj=o}
+setObj(obj);
 obj.f=1;
-"ch,cm,cs,cd,cw,ck,ck4,pc,bg".replace(/\b..\d?\b/g, function(n,z) {z=document.fm[n].parentNode.querySelector(".col"+obj[n]);z&&PebColor.click(z, obj[n])})
 function bye(){
-  for(var i in obj) obj[i]=document.fm[i].value*1;
+  getObj();
   var url=/\breturn_to=(https%3A\/\/[a-z]+pebble\.[c-t]+\/[a-z\/]+%3F)/.exec(location)||[1,"pebblejs://close#"];
   location=decodeURIComponent(url[1])+encodeURIComponent(JSON.stringify(obj));
 }
+
 </script>
 </body>
 </html>
