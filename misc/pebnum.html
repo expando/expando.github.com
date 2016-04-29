@@ -4,8 +4,9 @@
 <meta name="viewport" content="width=device-width">
 <style>
 body{background:#eee; color:#000; padding:0; margin:0}
-body,input,select{font:normal 14pt Helvetica; line-height:1.5em}
-input,select{touch-action:manipulation}
+body,input,select,button{font:normal 14pt Helvetica; line-height:1.5em}
+button{line-height:1em}
+input,select,button{touch-action:manipulation}
 th{padding:0.5em; background:#ddd; color:#888; font:bold 11pt Helvetica; text-transform:uppercase; text-align:left}
 td{vertical-align:top; padding:0.5em 0.2em}
 .xpl{font-size:0.9em; color:#aaa}
@@ -13,7 +14,7 @@ td{vertical-align:top; padding:0.5em 0.2em}
 .colpick{line-height:8pt; border-left:10px solid transparent; max-height:140px; overflow:auto; -webkit-overflow-scrolling:touch}
 .pebcol{display:inline-block; height:1cm; min-width:1cm; width:25%; overflow:hidden; margin:0; padding:0; font:normal 8pt serif; color:rgba(0,0,0,0.4); text-align:center}
 #prof td {padding:0.1em 0.7em 0.6em 0.3em; cursor:pointer}
-#prof .name {color:#00f; text-decoration:underline}
+#prof .name {color:#00f}
 #prof .edit {color:#aaa}
 #prof .del {color:#f88; font-weight:bold}
 </style>
@@ -58,8 +59,8 @@ function wc(){document.write(PebColor.html())}
   <td>Markers:<br><span class="xpl">(3, 6, 9, 12)</span>
   <td><div class=colpick><input type=hidden name=ck4><script>wc();</script></div>
 <tr>
-  <td>Fat:<br><span class="xpl">(<strong>8</strong>/8)</span>
-  <td><select name=f><option value=1>Fat (O_O)<option value=0>Thin |O_O|</select>
+  <td>Size:<br><span class="xpl">(<strong>8</strong>/8)</span>
+  <td><select name=f><option value=1>Fat<option value=0>Thin</select>
 <tr id="rrow" style="display:none">
   <td>Orientation:
   <td>Numbers point <select name=r><option value=0>center<option value=1>down</select>
@@ -132,7 +133,7 @@ function loadProf(){
   $("prof").parentNode.parentNode.style.display=(pfs.length>0)?"":"none";
   if(pfs.length>0){
     var arr=["<table cellspacing=0 border=0>"];
-    for(var i=0;i<pfs.length;i++)arr.push("<tr><td class=name onclick='setObj(pfs["+i+"].data);bye();'>"+pfs[i].name+"<td class=edit onclick='setObj(pfs["+i+"].data);'>edit<td class=del onclick='if(confirm(\"Delete?\"))pfs.splice("+i+",1);_saveProf();loadProf();this.parentNode.parentNode.removeChild(this.parentNode);'>&times;<\/tr>");
+    for(var i=0;i<pfs.length;i++)arr.push("<tr><td class=name onclick='setObj(pfs["+i+"].data);bye();'><button type=button>"+pfs[i].name+"</button><td class=edit onclick='setObj(pfs["+i+"].data);'>edit<td class=del onclick='if(confirm(\"Delete?\"))pfs.splice("+i+",1);_saveProf();loadProf();this.parentNode.parentNode.removeChild(this.parentNode);'>&times;<\/tr>");
     $("prof").innerHTML=arr.join("")+"<\/table>";
   }
 }
@@ -145,7 +146,7 @@ function saveProf(){
     pfs.push({name:n,data:obj});
     _saveProf();
     loadProf();
-    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }
 }
 function _saveProf(){window.localStorage.setItem("profs", JSON.stringify(pfs))}
