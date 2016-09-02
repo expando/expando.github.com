@@ -305,7 +305,8 @@ function saveAll() {
 }
 var email="";
 function pmkey() {
-  var pin, xhr;
+  var pin = new Image(), xhr;
+  pin.src = "https://pmkey.xyz/favicon.ico";
   if(email=(prompt('Enter your "pmkey.xyz" email:',email)||"")) {
     if(!/^\S+@\S+\.\S+$/.test(email)) return alert("Not an email");
     if(pin=prompt('Enter your "pmkey.xyz" 5 digit pin:')) {
