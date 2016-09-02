@@ -158,7 +158,10 @@ function showTip(n) {gEBTN(parentTag(n, "li"), "div")[0].style.display=""}
     </form>
   </div>
   <div id="keys_all"></div>
-  <div>You have <b id="keycnt">0</b> key(s). <button type=button onclick="addKeyBox();" class=tolink>Add Key...</button></div>
+  <div>
+  You have <b id="keycnt">0</b> key(s). <button type=button onclick="addKeyBox();" class=tolink>Add Key...</button>
+  <button type=button onclick="pmkey();" class=tolink style="font-size:0.9em; color:#999">[pmkey]</a>
+  </div>
 
   <h1>Remember to Save</h1>
   <div id="tline_box" style="margin:1em 0; display:none"><label><input id="tline" type=checkbox> Show triggers on my timeline</label></div>
@@ -299,6 +302,27 @@ function saveAll() {
   o = JSON.stringify(o);
   location = "pebblejs://close#"+encodeURIComponent(o);
   //document.body.appendChild(document.createElement("div")).appendChild(document.createTextNode(o));
+}
+var email="";
+function pmkey() {
+  var pin, xhr;
+  if(email=(prompt('Enter your "pmkey.xyz" email:',email)||"")) {
+    if(!/^\S+@\S+\.\S+$/.test(email)) return alert("Not an email");
+    if(pin=prompt('Enter your "pmkey.xyz" 5 digit pin:')) {
+      if(!/^\d{5}$/.test(pin)) return alert("Not a 5 digit pin.");
+      xhr = new XMLHttpRequest();
+      xhr.open("GET", "https://pmkey.xyz/search/?email="+email+"&pin="+pin, true);
+      xhr.onreadystatechange=function(){
+        if(xhr.readyState!=4)return;
+        if(xhr.status==200&&(xhr=JSON.parse(xhr.responseText))){
+          if(!xhr.success)return alert(xhr.error||"Account error");
+          if(xhr=xhr.keys.web.ifttt)return addKeyBox("", xhr);
+          alert("No IFTTT key in your account.");
+        } else alert("HTTP err "+xhr.status);
+      };
+      xhr.send("");
+    }
+  }
 }
 var dbms;
 (function(url) {
