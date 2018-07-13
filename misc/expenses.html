@@ -110,7 +110,7 @@ let elms = document.f.elements;
 for(let i = 0; i < elms.length; i++) {
   let name = elms[i].name;
   if(name) {
-    elms[i].onkeypress = elms[i].onclick = e => {
+    elms[i].onkeyup = elms[i].onclick = e => {
       localStorage["f_" + name] = elms[i].value;
     };
     let value = localStorage["f_" + name];
@@ -130,6 +130,9 @@ function doit() {
   arr = arr.join(encodeURIComponent("\n"));
   let param = "value1="+encodeURIComponent(navigator.oscpu)+"&value2="+arr+"&value3="+document.f.cost.value;
   location.href = "https://maker.ifttt.com/trigger/expenses/with/key/c0MQTa0bpsYERESiLzpsnL?"+param;
+  document.body.onunload = () => {
+    localStorage.clear();
+  };
 }
 </script>
 </body>
