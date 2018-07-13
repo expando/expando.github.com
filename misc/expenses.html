@@ -129,10 +129,11 @@ function doit() {
   }
   arr = arr.join(encodeURIComponent("\n"));
   let param = "value1="+encodeURIComponent(navigator.oscpu)+"&value2="+arr+"&value3="+document.f.cost.value;
-  location.href = "https://maker.ifttt.com/trigger/expenses/with/key/c0MQTa0bpsYERESiLzpsnL?"+param;
   document.body.onunload = () => {
+    document.f.reset();
     localStorage.clear();
   };
+  location.href = "https://maker.ifttt.com/trigger/expenses/with/key/c0MQTa0bpsYERESiLzpsnL?"+param;
 }
 </script>
 </body>
