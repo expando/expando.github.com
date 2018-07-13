@@ -130,11 +130,16 @@ function doit() {
   }
   arr = arr.join(encodeURIComponent("\n"));
   let param = "value1="+encodeURIComponent(navigator.oscpu)+"&value2="+arr+"&value3="+document.f.cost.value;
-  document.body.onunload = () => {
+  fetch(
+    "https://maker.ifttt.com/trigger/expenses/with/key/c0MQTa0bpsYERESiLzpsnL?"+param,
+    {mode: "no-cors"}
+  ).then(res => {
     localStorage.clear();
     document.f.reset();
-  };
-  location.href = "https://maker.ifttt.com/trigger/expenses/with/key/c0MQTa0bpsYERESiLzpsnL?"+param;
+    alert("Done");
+  }, err => {
+    alert(err);
+  });
 }
 </script>
 </body>
