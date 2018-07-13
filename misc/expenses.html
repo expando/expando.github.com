@@ -107,6 +107,7 @@ select {text-align: center; width: 100%; box-sizing: border-box}
 </form>
 <script>
 let elms = document.f.elements;
+document.f.reset();
 for(let i = 0; i < elms.length; i++) {
   let name = elms[i].name;
   if(name) {
@@ -114,7 +115,7 @@ for(let i = 0; i < elms.length; i++) {
       localStorage["f_" + name] = elms[i].value;
     };
     let value = localStorage["f_" + name];
-    if(value !== null || value !== undefined) elms[i].value = value;
+    if(value) elms[i].value = value;
   }
 }
 
@@ -130,8 +131,8 @@ function doit() {
   arr = arr.join(encodeURIComponent("\n"));
   let param = "value1="+encodeURIComponent(navigator.oscpu)+"&value2="+arr+"&value3="+document.f.cost.value;
   document.body.onunload = () => {
-    document.f.reset();
     localStorage.clear();
+    document.f.reset();
   };
   location.href = "https://maker.ifttt.com/trigger/expenses/with/key/c0MQTa0bpsYERESiLzpsnL?"+param;
 }
