@@ -101,7 +101,7 @@ select {text-align: center; width: 100%; box-sizing: border-box}
   </section>
 
   <footer>
-    <a href="#" onclick="if(confirm('Reset?'))document.f.reset();">Reset</a>
+    <a href="#" onclick="if(confirm('Reset?')){document.f.reset();localStorage.clear();}">Reset</a>
     <input type=button value=Submit onclick="doit();">
   </footer>
 </form>
@@ -114,7 +114,7 @@ for(let i = 0; i < elms.length; i++) {
       localStorage["f_" + name] = elms[i].value;
     };
     let value = localStorage["f_" + name];
-    if(value) elms[i].value = value;
+    if(value !== null || value !== undefined) elms[i].value = value;
   }
 }
 
