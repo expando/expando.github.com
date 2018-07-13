@@ -2,6 +2,8 @@
 <html manifest="expenses.manifest">
 <head><title>Expenses</title>
 <link rel="shortcut icon" href="https://maker.ifttt.com/favicon.ico">
+<link rel="prefetch" href="https://maker.ifttt.com/trigger/">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://ifttt.com/apple-touch-icon-114x114-precomposed.png">
 <meta charset="UTF-8">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="white">
@@ -53,6 +55,10 @@ select {text-align: center; width: 100%; box-sizing: border-box}
   </section>
 
   <section>
+    <input type=number pattern="[0-9]*" title="Occupants" name=occupy value="1">
+  </section>
+
+  <section>
     <select name=cat>
       <option value=meal>Meal
       <option value=snack>Snack
@@ -71,10 +77,6 @@ select {text-align: center; width: 100%; box-sizing: border-box}
 
   <section>
     <input type=text name=brand placeholder=McDonalds autocomplete=off autocorrect=off autocapitalize=words>
-  </section>
-
-  <section>
-    <input type=number pattern="[0-9]*" title="Occupants" name=occupy value="1">
   </section>
 
   <section>
